@@ -23,4 +23,7 @@ Route::get('/carwheels', function () {
 Route::get('/carlights', function () {
     return view('carlights');
 });
+Route::get('/carbumpers', function () {
+    return view('carlights');
+});
 
