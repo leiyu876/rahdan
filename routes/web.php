@@ -20,3 +20,7 @@ Route::get('/contact', function () {
 Route::get('/carwheels', function () {
     return view('carwheels');
 });
+Route::get('/carlights', function () {
+    return view('carlights');
+});
+
