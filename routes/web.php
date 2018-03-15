@@ -26,4 +26,12 @@ Route::get('/carlights', function () {
 Route::get('/carbumpers', function () {
     return view('carlights');
 });
+Route::get('/caradsystem', function () {
+    return view('caradsystem');
+});
+Route::get('/truckbumpers', function () {
+    return view('truckbumpers');
+});
+
+
 
