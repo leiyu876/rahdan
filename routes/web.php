@@ -32,6 +32,9 @@ Route::get('/caradsystem', function () {
 Route::get('/truckbumpers', function () {
     return view('truckbumpers');
 });
+Route::get('/singlepage', function () {
+    return view('singlepage');
+});
 
 
 
