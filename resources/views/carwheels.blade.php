@@ -23,7 +23,7 @@
 					<div class="grid_1_of_5 images_1_of_5">
 						 <img src="{{ asset('custom/images/t2.jpg') }}">
 						 <h3>Lorem Ipsum is simply </h3>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, in reprehenderit.</p>
+						<p>Lorem ipsum d'olor sit amet, consectetur adipisicing elit, in reprehenderit.</p>
 						<h4>$300.00</h4>
 					     <div class="button"><span><a href="singlepage.html">Read More</a></span></div>
 				    </div>

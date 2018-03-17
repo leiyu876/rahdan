@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('index');
+	return view('index');
 });
 Route::get('/contact', function () {
     return view('contact');
@@ -38,3 +38,7 @@ Route::get('/singlepage', function () {
 
 
 
+
+Auth::routes();
+
+Route::get('/dashboard', 'DashboardController@index');
