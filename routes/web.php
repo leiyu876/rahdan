@@ -36,9 +36,10 @@ Route::get('/singlepage', function () {
     return view('singlepage');
 });
 
-
-
-
 Auth::routes();
 
 Route::get('/dashboard', 'DashboardController@index');
+
+Route::resources([
+    'users' => 'UsersController',
+]);

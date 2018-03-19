@@ -16,7 +16,27 @@
 <div class="wrapper">
   @include('inc.admin.header')
   @include('inc.admin.aside')
-  @yield('content')
+  
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>  
+        Blank page
+        <small>it all starts here</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#">Examples</a></li>
+        <li class="active">Blank page</li>
+      </ol>
+    </section>
+    
+    <section class="content">
+      @include('inc.admin.messages')
+      @yield('content')
+    </section>
+  </div>
+  
   @include('inc.admin.footer')
 </div>
 <script src="{{ asset('custom_adminlte/bower_components/jquery/dist/jquery.min.js') }}"></script>
