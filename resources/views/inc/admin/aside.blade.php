@@ -35,7 +35,7 @@
         </a>
         <ul class="treeview-menu">
           <li><a href="{{ url('users') }}"><i class="fa fa-circle-o"></i> Users List</a></li>
-          <li><a href="{{ asset('custom_adminlte/index2.html') }}"><i class="fa fa-circle-o"></i> Add User</a></li>
+          <li><a href="{{ url('register') }}"><i class="fa fa-circle-o"></i> Create User</a></li>
         </ul>
       </li>
     </ul>
