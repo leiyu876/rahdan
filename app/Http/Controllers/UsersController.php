@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use App\User;
+use Session;
+
 class UsersController extends Controller
 {
     /**
@@ -98,5 +101,44 @@ class UsersController extends Controller
         $user = User::find($id);
         $user->delete();
         return redirect('/users')->with('success', 'User Removed');
+    }
+
+    public function change_pass($id)
+    {
+        $user = User::find($id);
+
+        return view('users.change_pass')->with('user', $user);
+    }
+
+    public function change_pass_save(Request $request, $id)
+    {
+        $password_current = $request->input('password_current');
+
+        $user   = User::find($id);
+        
+        $hasher = app('hash');
+        
+        if (!$hasher->check($password_current, $user->password)) {
+
+            Session::flash('error', 'Incorrect current password.');
+
+            return view('users.change_pass')->with('user', $user);
+        }
+
+        $password              = $request->input('password');
+        $password_confirmation = $request->input('password_confirmation');
+
+        if($password != $password_confirmation) {
+
+            Session::flash('error', 'New password did not match.');
+
+            return view('users.change_pass')->with('user', $user);
+        }
+
+        $user->password = Hash::make($password);
+
+        $user->save();
+
+        return redirect('/users')->with('success', 'User password successfully change.');
     }
 }

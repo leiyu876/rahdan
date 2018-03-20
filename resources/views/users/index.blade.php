@@ -30,6 +30,9 @@
                                         <a href="{{ route('users.edit', ['id' => $user->id])}}">
                                             <i class="fa fa-fw fa-pencil" data-toggle="tooltip" title="Edit"></i>
                                         </a>
+                                        <a href="{{ url('users/change_pass/'.$user->id)}}">
+                                            <i class="fa fa-fw fa-key" data-toggle="tooltip" title="Change Password"></i>
+                                        </a>
                                         {!! Form::open(['action'=> ['UsersController@destroy', $user->id], 'method'=>'POST']) !!}
                                             {{ Form::hidden('_method', 'DELETE') }}
                                             {{ Form::submit('Delete', ['class'=>'btn btn-danger']) }}

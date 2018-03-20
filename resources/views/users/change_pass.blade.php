@@ -8,19 +8,24 @@
       <!-- general form elements -->
       <div class="box box-primary">
         <div class="box-header with-border">
-          <h3 class="box-title">Create User</h3>
+          <h3 class="box-title">Change Password</h3>
         </div>
         <!-- /.box-header -->
         <!-- form start -->
-        <form method="PUT" action="{{ route('users.update', $user->id) }}" role="form">
-        @csrf
+        {!! Form::open([
+          'action' => [
+            'UsersController@change_pass_save', 
+            $user->id
+          ], 
+          'method' => 'PUT'
+        ]) !!}
           <div class="box-body">
 			<div class="form-group">            	
-              <label for="password">Current Password</label>
-              <input type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required id="password">
-                @if ($errors->has('password'))
+              <label for="password_current">Current Password</label>
+              <input type="password" class="form-control{{ $errors->has('password_current') ? ' is-invalid' : '' }}" name="password_current" required id="password_current">
+                @if ($errors->has('password_current'))
                     <span class="invalid-feedback">
-                        <strong>{{ $errors->first('password') }}</strong>
+                        <strong>{{ $errors->first('password_current') }}</strong>
                     </span>
                 @endif
             </div>
@@ -49,9 +54,10 @@
           <!-- /.box-body -->
 
           <div class="box-footer">
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <a href="{{ url('users') }}" class="btn btn-default">Cancel</a>
+            <button type="submit" class="btn btn-primary pull-right">Submit</button>
           </div>
-        </form>
+        {{ Form::close() }}
       </div>
       <!-- /.box -->
 

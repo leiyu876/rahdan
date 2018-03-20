@@ -36,10 +36,17 @@ Route::get('/singlepage', function () {
     return view('singlepage');
 });
 
+
+
 Auth::routes();
 
 Route::get('/dashboard', 'DashboardController@index');
 
+Route::get('users/change_pass/{id}', 'UsersController@change_pass');
+Route::put('users/change_pass_save/{id}', 'UsersController@change_pass_save')->name('users.change_pass_save');
+
+
 Route::resources([
     'users' => 'UsersController',
 ]);
+
