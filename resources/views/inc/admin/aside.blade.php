@@ -35,7 +35,19 @@
         </a>
         <ul class="treeview-menu">
           <li><a href="{{ url('users') }}"><i class="fa fa-circle-o"></i> Users List</a></li>
-          <li><a href="{{ url('register') }}"><i class="fa fa-circle-o"></i> Create User</a></li>
+          <li><a href="{{ url('users/create') }}"><i class="fa fa-circle-o"></i> Create User</a></li>
+        </ul>
+      </li>
+      <li class="treeview">
+        <a href="#">
+          <i class="fa fa-users"></i> <span>Fatora Actions</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li><a href="{{ url('actions') }}"><i class="fa fa-circle-o"></i> Action List</a></li>
+          <li><a href="{{ url('actions/create') }}"><i class="fa fa-circle-o"></i> Create Action</a></li>
         </ul>
       </li>
     </ul>

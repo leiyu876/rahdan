@@ -48,5 +48,7 @@ Route::put('users/change_pass_save/{id}', 'UsersController@change_pass_save')->n
 
 Route::resources([
     'users' => 'UsersController',
+    'actions' => 'ActionsController',
+    'invoices' => 'InvoicesController',
 ]);
 

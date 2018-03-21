@@ -38,8 +38,8 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        var_dump('i make this registration for users who are login already but the problem is that every time i click button create user it will redirect to login page. I search on google and read that this registration is for only guest users, i thought i can change it but its very complicated thats why i create a users.create in userscontroller'); exit;
-
+        return 'i make this registration for users who are login already but the problem is that every time i click button create user it will redirect to login page. I search on google and read that this registration is for only guest users, i thought i can change it but its very complicated thats why i create a users.create in userscontroller';
+        exit;
         $this->middleware('auth');
     }
 
