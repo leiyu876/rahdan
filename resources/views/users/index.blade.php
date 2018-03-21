@@ -35,9 +35,14 @@
                                         </a>
 
                                         <meta name="csrf-token" content="{{ csrf_token() }}">
-                                        <a href="{{ route('users.destroy', $user->id) }}" data-method="delete" class="jquery-postback">
+                                        <a href="#" data-method="delete" class="jquery-postback" value="{{ $user->id }}">
                                             <i class="fa fa-fw fa-trash" data-toggle="tooltip" title="Delete"></i>
-                                        </a>                                        
+                                        </a>
+
+                                        {!! Form::open(['action'=> ['UsersController@destroy', $user->id], 'method'=>'POST']) !!}
+                                            {{ Form::hidden('_method', 'DELETE') }}
+                                            {{ Form::submit('Delete', ['class'=>'btn btn-danger', 'id'=>'name'.$user->id, 'style'=>'display:none']) }}
+                                        {!! Form::close() !!}                                        
                                     </td>
                                 </tr>
                             @endforeach
@@ -62,20 +67,14 @@
         e.preventDefault(); // does not go through with the link.
         
         var ask = window.confirm("Are you sure you want to delete this user?");
+        
         if (ask) {
             
             var $this = $(this);
 
-            $.post({
-                type: $this.data('method'),
-                url: $this.attr('href')
-            }).done(function (data) {
-                //alert('success');
-                //console.log(data);
-            });
+            $( "#name"+$this.attr('value') ).click();
 
-            location.reload();
-        }        
+        }         
     });
 </script>
 @endsection()
