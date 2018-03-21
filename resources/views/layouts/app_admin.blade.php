@@ -50,5 +50,6 @@
     $('.sidebar-menu').tree()
   })
 </script>
+@yield('js')
 </body>
 </html>

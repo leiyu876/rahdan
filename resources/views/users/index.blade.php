@@ -8,7 +8,7 @@
                 <div class="box-header">
                     <h3 class="box-title">List of Users</h3>
                     <div class="pull-right">
-                        <a href="{{ url('register') }}" class="btn btn-block btn-primary"><i class="fa fa-plus"></i> Add User</a>
+                        <a href="{{ url('users/create') }}" class="btn btn-block btn-primary"><i class="fa fa-plus"></i> Add User</a>
                     </div>
                 </div>
                 <!-- /.box-header -->
@@ -33,10 +33,11 @@
                                         <a href="{{ url('users/change_pass/'.$user->id)}}">
                                             <i class="fa fa-fw fa-key" data-toggle="tooltip" title="Change Password"></i>
                                         </a>
-                                        {!! Form::open(['action'=> ['UsersController@destroy', $user->id], 'method'=>'POST']) !!}
-                                            {{ Form::hidden('_method', 'DELETE') }}
-                                            {{ Form::submit('Delete', ['class'=>'btn btn-danger']) }}
-                                        {!! Form::close() !!}
+
+                                        <meta name="csrf-token" content="{{ csrf_token() }}">
+                                        <a href="{{ route('users.destroy', $user->id) }}" data-method="delete" class="jquery-postback">
+                                            <i class="fa fa-fw fa-trash" data-toggle="tooltip" title="Delete"></i>
+                                        </a>                                        
                                     </td>
                                 </tr>
                             @endforeach
@@ -48,3 +49,33 @@
     </div>     
 
   @endsection()
+
+@section('js')
+<script>
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    $(document).on('click', 'a.jquery-postback', function(e) {
+
+        e.preventDefault(); // does not go through with the link.
+        
+        var ask = window.confirm("Are you sure you want to delete this user?");
+        if (ask) {
+            
+            var $this = $(this);
+
+            $.post({
+                type: $this.data('method'),
+                url: $this.attr('href')
+            }).done(function (data) {
+                //alert('success');
+                //console.log(data);
+            });
+
+            location.reload();
+        }        
+    });
+</script>
+@endsection()
