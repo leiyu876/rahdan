@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Invoice;
+use App\User;
 
 class InvoicesController extends Controller
 {
@@ -13,7 +15,9 @@ class InvoicesController extends Controller
      */
     public function index()
     {
-        //
+        $invoices = Invoice::all();
+
+        return view('invoices.index', ['invoices' => $invoices]);
     }
 
     /**
@@ -23,7 +27,9 @@ class InvoicesController extends Controller
      */
     public function create()
     {
-        //
+        $data['users'] = User::whereNotIn('id', [1, 5])->get();
+
+        return view('invoices.create', $data);
     }
 
     /**
@@ -34,7 +40,27 @@ class InvoicesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'partno' => 'required',
+            'user_id' => 'required',
+            'date' => 'nullable|date',
+            'qty' => 'nullable|integer',
+        ]);
+
+        $date = $request->input('date');
+        $date = date("Y-m-d", strtotime($date));
+
+        $invoice = new Invoice;
+
+        $invoice->partno = $request->input('partno');
+        $invoice->user_id = $request->input('user_id');
+        $invoice->date = $date.' '.date("H:i:s");
+        $invoice->qty = $request->input('qty');
+        $invoice->action_id = 1;
+        
+        $invoice->save();
+
+        return redirect('/invoices')->with('success', 'Fatora Created');
     }
 
     /**
@@ -79,6 +105,8 @@ class InvoicesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $invoice = Invoice::find($id);
+        $invoice->delete();
+        return redirect('/invoices')->with('success', 'Fatora Removed');
     }
 }

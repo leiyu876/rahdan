@@ -28,6 +28,21 @@
       <li><a href="{{ url('dashboard') }}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
       <li class="treeview">
         <a href="#">
+          <i class="fa fa-users"></i> <span>Fatora</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li><a href="{{ url('invoices') }}"><i class="fa fa-circle-o"></i> Fatora List</a></li>
+          <li><a href="{{ url('invoices/create') }}"><i class="fa fa-circle-o"></i> Create Fatora</a></li>
+          <li><a href="{{ url('invoices/left') }}"><i class="fa fa-circle-o"></i> Bagi</a></li>
+          <li><a href="{{ url('invoices/done') }}"><i class="fa fa-circle-o"></i> Kalas</a></li>
+          <li><a href="{{ url('invoices/return') }}"><i class="fa fa-circle-o"></i> Radja</a></li>
+        </ul>
+      </li>
+      <li class="treeview">
+        <a href="#">
           <i class="fa fa-users"></i> <span>Users</span>
           <span class="pull-right-container">
             <i class="fa fa-angle-left pull-right"></i>
