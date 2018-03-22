@@ -130,4 +130,10 @@ class InvoicesController extends Controller
         $invoice->delete();
         return redirect('/invoices')->with('success', 'Fatora Removed');
     }
+
+    public function actionToFinish($id) {
+        $invoice = Invoice::find($id);            
+
+        var_dump($invoice); exit;
+    }
 }

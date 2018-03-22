@@ -25,6 +25,7 @@
                               <th>Status</th>
                               <th>Quantity</th>
                               <th>Date</th>
+                              <th>Kalas</th>
                               <th>Action</th>
                             </tr>
                         </thead>
@@ -36,6 +37,10 @@
                                     <td>{{ $invoice->action->name }}</td>  
                                     <td>{{ $invoice->qty }}</td>  
                                     <td>{{ dateDBtoView($invoice->date) }}</td>                                      
+                                    <td>
+                                        <a href="{{ route('invoices.actiontofinish', ['id' => $invoice->id,])}}" class="btn btn-info" role'=>'button'>kalas</a>
+                                        <a href="#" class="btn btn-info" role="button">Link Button</a>
+                                    </td>                                      
                                     <td>
                                         <a href="{{ route('invoices.edit', ['id' => $invoice->id])}}">
                                             <i class="fa fa-fw fa-pencil" data-toggle="tooltip" title="Edit"></i>
