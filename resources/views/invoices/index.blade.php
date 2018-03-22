@@ -28,8 +28,8 @@
                             @foreach($invoices as $invoice)
                                 <tr>
                                     <td>{{ $invoice->partno }}</td>
-                                    <td>{{ $invoice->user_id }}</td>  
-                                    <td>{{ $invoice->action_id }}</td>  
+                                    <td>{{ $invoice->user->name }}</td>  
+                                    <td>{{ $invoice->action->name }}</td>  
                                     <td>{{ $invoice->qty }}</td>  
                                     <td>{{ $invoice->date }}</td>                                      
                                     <td>
