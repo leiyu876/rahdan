@@ -1,5 +1,9 @@
 @extends('layouts.app_admin')
 
+@section('css')
+<link rel="stylesheet" href="{{ asset('custom_adminlte/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css') }}">
+@endsection
+
 @section('content')
 
     <div class="row">   
@@ -58,6 +62,8 @@
   @endsection()
 
 @section('js')
+<script src="{{ asset('custom_adminlte/bower_components/datatables.net/js/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('custom_adminlte/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js') }}"></script>
 <script>
     $.ajaxSetup({
         headers: {
@@ -78,5 +84,7 @@
 
         }         
     });
+
+    $('#example1').DataTable();
 </script>
 @endsection()
