@@ -47,15 +47,12 @@ class InvoicesController extends Controller
             'qty' => 'nullable|integer',
         ]);
 
-        $date = $request->input('date');
-        $date = date("Y-m-d", strtotime($date));
-
         $invoice = new Invoice;
 
         $invoice->partno = $request->input('partno');
         $invoice->user_id = $request->input('user_id');
-        $invoice->date = $date.' '.date("H:i:s");
-        $invoice->qty = $request->input('qty');
+        $invoice->date = dateViewToDB($request->input('date'));
+        $invoice->qty = $request->input('qty') ? $request->input('qty') : 1;
         $invoice->action_id = 1;
         
         $invoice->save();
@@ -106,13 +103,10 @@ class InvoicesController extends Controller
 
         $invoice = Invoice::find($id);
 
-        $date = $request->input('date');
-        $date = date("Y-m-d", strtotime($date));
-
         $invoice->partno = $request->input('partno');
         $invoice->user_id = $request->input('user_id');
-        $invoice->date = $date.' '.date("H:i:s");
-        $invoice->qty = $request->input('qty');
+        $invoice->date = dateViewToDB($request->input('date'));
+        $invoice->qty = $request->input('qty') ? $request->input('qty') : 1;
         
         $invoice->save();
 
