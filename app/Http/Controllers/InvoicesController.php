@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Invoice;
+use App\Models\Invoice;
 use App\User;
 
 class InvoicesController extends Controller
@@ -82,7 +82,10 @@ class InvoicesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data['invoice'] = Invoice::find($id);
+        $data['users'] = User::whereNotIn('id', [1, 5])->get();
+
+        return view('invoices.edit', $data);
     }
 
     /**
@@ -94,7 +97,26 @@ class InvoicesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'partno' => 'required',
+            'user_id' => 'required',
+            'date' => 'nullable|date',
+            'qty' => 'nullable|integer',
+        ]);
+
+        $invoice = Invoice::find($id);
+
+        $date = $request->input('date');
+        $date = date("Y-m-d", strtotime($date));
+
+        $invoice->partno = $request->input('partno');
+        $invoice->user_id = $request->input('user_id');
+        $invoice->date = $date.' '.date("H:i:s");
+        $invoice->qty = $request->input('qty');
+        
+        $invoice->save();
+
+        return redirect('/invoices')->with('success', 'Invoice Updated');
     }
 
     /**

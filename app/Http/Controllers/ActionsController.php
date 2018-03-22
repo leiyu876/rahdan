@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Action;
+use App\Models\Action;
 
 class ActionsController extends Controller
 {
