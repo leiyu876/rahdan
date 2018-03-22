@@ -32,7 +32,7 @@ class InvoicesController extends Controller
      */
     public function create()
     {
-        $data['users'] = User::whereNotIn('id', [1, 5])->get();
+        $data['users'] = User::whereNotIn('iqama', [111, 555])->get();
 
         return view('invoices.create', $data);
     }
@@ -85,7 +85,7 @@ class InvoicesController extends Controller
     public function edit($id)
     {
         $data['invoice'] = Invoice::find($id);
-        $data['users'] = User::whereNotIn('id', [1, 5])->get();
+        $data['users'] = User::whereNotIn('iqama', [111, 555])->get();
 
         return view('invoices.edit', $data);
     }
