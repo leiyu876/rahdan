@@ -31,7 +31,7 @@
                                     <td>{{ $invoice->user->name }}</td>  
                                     <td>{{ $invoice->action->name }}</td>  
                                     <td>{{ $invoice->qty }}</td>  
-                                    <td>{{ $invoice->date }}</td>                                      
+                                    <td>{{ dateDBtoView($invoice->date) }}</td>                                      
                                     <td>
                                         <a href="{{ route('invoices.edit', ['id' => $invoice->id])}}">
                                             <i class="fa fa-fw fa-pencil" data-toggle="tooltip" title="Edit"></i>

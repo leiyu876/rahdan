@@ -60,7 +60,7 @@
                   <div class="input-group-addon">
                     <i class="fa fa-calendar"></i>
                   </div>
-                  <input name="date" type="text" class="form-control{{ $errors->has('date') ? ' is-invalid' : '' }} pull-right" id="date" value="{{ old('date', $invoice->date) }}">
+                  <input name="date" type="text" class="form-control{{ $errors->has('date') ? ' is-invalid' : '' }} pull-right" id="date" value="{{ old('date', dateDBtoView($invoice->date)) }}">
                   @if ($errors->has('date'))
                       <span class="invalid-feedback">
                           <strong>{{ $errors->first('date') }}</strong>
@@ -74,7 +74,7 @@
 
           <div class="box-footer">
             <a href="{{ url('invoices') }}" class="btn btn-default">Cancel</a>
-            <button type="submit" class="btn btn-primary pull-right">Create</button>
+            <button type="submit" class="btn btn-primary pull-right">Update</button>
           </div>
         {!! Form::close() !!}
       </div>
