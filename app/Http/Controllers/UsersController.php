@@ -40,6 +40,7 @@ class UsersController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
+            'iqama' => 'required|unique:users',
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
@@ -47,6 +48,7 @@ class UsersController extends Controller
 
         $user = new User;
 
+        $user->iqama = $request->input('iqama');
         $user->name = $request->input('name');
         $user->email = $request->input('email');
         $user->password = Hash::make($request->input('password'));
@@ -89,13 +91,15 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $user = User::find($id);
+
         $this->validate($request, [
-            'email' => 'required',
+            'iqama' => 'required|unique:users,iqama,'.$user->id,
+            'email' => 'required|unique:users,email,'.$user->id,
             'name' => 'required',
         ]);
 
-        $user = User::find($id);
-
+        $user->iqama = $request->input('iqama');
         $user->name = $request->input('name');
         $user->email = $request->input('email');
 

@@ -17,6 +17,16 @@
           <div class="box-body">
 
             <div class="form-group">
+              <label for="iqama">Iqama</label>
+              <input name="iqama" type="text" class="form-control{{ $errors->has('iqama') ? ' is-invalid' : '' }}" id="iqama" value="{{ old('iqama') }}" required autofocus>
+              @if ($errors->has('iqama'))
+                    <span class="invalid-feedback">
+                        <strong>{{ $errors->first('iqama') }}</strong>
+                    </span>
+                @endif
+            </div>
+
+            <div class="form-group">
               <label for="name">Name</label>
               <input name="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" id="name" value="{{ old('name') }}" required autofocus>
               @if ($errors->has('name'))

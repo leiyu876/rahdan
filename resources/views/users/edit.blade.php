@@ -22,8 +22,18 @@
           <div class="box-body">
 
             <div class="form-group">
+              <label for="iqama">Iqama</label>
+              <input name="iqama" type="text" class="form-control{{ $errors->has('iqama') ? ' is-invalid' : '' }}" id="iqama" value="{{ old('iqama', $user->iqama) }}" required autofocus>
+              @if ($errors->has('iqama'))
+                    <span class="invalid-feedback">
+                        <strong>{{ $errors->first('iqama') }}</strong>
+                    </span>
+                @endif
+            </div>
+
+            <div class="form-group">
               <label for="name">Name</label>
-              <input name="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" id="name" value="{{ $user->name }}" required autofocus>
+              <input name="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" id="name" value="{{ old('name', $user->name) }}" required autofocus>
               @if ($errors->has('name'))
                     <span class="invalid-feedback">
                         <strong>{{ $errors->first('name') }}</strong>
@@ -33,7 +43,7 @@
 
             <div class="form-group">
               <label for="email">Email address</label>
-              <input type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ $user->email }}" required id="email">
+              <input type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email', $user->email) }}" required id="email">
                 @if ($errors->has('email'))
                     <span class="invalid-feedback">
                         <strong>{{ $errors->first('email') }}</strong>
