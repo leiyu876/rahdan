@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Invoice;
+use App\Models\Action;
 use App\User;
+use Session;
 
 class InvoicesController extends Controller
 {
@@ -131,9 +133,25 @@ class InvoicesController extends Controller
         return redirect('/invoices')->with('success', 'Fatora Removed');
     }
 
-    public function actionToFinish($id) {
-        $invoice = Invoice::find($id);            
+    public function actionToFinish($id, $action_code) {
 
-        var_dump($invoice); exit;
+        $action = Action::where('code', $action_code)->first();
+
+        if($action) {
+
+            $invoice = Invoice::find($id);            
+
+            $invoice->action_id = $action->id;
+
+            $invoice->save();
+
+            Session::flash('success', $invoice->partno.' '.$action->name);
+        
+        } else {
+
+            Session::flash('error', 'Please contact administrator to authorize you for this action.');
+        }
+
+        return redirect('/invoices');
     }
 }

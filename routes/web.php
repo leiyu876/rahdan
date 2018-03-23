@@ -43,7 +43,7 @@ Route::get('/dashboard', 'DashboardController@index');
 Route::get('users/change_pass/{id}', 'UsersController@change_pass');
 Route::put('users/change_pass_save/{id}', 'UsersController@change_pass_save')->name('users.change_pass_save');
 
-Route::get('invoices/actionToFinish/{id}', 'InvoicesController@actionToFinish')->name('invoices.actiontofinish');
+Route::get('invoices/changeAction/{id}/{action_code}', 'InvoicesController@actionToFinish')->name('invoices.changeaction');
 
 Route::resources([
     'users' => 'UsersController',

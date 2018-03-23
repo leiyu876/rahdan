@@ -25,7 +25,7 @@
                               <th>Status</th>
                               <th>Quantity</th>
                               <th>Date</th>
-                              <th>Kalas</th>
+                              <th>Change Status To:</th>
                               <th>Action</th>
                             </tr>
                         </thead>
@@ -38,7 +38,17 @@
                                     <td>{{ $invoice->qty }}</td>  
                                     <td>{{ dateDBtoView($invoice->date) }}</td>                                      
                                     <td>
-                                        <a href="{{ route('invoices.actiontofinish', ['id' => $invoice->id,])}}" class="btn btn-info" role="button">kalas</a>
+                                        <div class="col-sm-12">
+                                            <div class="col-sm-4" style="visibility:{{ $invoice->action->code == 'unfinish' ? 'hidden' : '' }}">
+                                                <a href="{{ route('invoices.changeaction', ['id' => $invoice->id, 'action_code' => 'unfinishd' ])}}" class="btn btn-danger" role="button">bagi</a>
+                                            </div>
+                                            <div class="col-sm-4" style="visibility:{{ $invoice->action->code == 'finished' ? 'hidden' : '' }}">
+                                                <a href="{{ route('invoices.changeaction', ['id' => $invoice->id, 'action_code' => 'finished' ])}}" class="btn btn-primary" role="button">kalas</a>
+                                            </div>
+                                            <div class="col-sm-4" style="visibility:{{ $invoice->action->code == 'return' ? 'hidden' : '' }}">
+                                                <a href="{{ route('invoices.changeaction', ['id' => $invoice->id, 'action_code' => 'return' ])}}" class="btn btn-info" role="button">radja</a>
+                                            </div>
+                                        </div>
                                     </td>                                      
                                     <td>
                                         <a href="{{ route('invoices.edit', ['id' => $invoice->id])}}">
