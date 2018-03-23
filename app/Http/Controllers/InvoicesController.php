@@ -60,7 +60,13 @@ class InvoicesController extends Controller
         $invoice->user_id = $request->input('user_id');
         $invoice->date = dateViewToDB($request->input('date'));
         $invoice->qty = $request->input('qty') ? $request->input('qty') : 1;
-        $invoice->action_id = 1;
+
+        $action = Action::where('code', 'unfinish')->first();
+
+        if($action === null)
+        return redirect('/invoices')->with('error', 'Cannot add fatora. Fatora action not configured. Please contact administrator');
+
+        $invoice->action_id = $action->id;
         
         $invoice->save();
 

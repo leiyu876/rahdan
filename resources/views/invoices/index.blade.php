@@ -40,7 +40,7 @@
                                     <td>
                                         <div class="col-sm-12">
                                             <div class="col-sm-4" style="visibility:{{ $invoice->action->code == 'unfinish' ? 'hidden' : '' }}">
-                                                <a href="{{ route('invoices.changeaction', ['id' => $invoice->id, 'action_code' => 'unfinishd' ])}}" class="btn btn-danger" role="button">bagi</a>
+                                                <a href="{{ route('invoices.changeaction', ['id' => $invoice->id, 'action_code' => 'unfinish' ])}}" class="btn btn-danger" role="button">bagi</a>
                                             </div>
                                             <div class="col-sm-4" style="visibility:{{ $invoice->action->code == 'finished' ? 'hidden' : '' }}">
                                                 <a href="{{ route('invoices.changeaction', ['id' => $invoice->id, 'action_code' => 'finished' ])}}" class="btn btn-primary" role="button">kalas</a>
