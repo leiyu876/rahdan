@@ -38,8 +38,7 @@
                                     <td>{{ $invoice->qty }}</td>  
                                     <td>{{ dateDBtoView($invoice->date) }}</td>                                      
                                     <td>
-                                        <a href="{{ route('invoices.actiontofinish', ['id' => $invoice->id,])}}" class="btn btn-info" role'=>'button'>kalas</a>
-                                        <a href="#" class="btn btn-info" role="button">Link Button</a>
+                                        <a href="{{ route('invoices.actiontofinish', ['id' => $invoice->id,])}}" class="btn btn-info" role="button">kalas</a>
                                     </td>                                      
                                     <td>
                                         <a href="{{ route('invoices.edit', ['id' => $invoice->id])}}">

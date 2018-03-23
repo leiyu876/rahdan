@@ -22,8 +22,18 @@
           <div class="box-body">
 
             <div class="form-group">
-              <label for="name">Name</label>
-              <input name="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" id="name" value="{{ $action->name }}" required autofocus>
+              <label for="code">Action Code</label>
+              <input name="code" type="text" class="form-control{{ $errors->has('code') ? ' is-invalid' : '' }}" id="code" value="{{ old('code', $action->code) }}" required autofocus>
+              @if ($errors->has('code'))
+                    <span class="invalid-feedback">
+                        <strong>{{ $errors->first('code') }}</strong>
+                    </span>
+                @endif
+            </div>
+
+            <div class="form-group">
+              <label for="name">Action Name</label>
+              <input name="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" id="name" value="{{ old('name', $action->name) }}" required autofocus>
               @if ($errors->has('name'))
                     <span class="invalid-feedback">
                         <strong>{{ $errors->first('name') }}</strong>
@@ -31,8 +41,7 @@
                 @endif
             </div>
           </div>
-          <!-- /.box-body -->
-
+          
           <div class="box-footer">
             <a href="{{ url('actions') }}" class="btn btn-default">Cancel</a>
             <input type="submit" value="Update" class="btn btn-primary pull-right">

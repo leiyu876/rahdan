@@ -23,6 +23,7 @@
                         <tbody>
                             @foreach($actions as $action)
                                 <tr>
+                                    <td>{{ $action->code }}</td>  
                                     <td>{{ $action->name }}</td>                                    
                                     <td>
                                         <a href="{{ route('actions.edit', ['id' => $action->id])}}">
