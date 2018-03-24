@@ -13,7 +13,7 @@
         <!-- /.box-header -->
         <!-- form start -->
         <form method="POST" action="{{ route('invoices.store') }}" role="form">
-        @csrf
+        {{ csrf_field() }}
           <div class="box-body">
             <div class="form-group">
               <label for="partno">Part Number</label>
