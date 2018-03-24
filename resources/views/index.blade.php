@@ -9,14 +9,6 @@
 	      <li><img src="{{ asset('custom/images/slider1.jpg') }}" alt=""></li>
 	    </ul>
 	</div>
-	<?
-		if(DB::connection()->getDatabaseName())
-   {
-     echo "conncted sucessfully to database ".DB::connection()->getDatabaseName(); exit;
-   } else {
-   	var_dump('not conenctect'); exit;
-   }
-	?>
 	<div class="content">
 		<div class="products-box">
 			<div class="products">
