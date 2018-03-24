@@ -9,7 +9,6 @@
 	      <li><img src="{{ asset('custom/images/slider1.jpg') }}" alt=""></li>
 	    </ul>
 	</div>
-	<?dsdf();?>
 	<div class="content">
 		<div class="products-box">
 			<div class="products">
