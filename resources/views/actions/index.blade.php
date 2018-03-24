@@ -16,6 +16,7 @@
                     <table id="example1" class="table table-bordered table-striped">
                         <thead>
                             <tr>
+                              <th>Code</th> 
                               <th>Name</th>                              
                               <th>Action</th>
                             </tr>

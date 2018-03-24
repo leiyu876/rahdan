@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Invoice;
 use App\Models\Action;
@@ -139,7 +140,7 @@ class InvoicesController extends Controller
         return redirect('/invoices')->with('success', 'Fatora Removed');
     }
 
-    public function changeAction($id, $action_code) {
+    public function changeAction($id, $action_code, $action_url = null) {
 
         $action = Action::where('code', $action_code)->first();
 
@@ -158,15 +159,38 @@ class InvoicesController extends Controller
             Session::flash('error', 'Please contact administrator to authorize you for this action.');
         }
 
-        return redirect('/invoices');
+        $url = '';
+
+        if($action_url)
+            $url = '/'.$action_url;
+
+        return redirect('/invoices'.$url);
     }
 
     public function unfinish() {
-        $invoices = Invoice::with(['action' => function($query) {
-            $query->where('actions.code', 'unfinish');   
-        }])->get();
+        
+        $invoices =  Invoice::whereHas('action', function($query){
+            $query->whereCode('unfinish');  
+        })->get();  
 
-        $invoices = Invoice::orderBy('date', 'desc')->get();
-        return view('invoices.index', ['invoices' => $invoices]);
+        return view('invoices.unfinish', ['invoices' => $invoices]);
+    }
+
+    public function finish() {
+        
+        $invoices =  Invoice::whereHas('action', function($query){
+            $query->whereCode('finish');  
+        })->get();  
+
+        return view('invoices.finish', ['invoices' => $invoices]);
+    }
+
+    public function return() {
+        
+        $invoices =  Invoice::whereHas('action', function($query){
+            $query->whereCode('return');  
+        })->get();  
+
+        return view('invoices.return', ['invoices' => $invoices]);
     }
 }

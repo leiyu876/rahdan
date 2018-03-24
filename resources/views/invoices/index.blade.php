@@ -34,19 +34,24 @@
                                 <tr>
                                     <td>{{ $invoice->partno }}</td>
                                     <td>{{ $invoice->user->name }}</td>  
-                                    <td>{{ $invoice->action->name }}</td>  
+                                    <td>
+                                        {{ $invoice->action->name }}
+                                        @if($invoice->action->code == 'finish_confirm' || $invoice->action->code == 'return_confirm')
+                                            <i class="fa fa-fw fa-check"></i>
+                                        @endif
+                                    </td>  
                                     <td>{{ $invoice->qty }}</td>  
                                     <td>{{ dateDBtoView($invoice->date) }}</td>                                      
                                     <td>
                                         <div class="col-sm-12">
-                                            <div class="col-sm-4" style="visibility:{{ $invoice->action->code == 'unfinish' ? 'hidden' : '' }}">
+                                            <div class="col-sm-3" style="visibility:{{ $invoice->action->code == 'unfinish' ? 'hidden' : '' }}">
                                                 <a href="{{ route('invoices.changeaction', ['id' => $invoice->id, 'action_code' => 'unfinish' ])}}" class="btn btn-danger" role="button">bagi</a>
                                             </div>
-                                            <div class="col-sm-4" style="visibility:{{ $invoice->action->code == 'finished' ? 'hidden' : '' }}">
-                                                <a href="{{ route('invoices.changeaction', ['id' => $invoice->id, 'action_code' => 'finished' ])}}" class="btn btn-primary" role="button">kalas</a>
+                                            <div class="col-sm-3" style="visibility:{{ $invoice->action->code == 'finish_confirm' ? 'hidden' : '' }}">
+                                                <a href="{{ route('invoices.changeaction', ['id' => $invoice->id, 'action_code' => 'finish_confirm' ])}}" class="btn btn-primary" role="button">kalas</a>
                                             </div>
-                                            <div class="col-sm-4" style="visibility:{{ $invoice->action->code == 'return' ? 'hidden' : '' }}">
-                                                <a href="{{ route('invoices.changeaction', ['id' => $invoice->id, 'action_code' => 'return' ])}}" class="btn btn-info" role="button">radja</a>
+                                            <div class="col-sm-3" style="visibility:{{ $invoice->action->code == 'return_confirm' ? 'hidden' : '' }}">
+                                                <a href="{{ route('invoices.changeaction', ['id' => $invoice->id, 'action_code' => 'return_confirm' ])}}" class="btn btn-info" role="button">radja</a>
                                             </div>
                                         </div>
                                     </td>                                      
