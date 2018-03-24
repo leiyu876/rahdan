@@ -12,7 +12,7 @@
 	<div class="content">
 		<div class="products-box">
 			<div class="products">
-				<h5><span>FEATURED</span> PRODUCTS</h5>
+				<h5><span>FEATURED</span> PRODUCTs</h5>
 				<div class="section group">
 					<div class="grid_1_of_5 images_1_of_5">
 						 <img src="{{ asset('custom/images/g3.png') }}">
