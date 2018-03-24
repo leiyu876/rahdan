@@ -36,8 +36,8 @@
         <ul class="treeview-menu">
           <li><a href="{{ url('invoices') }}"><i class="fa fa-circle-o"></i> Fatora List</a></li>
           <li><a href="{{ url('invoices/create') }}"><i class="fa fa-circle-o"></i> Create Fatora</a></li>
-          <li><a href="{{ url('invoices/left') }}"><i class="fa fa-circle-o"></i> Bagi</a></li>
-          <li><a href="{{ url('invoices/done') }}"><i class="fa fa-circle-o"></i> Kalas</a></li>
+          <li><a href="{{ url('invoices/unfinish') }}"><i class="fa fa-circle-o"></i> Bagi</a></li>
+          <li><a href="{{ url('invoices/finished') }}"><i class="fa fa-circle-o"></i> Kalas</a></li>
           <li><a href="{{ url('invoices/return') }}"><i class="fa fa-circle-o"></i> Radja</a></li>
         </ul>
       </li>

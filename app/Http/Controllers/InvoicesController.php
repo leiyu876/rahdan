@@ -139,7 +139,7 @@ class InvoicesController extends Controller
         return redirect('/invoices')->with('success', 'Fatora Removed');
     }
 
-    public function actionToFinish($id, $action_code) {
+    public function changeAction($id, $action_code) {
 
         $action = Action::where('code', $action_code)->first();
 
@@ -159,5 +159,14 @@ class InvoicesController extends Controller
         }
 
         return redirect('/invoices');
+    }
+
+    public function unfinish() {
+        $invoices = Invoice::with(['action' => function($query) {
+            $query->where('actions.code', 'unfinish');   
+        }])->get();
+
+        $invoices = Invoice::orderBy('date', 'desc')->get();
+        return view('invoices.index', ['invoices' => $invoices]);
     }
 }

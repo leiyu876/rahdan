@@ -24,7 +24,7 @@
 	</div>
 	<div class="clear"> </div>
 	<div class="sub-header">
-		<div class="logo">
+		<div class="logo" style="margin-top: -5px">
 			<a href="{{ asset('/') }}"><img src="{{ asset('custom/images/logo_rahdan.png') }}" title="logo" /></a>
 		</div>
 		<div class="sub-header-right">

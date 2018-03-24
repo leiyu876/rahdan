@@ -2,9 +2,13 @@
     <!-- Logo -->
     <a href="{{ asset('custom_adminlte/index2.html') }}" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>A</b>LT</span>
+      <span class="logo-mini">
+        <img src="{{ asset('custom/images/logo_rahdan_mini2.png') }}" title="logo"/>
+      </span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Admin</b>LTE</span>
+      <span class="logo-lg">
+        <img src="{{ asset('custom/images/logo_rahdan.png') }}" title="logo" height="42" width="200"/>
+      </span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">

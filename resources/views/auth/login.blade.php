@@ -6,6 +6,7 @@
   <title>AdminLTE 2 | Log in</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <link rel="icon" href="{{ asset('custom/images/logo_rahdan_mini.png') }}" type="image/png" sizes="16x16">
   <!-- Bootstrap 3.3.7 -->
   <link rel="stylesheet" href="{{ asset('custom_adminlte/bower_components/bootstrap/dist/css/bootstrap.min.css') }}">
   <!-- Font Awesome -->
@@ -30,7 +31,9 @@
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-    <a href="{{ asset('custom_adminlte/index2.html') }}"><b>Rah</b>dan</a>
+    <a href="{{ asset('custom_adminlte/index2.html') }}">
+      <img src="{{ asset('custom/images/logo_rahdan.png') }}" title="logo" />
+    </a>
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body">
