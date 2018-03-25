@@ -23,9 +23,13 @@ class InvoicesController extends Controller
      */
     public function index()
     {
-        $invoices = Invoice::orderBy('date', 'desc')->get();
+        $data['page_title'] = 'Fatora All';
 
-        return view('invoices.index', ['invoices' => $invoices]);
+        $data['invoices'] = Invoice::orderBy('date', 'desc')->get();
+        $data['salesmans'] = User::whereIn('iqama', ['222','333','444'])->pluck('name', 'id');
+        $data['actions'] = Action::orderBy('name')->pluck('name', 'id');
+
+        return view('invoices.index', $data);
     }
 
     /**

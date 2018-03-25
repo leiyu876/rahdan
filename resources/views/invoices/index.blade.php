@@ -10,7 +10,24 @@
         <div class="col-xs-12">
             <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title">List of Fatora</h3>
+                    <div class="col-md-6" style="background-color: yellow">
+                        <form class="form-horizontal">
+                            <div class="box-body">
+                                <div >
+                                    {{ Form::label('salesman', 'Salesman', ['class'=>'control-label col-sm-2']) }}
+                                    <div class="col-sm-3">
+                                        {{ Form::select('salesman', ($salesmans->prepend('ALL')), old('salesman'), ['class'=>'form-control']) }}
+                                    </div>
+                                </div>
+                                <div>
+                                    {{ Form::label('status', 'Status', ['class'=>'control-label col-sm-2'])}}
+                                    <div class="col-sm-5">
+                                        {{ Form::select('status', ($actions->prepend('ALL')), old('actions'), ['class' => 'form-control']) }}
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                     <div class="pull-right">
                         <a href="{{ url('invoices/create') }}" class="btn btn-block btn-primary"><i class="fa fa-plus"></i> Add Fatora</a>
                     </div>
