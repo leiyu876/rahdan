@@ -16,9 +16,11 @@ class UsersController extends Controller
      */
     public function index()
     {
-        $users = User::all();
+        $data['page_title'] = 'User Lists';
 
-        return view('users.index', ['users' => $users]);
+        $data['users'] = User::all();
+
+        return view('users.index', $data);
     }
 
     /**
@@ -28,7 +30,9 @@ class UsersController extends Controller
      */
     public function create()
     {
-        return view('users.create');
+        $data['page_title'] = 'Create User';
+
+        return view('users.create', $data);
     }
 
     /**
@@ -77,9 +81,11 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        $user = User::find($id);
+        $data['page_title'] = 'Update User';
 
-        return view('users.edit')->with('user', $user);
+        $data['user'] = User::find($id);
+
+        return view('users.edit', $data);
     }
 
     /**

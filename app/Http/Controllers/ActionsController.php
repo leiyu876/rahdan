@@ -19,9 +19,11 @@ class ActionsController extends Controller
      */
     public function index()
     {
-        $actions = Action::all();
+        $data['page_title'] = 'Fatora Action Lists';
 
-        return view('actions.index', ['actions' => $actions]);
+        $data['actions'] = Action::all();
+
+        return view('actions.index', $data);
     }
 
     /**
@@ -31,7 +33,9 @@ class ActionsController extends Controller
      */
     public function create()
     {
-        return view('actions.create');
+        $data['page_title'] = 'Create Fatora Action';
+
+        return view('actions.create', $data);
     }
 
     /**
@@ -76,9 +80,11 @@ class ActionsController extends Controller
      */
     public function edit($id)
     {
-        $action = Action::find($id);
+        $data['page_title'] = 'Update Fatora Action';
 
-        return view('actions.edit')->with('action', $action);
+        $data['action'] = Action::find($id);
+
+        return view('actions.edit', $data);
     }
 
     /**

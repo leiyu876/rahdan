@@ -39,6 +39,8 @@ class InvoicesController extends Controller
      */
     public function create()
     {
+        $data['page_title'] = 'Create Fatora';
+
         $data['users'] = User::whereNotIn('iqama', [111, 555])->get();
 
         return view('invoices.create', $data);
@@ -173,28 +175,34 @@ class InvoicesController extends Controller
 
     public function unfinish() {
         
-        $invoices =  Invoice::whereHas('action', function($query){
+        $data['page_title'] = 'Fatora Unfinish ( Bagi )';
+
+        $data['invoices'] =  Invoice::whereHas('action', function($query){
             $query->whereCode('unfinish');  
         })->get();  
 
-        return view('invoices.unfinish', ['invoices' => $invoices]);
+        return view('invoices.unfinish', $data);
     }
 
     public function finish() {
         
-        $invoices =  Invoice::whereHas('action', function($query){
+        $data['page_title'] = 'Fatora Finish ( Kalas )';
+
+        $data['invoices'] =  Invoice::whereHas('action', function($query){
             $query->whereCode('finish');  
         })->get();  
 
-        return view('invoices.finish', ['invoices' => $invoices]);
+        return view('invoices.finish', $data);
     }
 
     public function return() {
         
-        $invoices =  Invoice::whereHas('action', function($query){
+        $data['page_title'] = 'Fatora Return ( Radja )';
+
+        $data['invoices'] =  Invoice::whereHas('action', function($query){
             $query->whereCode('return');  
         })->get();  
 
-        return view('invoices.return', ['invoices' => $invoices]);
+        return view('invoices.return', $data);
     }
 }
