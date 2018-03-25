@@ -11,22 +11,22 @@
             <div class="box">
                 <div class="box-header">
                     <div class="col-md-6" style="background-color: yellow">
-                        <form class="form-horizontal">
+                        {{ Form::open(['route'=>'invoices.index_lists', 'action'=>'POST', 'class'=>'form-horizontal']) }}
                             <div class="box-body">
                                 <div >
-                                    {{ Form::label('salesman', 'Salesman', ['class'=>'control-label col-sm-2']) }}
+                                    {{ Form::label('user_id', 'Salesman', ['class'=>'control-label col-sm-2']) }}
                                     <div class="col-sm-3">
-                                        {{ Form::select('salesman', ($salesmans->prepend('ALL')), old('salesman'), ['class'=>'form-control']) }}
+                                        {{ Form::select('user_id', ($salesmans->prepend('ALL', 0)), $user_id_selected, ['class'=>'form-control', 'onchange'=>'this.form.submit()']) }}
                                     </div>
                                 </div>
                                 <div>
-                                    {{ Form::label('status', 'Status', ['class'=>'control-label col-sm-2'])}}
+                                    {{ Form::label('action_id', 'Status', ['class'=>'control-label col-sm-2'])}}
                                     <div class="col-sm-5">
-                                        {{ Form::select('status', ($actions->prepend('ALL')), old('actions'), ['class' => 'form-control']) }}
+                                        {{ Form::select('action_id', ($actions->prepend('ALL', 0)), $action_id_selected, ['class' => 'form-control', 'onchange'=>'this.form.submit()']) }}
                                     </div>
                                 </div>
                             </div>
-                        </form>
+                        {{ Form::close() }}
                     </div>
                     <div class="pull-right">
                         <a href="{{ url('invoices/create') }}" class="btn btn-block btn-primary"><i class="fa fa-plus"></i> Add Fatora</a>

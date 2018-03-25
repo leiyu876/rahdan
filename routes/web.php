@@ -47,6 +47,8 @@ Route::get('invoices/changeAction/{id}/{action_code}/{action_url?}', 'InvoicesCo
 Route::get('invoices/unfinish', 'InvoicesController@unfinish')->name('invoices.unfinish');
 Route::get('invoices/finish', 'InvoicesController@finish')->name('invoices.finish');
 Route::get('invoices/return', 'InvoicesController@return')->name('invoices.return');
+Route::get('invoices/index/{user_id?}/{action_id?}', 'InvoicesController@index')->name('invoices');
+Route::post('invoices/index_lists', 'InvoicesController@index_lists')->name('invoices.index_lists');
 
 Route::resources([
     'users' => 'UsersController',

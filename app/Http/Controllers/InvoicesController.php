@@ -21,15 +21,40 @@ class InvoicesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($user_id = 0, $action_id = 0)
     {
+        $query = Invoice::orderBy('date', 'desc');
+        $data['user_id_selected'] = null;
+
+        if($user_id) {
+            $query->where('user_id', $user_id);
+            $data['user_id_selected'] = $user_id;
+
+        } else $data['user_id_selected'] = null;
+
+        if($action_id) {
+            $query->where('action_id', $action_id);
+            $data['action_id_selected'] = $action_id;
+
+        } else $data['action_id_selected'] = null;
+
+        $data['invoices'] = $query->get();
+        
         $data['page_title'] = 'Fatora All';
 
-        $data['invoices'] = Invoice::orderBy('date', 'desc')->get();
+        //$data['invoices'] = Invoice::where('','')->orderBy('date', 'desc')->get();
         $data['salesmans'] = User::whereIn('iqama', ['222','333','444'])->pluck('name', 'id');
         $data['actions'] = Action::orderBy('name')->pluck('name', 'id');
 
         return view('invoices.index', $data);
+    }
+
+    public function index_lists(Request $request)
+    {
+        $user_id   = $request->user_id;
+        $action_id = $request->action_id;
+
+        return redirect('invoices/index/'.$user_id.'/'.$action_id);
     }
 
     /**
@@ -99,6 +124,7 @@ class InvoicesController extends Controller
      */
     public function edit($id)
     {
+        $data['page_title'] = 'Update Fatora';
         $data['invoice'] = Invoice::find($id);
         $data['users'] = User::whereNotIn('iqama', [111, 555])->get();
 
@@ -120,7 +146,7 @@ class InvoicesController extends Controller
             'date' => 'nullable|date',
             'qty' => 'nullable|integer',
         ]);
-
+        
         $invoice = Invoice::find($id);
 
         $invoice->partno = $request->input('partno');
