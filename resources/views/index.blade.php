@@ -4,9 +4,17 @@
 @section('content')			
 	<div class="image-slider">
 	    <ul class="rslides" id="slider1">
-	      <li><img src="{{ asset('custom/images/slider1.jpg') }}" alt=""></li>
-	      <li><img src="{{ asset('custom/images/slider3.jpg') }}" alt=""></li>
-	      <li><img src="{{ asset('custom/images/slider1.jpg') }}" alt=""></li>
+	      <li><img src="{{ asset('custom/images/toyota/camry.jpg') }}" alt=""></li>
+	      <li><img src="{{ asset('custom/images/toyota/prado.jpg') }}" alt=""></li>
+	      <li><img src="{{ asset('custom/images/toyota/corolla.jpg') }}" alt=""></li>
+	      <li><img src="{{ asset('custom/images/toyota/fortuner.jpg') }}" alt=""></li>
+	      <li><img src="{{ asset('custom/images/toyota/hilux.jpg') }}" alt=""></li>
+	      <li><img src="{{ asset('custom/images/toyota/innova.jpg') }}" alt=""></li>
+	      <li><img src="{{ asset('custom/images/toyota/land_cruiser.jpg') }}" alt=""></li>
+	      <li><img src="{{ asset('custom/images/toyota/land_cruiser_pickup.jpg') }}" alt=""></li>
+	      <li><img src="{{ asset('custom/images/toyota/previa.jpg') }}" alt=""></li>
+	      <li><img src="{{ asset('custom/images/toyota/rav4.jpg') }}" alt=""></li>
+	      <li><img src="{{ asset('custom/images/toyota/zelas.jpg') }}" alt=""></li>
 	    </ul>
 	</div>
 	<div class="content">
