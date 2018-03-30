@@ -35,6 +35,9 @@ Route::get('/truckbumpers', function () {
 Route::get('/singlepage', function () {
     return view('singlepage');
 });
+Route::get('/about', function () {
+    return view('about');
+});
 
 Auth::routes();
 

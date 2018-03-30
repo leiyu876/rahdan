@@ -3,7 +3,7 @@
 		<div class="col_1_of_4 span_1_of_4">
 			<h3>INFORMATION</h3>
 			<ul>
-				<li><a href="#">About us</a></li>
+				<li><a href="{{ url('about') }}">About us</a></li>
 				<li><a href="#">Sitemap</a></li>
 				<li><a href="#">Contact</a></li>
 				<li><a href="#">Terms and conditions</a></li>

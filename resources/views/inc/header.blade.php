@@ -6,6 +6,7 @@
 				<li><a href="#">Specials</a></li>
 				<li><a href="#">Delivery</a></li>
 				<li class="{{ Request::is('contact') ? 'active' : ''}}" ><a href="{{ url('contact') }}">Contact</a></li>
+				<li class="{{ Request::is('about') ? 'active' : ''}}" ><a href="{{ url('about') }}">About Us</a></li>
 			</ul>
 		</div>
 		<div class="top-header-right" style="margin-left:15px;">
