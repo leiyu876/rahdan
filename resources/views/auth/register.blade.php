@@ -1,7 +1,7 @@
 @extends('layouts.app_admin')
 
 @section('content')
-  <? var_dump('thi registration is for guest but i dont want guest to register thats why i exit it now') ?>
+  <?php var_dump('thi registration is for guest but i dont want guest to register thats why i exit it now'); ?>
   <div class="row">
     <!-- left column -->
     <div class="col-md-6 col-md-offset-3">

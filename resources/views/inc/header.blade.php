@@ -8,18 +8,28 @@
 				<li class="{{ Request::is('contact') ? 'active' : ''}}" ><a href="{{ url('contact') }}">Contact</a></li>
 			</ul>
 		</div>
+		<div class="top-header-right" style="margin-left:15px;">
+			<ul>
+				<li><a href="#">LANGUAGE:</a></li>
+				<li>
+					<select>
+						<option>Arabic</option>
+						<option>English</option>
+					</select>
+				</li>
+			</ul>
+		</div>
 		<div class="top-header-right">
 			<ul>
 				<li><a href="#">CURRENCY:</a></li>
 				<li>
 					<select>
+						<option>Riyal</option>
 						<option>Dollar</option>
-						<option>Euro</option>
-						<option>Pound</option>
 					</select>
 				</li>
 			</ul>
-		</div>
+		</div>		
 		<div class="clear"> </div>
 	</div>
 	<div class="clear"> </div>
