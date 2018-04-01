@@ -20,83 +20,30 @@
 	<div class="content">
 		<div class="products-box">
 			<div class="products">
-				<h5><span>ABOUT</span> US</h5>
-				<div class="section group">
-					<div class="grid_1_of_5 images_1_of_5">
-						 <img src="{{ asset('custom/images/g3.png') }}">
-						 <h3>Lorem Ipsum is simply </h3>
-						 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, in reprehenderit.</p>
-						 <h4>$512.00</h4>
-					     <div class="button"><span><a href="{{ url('singlepage') }}">Read More</a></span></div>
-				   </div>
-					<div class="grid_1_of_5 images_1_of_5">
-						 <img src="{{ asset('custom/images/g1.jpg') }}">
-						 <h3>Lorem Ipsum is simply </h3>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, in reprehenderit.</p>
-						<h4>$300.00</h4>
-					     <div class="button"><span><a href="{{ url('singlepage') }}">Read More</a></span></div>
-				    </div>
-					<div class="grid_1_of_5 images_1_of_5">
-						<img src="{{ asset('custom/images/g2.jpg') }}">
-						 <h3>Lorem Ipsum is simply </h3>
-						 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, in reprehenderit.</p>
-						 <h4>$120.00</h4>
-					     <div class="button"><span><a href="{{ url('singlepage') }}">Read More</a></span></div>
-					</div>
-					<div class="grid_1_of_5 images_1_of_5">
-						 <img src="{{ asset('custom/images/g3.png') }}">
-						 <h3>Lorem Ipsum is simply </h3>
-						 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, in reprehenderit.</p>
-						 <h4>$500.00</h4>
-					     <div class="button"><span><a href="{{ url('singlepage') }}">Read More</a></span></div>
-					</div>
-					<div class="grid_1_of_5 images_1_of_5">
-						 <img src="{{ asset('custom/images/g4.jpg') }}">
-						 <h3>Lorem Ipsum is simply</h3>
-						 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, in reprehenderit.</p>
-						 <h4>$120.00</h4>
-					     <div class="button"><span><a href="{{ url('singlepage') }}">Read More</a></span></div>
-					</div>
-				</div>
-			</div>
-			<div class="products products-secondbox">
-				<h5><span>Our</span> Specials</h5>
-				<div class="section group">
-					<div class="grid_1_of_5 images_1_of_5">
-						 <img src="{{ asset('custom/images/g1.jpg') }}">
-						 <h3>Lorem Ipsum is simply </h3>
-						 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, in reprehenderit.</p>
-						 <h4><span>$600.00</span>$512.00</h4>
-					     <div class="button"><span><a href="{{ url('singlepage') }}">Read More</a></span></div>
-				   </div>
-					<div class="grid_1_of_5 images_1_of_5">
-						 <img src="{{ asset('custom/images/g6.jpg') }}">
-						 <h3>Lorem Ipsum is simply </h3>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, in reprehenderit.</p>
-						 <h4><span>$400.00</span>$352.00</h4>
-					     <div class="button"><span><a href="{{ url('singlepage') }}">Read More</a></span></div>
-				    </div>
-					<div class="grid_1_of_5 images_1_of_5">
-						<img src="{{ asset('custom/images/g7.png') }}">
-						 <h3>Lorem Ipsum is simply </h3>
-						 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, in reprehenderit.</p>
-						  <h4><span>$300.00</span>$202.00</h4>
-					     <div class="button"><span><a href="{{ url('singlepage') }}">Read More</a></span></div>
-					</div>
-					<div class="grid_1_of_5 images_1_of_5">
-						 <img src="{{ asset('custom/images/g8.png') }}">
-						 <h3>Lorem Ipsum is simply </h3>
-						 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, in reprehenderit.</p>
-						 <h4><span>$400.00</span>$322.00</h4>
-					     <div class="button"><span><a href="{{ url('singlepage') }}">Read More</a></span></div>
-					</div>
-					<div class="grid_1_of_5 images_1_of_5">
-						 <img src="{{ asset('custom/images/g1.jpg') }}">
-						 <h3>Lorem Ipsum is simply</h3>
-						 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, in reprehenderit.</p>
-						 <h4><span>$700.00</span>$602.00</h4>
-					     <div class="button"><span><a href="{{ url('singlepage') }}">Read More</a></span></div>
-					</div>
+				<h1><span>ABOUT</span> US</h1>
+				<div class="about_text">
+					<span>Rahdan Commercial Center</span>
+					<p>
+					A Sole proprietorship, incorporated as per existing laws of Saudi Arabia. 
+					Having main business address in khobar city – Saudi Arabia with physical presence in the market for more than forty years , 
+					lead and pioneer auto parts seller and provider , permanently endeavor to keep it is good reputation , 
+					excellence of service and fulfill customers expectations.
+					</p>
+					
+					<span>Our Vision :</span> 
+					<p>To be a leader in Eastern Province in provision of genuine auto – parts.</p>
+					
+					<span>Our values : </span>
+					<p>
+					- Quality of parts 
+					- Speed service 
+					- Teamwork spirit 
+					-Innovation and permanent 
+					</p>
+					
+					<span>Our logo :</span>
+					<p>We are happy to serve you</p>
+					
 				</div>
 			</div>
 		</div>

@@ -16,13 +16,18 @@
 					</div>
 					<div class="company_address">
 		     			<h3>Company Information :</h3>
-				    	<p>500 Lorem Ipsum Dolor Sit,</p>
-				   		<p>22-56-2-9 Sit Amet, Lorem,</p>
-				   		<p>USA</p>
-		   				<p>Phone:(00) 222 666 444</p>
-		   				<p>Fax: (000) 000 00 00 0</p>
-		 	 			<p>Email: <span><a href="mailto:example@mail.com">info@mycompany.com</a></span></p>
-		   				<p>Follow on: <span>Facebook</span>, <span>Twitter</span></p>
+				    	<p>30th St, Sinayiat Al Thuqba,</p>
+				   		<p>Al Khobar 34626,</p> 
+				   		<p>Saudi Arabia</p>
+				   		<p>Mobile: +966501848990</p>
+		   				<p>Tel: +966138998700</p>
+		   				<p>Tel: +966138641144</p>
+		   				<p>Tax: +966138971566</p>
+		 	 			<p>Email: <span><a href="mailto:support@virneza.com">sales@rahdan.com.sa</a></span></p>
+		   				<p>Follow on: 
+		   					<a href="https://twitter.com/rahdan_sa"><span>Twitter</span></a>, 
+		   					<a href="https://www.instagram.com/p/BK00NrTjmdm/"><span>Instagram</span></a>
+		   				</p>
 		   			</div>
 				</div>				
 				<div class="col span_2_of_3">

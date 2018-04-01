@@ -163,6 +163,20 @@ body{
 .products h5 span{
 	color:#0463B0;
 }
+
+.products h1{
+	display: block;
+	padding: 30px 0px 12px 0px;
+	font: bold 38px/36px "Arial";
+	color: #000;
+	font-family: 'Fauna One', serif;
+	font-weight: normal;
+	text-transform: uppercase;
+}
+.products h1 span{
+	color:#0463B0;
+}
+
 .products-secondbox h5{
 	padding:15px 0px;
 }
@@ -1217,4 +1231,24 @@ width:25%;
 		padding: 22px 21px;
 		font-size: 12px;
 	}
+}
+
+.about_text {
+	display: block;
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    text-align: justify !important;
+    color: #4e4e4e;
+    font-size: 18px;
+    line-height: 2;
+    font-family: 'Brawler';
+    font-weight: 400;
+    letter-spacing: 0px;
+}
+
+.about_text > span{
+	font-size: 28px;
+	color: #005a7c;
 }
