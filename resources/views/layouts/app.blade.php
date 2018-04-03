@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<title>Spare Parts Website Template | Home :: W3layouts</title>
+		<title>Rahdan</title>
 		<link rel="icon" href="{{ asset('custom/images/logo_rahdan_mini.png') }}" type="image/png" sizes="16x30">
 		<link href="{{ asset('custom/css/style.css') }}" rel="stylesheet" type="text/css"  media="all" />
 		<link href='//fonts.googleapis.com/css?family=Fauna+One' rel='stylesheet' type='text/css'>
