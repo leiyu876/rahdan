@@ -38,7 +38,7 @@
 				<li><a href="#"><img src="{{ asset('custom/images/rss.png') }}" title="Rss" /></a></li>
 				<li><a href="#"><img src="{{ asset('custom/images/gpluse.png') }}" title="Google+" /></a></li>
 			</ul>
-			<p>&copy 2018 Spare Parts . All Rights Reserved | Design by <a href="http://w3layouts.com/">W3layouts</a></p>
+			<p>&copy 2018 Spare Parts . All Rights Reserved</p>
 		</div>
 	</div>
 </div>
