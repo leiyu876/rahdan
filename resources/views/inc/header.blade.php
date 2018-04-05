@@ -51,12 +51,12 @@
 	<div class="clear"> </div>
 	<div class="top-nav">
 		<ul>
-			<li><a href="{{ url('carlights') }}">car lights</a></li>
-			<li class="active"><a href="{{ url('carwheels') }}">Car wheels</a></li>
-			<li><a href="{{ url('carbumpers') }}">car bumpers</a></li>
-			<li><a href="{{ url('caradsystem') }}">car audiosystem</a></li>
-			<li><a href="{{ url('truckbumpers') }}">Truck bumpers</a></li>
-			<li><a href="{{ url('contact') }}">Feedback</a></li>
+			<li class="{{ Request::is('carlights') ? 'active1' : ''}}"><a href="{{ url('carlights') }}">car lights</a></li>
+			<li class="{{ Request::is('carwheels') ? 'active1' : ''}}"><a href="{{ url('carwheels') }}">Car wheels</a></li>
+			<li class="{{ Request::is('carbumpers') ? 'active1' : ''}}"><a href="{{ url('carbumpers') }}">car bumpers</a></li>
+			<li class="{{ Request::is('caradsystem') ? 'active1' : ''}}"><a href="{{ url('caradsystem') }}">car audiosystem</a></li>
+			<li class="{{ Request::is('truckbumpers') ? 'active1' : ''}}"><a href="{{ url('truckbumpers') }}">Truck bumpers</a></li>
+			<li class="{{ Request::is('contact') ? 'active' : ''}}"><a href="{{ url('contact') }}">Feedback</a></li>
 			<div class="clear"> </div>
 		</ul>
 	</div>
