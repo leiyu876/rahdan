@@ -52,7 +52,7 @@
 	<div class="top-nav">
 		<ul>
 			<li><a href="{{ url('carlights') }}">car lights</a></li>
-			<li><a href="{{ url('carwheels') }}">Car wheels</a></li>
+			<li class="active"><a href="{{ url('carwheels') }}">Car wheels</a></li>
 			<li><a href="{{ url('carbumpers') }}">car bumpers</a></li>
 			<li><a href="{{ url('caradsystem') }}">car audiosystem</a></li>
 			<li><a href="{{ url('truckbumpers') }}">Truck bumpers</a></li>
