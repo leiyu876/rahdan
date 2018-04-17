@@ -208,6 +208,7 @@ class InvoicesController extends Controller
         return redirect('invoices/'.$location.'/'.$action_url);
     }
 
+    /*
     public function del_unfinish() {
         
         $data['page_title'] = 'Fatora Unfinish ( Bagi )';
@@ -240,7 +241,7 @@ class InvoicesController extends Controller
 
         return view('invoices.return', $data);
     }
-
+    */
     public function warehouse($action_code, $user_id = 0)
     {
         $where_in = array();

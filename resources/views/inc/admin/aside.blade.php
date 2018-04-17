@@ -26,34 +26,38 @@
     <ul class="sidebar-menu" data-widget="tree">
       <li class="header">MAIN NAVIGATION</li>
       <li><a href="{{ url('dashboard') }}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
-      <li class="treeview">
-        <a href="#">
-          <i class="fa fa-users"></i> <span>Fatora Mastoda</span>
-          <span class="pull-right-container">
-            <i class="fa fa-angle-left pull-right"></i>
-          </span>
-        </a>
-        <ul class="treeview-menu">
-          <li><a href="{{ url('invoices/create') }}"><i class="fa fa-circle-o"></i> Create Fatora</a></li>
-          <li><a href="{{ route('invoices.warehouse', ['action_code'=>'unfinish']) }}"><i class="fa fa-circle-o"></i> Unfinish ( Bagi )</a></li>
-          <li><a href="{{ route('invoices.warehouse', ['action_code'=>'finished_confirm']) }}"><i class="fa fa-circle-o"></i> Finished ( Kalas )</a></li>
-          <li><a href="{{ route('invoices.warehouse', ['action_code'=>'returned_confirm']) }}"><i class="fa fa-circle-o"></i> Returned ( Radja )</a></li>
-        </ul>
-      </li>
-      <li class="treeview">
-        <a href="#">
-          <i class="fa fa-users"></i> <span>Fatora Mahal</span>
-          <span class="pull-right-container">
-            <i class="fa fa-angle-left pull-right"></i>
-          </span>
-        </a>
-        <ul class="treeview-menu">
-          <li><a href="{{ route('invoices.shop', ['action_code'=>'unfinish']) }}"><i class="fa fa-circle-o"></i> Unfinish ( Bagi )</a></li>
-          <li><a href="{{ route('invoices.shop', ['action_code'=>'finished']) }}"><i class="fa fa-circle-o"></i> Finished ( Kalas )</a></li>
-          <li><a href="{{ route('invoices.shop', ['action_code'=>'returned']) }}"><i class="fa fa-circle-o"></i> Returned ( Radja )</a></li>
-        </ul>
-      </li>
-      <li class="treeview">
+      @if(Auth::user()->name == 'Admin' ||  Auth::user()->name == 'vasim')
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-users"></i> <span>Fatora Mastoda</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="{{ url('invoices/create') }}"><i class="fa fa-circle-o"></i> Create Fatora</a></li>
+            <li><a href="{{ route('invoices.warehouse', ['action_code'=>'unfinish']) }}"><i class="fa fa-circle-o"></i> Unfinish ( Bagi )</a></li>
+            <li><a href="{{ route('invoices.warehouse', ['action_code'=>'finished_confirm']) }}"><i class="fa fa-circle-o"></i> Finished ( Kalas )</a></li>
+            <li><a href="{{ route('invoices.warehouse', ['action_code'=>'returned_confirm']) }}"><i class="fa fa-circle-o"></i> Returned ( Radja )</a></li>
+          </ul>
+        </li>
+      @endif
+      @if(Auth::user()->name == 'Admin' ||  in_array(Auth::user()->name, ['moshin', 'salim', 'alex']))
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-users"></i> <span>Fatora Mahal</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="{{ route('invoices.shop', ['action_code'=>'unfinish']) }}"><i class="fa fa-circle-o"></i> Unfinish ( Bagi )</a></li>
+            <li><a href="{{ route('invoices.shop', ['action_code'=>'finished']) }}"><i class="fa fa-circle-o"></i> Finished ( Kalas )</a></li>
+            <li><a href="{{ route('invoices.shop', ['action_code'=>'returned']) }}"><i class="fa fa-circle-o"></i> Returned ( Radja )</a></li>
+          </ul>
+        </li>
+      @endif
+      <!--<li class="treeview">
         <a href="#">
           <i class="fa fa-users"></i> <span>Fatora</span>
           <span class="pull-right-container">
@@ -66,31 +70,33 @@
           <li><a href="{{ url('invoices/finish') }}"><i class="fa fa-circle-o"></i> Salesman Finish ( Kalas )</a></li>
           <li><a href="{{ url('invoices/return') }}"><i class="fa fa-circle-o"></i> Salesman Return ( Radja )</a></li>
         </ul>
-      </li>
-      <li class="treeview">
-        <a href="#">
-          <i class="fa fa-users"></i> <span>Users</span>
-          <span class="pull-right-container">
-            <i class="fa fa-angle-left pull-right"></i>
-          </span>
-        </a>
-        <ul class="treeview-menu">
-          <li><a href="{{ url('users') }}"><i class="fa fa-circle-o"></i> Users List</a></li>
-          <li><a href="{{ url('users/create') }}"><i class="fa fa-circle-o"></i> Create User</a></li>
-        </ul>
-      </li>
-      <li class="treeview">
-        <a href="#">
-          <i class="fa fa-users"></i> <span>Fatora Actions</span>
-          <span class="pull-right-container">
-            <i class="fa fa-angle-left pull-right"></i>
-          </span>
-        </a>
-        <ul class="treeview-menu">
-          <li><a href="{{ url('actions') }}"><i class="fa fa-circle-o"></i> Action List</a></li>
-          <li><a href="{{ url('actions/create') }}"><i class="fa fa-circle-o"></i> Create Action</a></li>
-        </ul>
-      </li>
+      </li>-->
+      @if(Auth::user()->name == 'Admin')
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-users"></i> <span>Users</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="{{ url('users') }}"><i class="fa fa-circle-o"></i> Users List</a></li>
+            <li><a href="{{ url('users/create') }}"><i class="fa fa-circle-o"></i> Create User</a></li>
+          </ul>
+        </li>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-users"></i> <span>Fatora Actions</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="{{ url('actions') }}"><i class="fa fa-circle-o"></i> Action List</a></li>
+            <li><a href="{{ url('actions/create') }}"><i class="fa fa-circle-o"></i> Create Action</a></li>
+          </ul>
+        </li>
+      @endif
     </ul>
   </section>
   <!-- /.sidebar -->
