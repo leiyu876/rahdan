@@ -56,10 +56,15 @@ Route::post('invoices/index_lists', 'InvoicesController@index_lists')->name('inv
 Route::get('invoices/warehouse/{action_code}/{user_id?}', 'InvoicesController@warehouse')->name('invoices.warehouse');
 Route::post('invoices/warehouse_lists', 'InvoicesController@warehouse_lists')->name('invoices.warehouse_lists');
 
+
 Route::resources([
     'users' => 'UsersController',
     'actions' => 'ActionsController',
-    'invoices' => 'InvoicesController',
+    //'invoices' => 'InvoicesController',
 ]);
 
+Route::get('invoices', 'InvoicesController@edit')->name('invoices.edit');
+Route::delete('invoices/{invoices}', 'InvoicesController@destroy')->name('invoices.destroy');
+Route::get('invoices/{invoice}/edit/{action_url}', 'InvoicesController@edit')->name('invoices.edit');
+Route::put('invoices/{invoice}', 'InvoicesController@update')->name('invoices.update');
 

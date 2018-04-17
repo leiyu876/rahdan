@@ -8,6 +8,7 @@ use App\Models\Invoice;
 use App\Models\Action;
 use App\User;
 use Session;
+use Auth;
 
 class InvoicesController extends Controller
 {
@@ -23,6 +24,13 @@ class InvoicesController extends Controller
      */
     public function index($user_id = 0, $action_id = 0)
     {
+        if(in_array(Auth::user()->name, ['moshin', 'salim', 'alex'])) {
+            return redirect('invoices/shop/unfinish');
+        } else {
+            return redirect('invoices/warehouse/unfinish');
+        }
+
+        // delete all bottom
         $query = Invoice::orderBy('created_at', 'desc');
         $data['user_id_selected'] = null;
         
@@ -122,9 +130,10 @@ class InvoicesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id, $action_url)
     {
         $data['page_title'] = 'Update Fatora';
+        $data['action_url'] = $action_url;
         $data['invoice'] = Invoice::find($id);
         $data['users'] = User::whereNotIn('iqama', [111, 555])->get();
 
@@ -156,7 +165,7 @@ class InvoicesController extends Controller
         
         $invoice->save();
 
-        return redirect('/invoices')->with('success', 'Invoice Updated');
+        return redirect('invoices/warehouse/'.$request->action_url)->with('success', 'Fatora Updated');
     }
 
     /**
@@ -165,11 +174,11 @@ class InvoicesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
         $invoice = Invoice::find($id);
         $invoice->delete();
-        return redirect('/invoices')->with('success', 'Fatora Removed');
+        return redirect('invoices/warehouse/'.$request->action_url)->with('success', 'Fatora Removed');
     }
 
     public function changeAction($id, $action_code, $action_url = null) {
@@ -180,11 +189,11 @@ class InvoicesController extends Controller
 
             $invoice = Invoice::find($id);            
 
-            $invoice->action_id = $action->id;
+            $invoice->action_code = $action->code;
 
             $invoice->save();
 
-            Session::flash('success', $invoice->partno.' '.$action->name);
+            Session::flash('success', $invoice->partno.' move to '.$action->name);
         
         } else {
 
@@ -196,7 +205,7 @@ class InvoicesController extends Controller
         if($action_url)
             $url = '/'.$action_url;
 
-        return redirect('/invoices'.$url);
+        return redirect('invoices/warehouse/'.$action_url);
     }
 
     public function unfinish() {
@@ -237,20 +246,21 @@ class InvoicesController extends Controller
         $where_in = array();
 
         switch ($action_code) {
-            case 'unfinish':
-                $where_in = array('unfinish', 'finish', 'return');
-                $data['page_title'] = 'Fatora Unfinish ( Bagi )';
-                break; 
-            case 'finished':
-                $where_in = array('finished_confirm');
+            case 'finished_confirm':
+                $data['action_url'] = $action_code;
+                $where_in = array($action_code);
                 $data['page_title'] = 'Fatora Finished ( Kalas )';
                 break; 
-            case 'returned':
+            case 'returned_confirm':
+                $data['action_url'] = $action_code;
                 $where_in = array($action_code);
                 $data['page_title'] = 'Parts Returned ( Radja )';
                 break;            
-            default:
-                return redirect('invoices/warehouse/unfinish');
+            default: 
+                $data['action_url'] = 'unfinish';
+                $where_in = array('unfinish', 'finish', 'return');
+                $data['page_title'] = 'Fatora Unfinish ( Bagi )';
+                break; 
                 break;
         }
 

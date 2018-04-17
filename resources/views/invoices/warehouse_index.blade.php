@@ -23,9 +23,6 @@
                             </div>
                         {{ Form::close() }}
                     </div>
-                    <div class="pull-right">
-                        <a href="{{ url('invoices/create') }}" class="btn btn-block btn-primary"><i class="fa fa-plus"></i> Add Fatora</a>
-                    </div>
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
@@ -57,18 +54,18 @@
                                     <td>
                                         <div class="col-sm-12">
                                             <div class="col-sm-3" style="visibility:{{ $invoice->action->code == 'unfinish' ? 'hidden' : '' }}">
-                                                <a href="{{ route('invoices.changeaction', ['id' => $invoice->id, 'action_code' => 'unfinish' ])}}" class="btn btn-danger" role="button">bagi</a>
+                                                <a href="{{ route('invoices.changeaction', ['id' => $invoice->id, 'action_code' => 'unfinish', 'action_url' => $action_url])}}" class="btn btn-danger" role="button">bagi</a>
                                             </div>
-                                            <div class="col-sm-3" style="visibility:{{ $invoice->action->code == 'finish_confirm' ? 'hidden' : '' }}">
-                                                <a href="{{ route('invoices.changeaction', ['id' => $invoice->id, 'action_code' => 'finish_confirm' ])}}" class="btn btn-primary" role="button">kalas</a>
+                                            <div class="col-sm-3" style="visibility:{{ $invoice->action->code == 'finished_confirm' ? 'hidden' : '' }}">
+                                                <a href="{{ route('invoices.changeaction', ['id' => $invoice->id, 'action_code' => 'finished_confirm', 'action_url' => $action_url ])}}" class="btn btn-primary" role="button">kalas</a>
                                             </div>
-                                            <div class="col-sm-3" style="visibility:{{ $invoice->action->code == 'return_confirm' ? 'hidden' : '' }}">
-                                                <a href="{{ route('invoices.changeaction', ['id' => $invoice->id, 'action_code' => 'return_confirm' ])}}" class="btn btn-info" role="button">radja</a>
+                                            <div class="col-sm-3" style="visibility:{{ $invoice->action->code == 'returned_confirm' ? 'hidden' : '' }}">
+                                                <a href="{{ route('invoices.changeaction', ['id' => $invoice->id, 'action_code' => 'returned_confirm', 'action_url' => $action_url ])}}" class="btn btn-info" role="button">radja</a>
                                             </div>
                                         </div>
                                     </td>                                      
                                     <td>
-                                        <a href="{{ route('invoices.edit', ['id' => $invoice->id])}}">
+                                        <a href="{{ route('invoices.edit', ['id' => $invoice->id, 'action_url' => $action_url])}}">
                                             <i class="fa fa-fw fa-pencil" data-toggle="tooltip" title="Edit"></i>
                                         </a>
                                         <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -78,6 +75,7 @@
 
                                         {!! Form::open(['action'=> ['InvoicesController@destroy', $invoice->id], 'method'=>'POST']) !!}
                                             {{ Form::hidden('_method', 'DELETE') }}
+                                            {{ Form::hidden('action_url', $action_url) }}
                                             {{ Form::submit('Delete', ['class'=>'btn btn-danger', 'id'=>'name'.$invoice->id, 'style'=>'display:none']) }}
                                         {!! Form::close() !!}                                        
                                     </td>

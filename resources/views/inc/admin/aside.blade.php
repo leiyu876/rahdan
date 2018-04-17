@@ -34,9 +34,10 @@
           </span>
         </a>
         <ul class="treeview-menu">
+          <li><a href="{{ url('invoices/create') }}"><i class="fa fa-circle-o"></i> Create Fatora</a></li>
           <li><a href="{{ route('invoices.warehouse', ['action_code'=>'unfinish']) }}"><i class="fa fa-circle-o"></i> Unfinish ( Bagi )</a></li>
-          <li><a href="{{ route('invoices.warehouse', ['action_code'=>'finished']) }}"><i class="fa fa-circle-o"></i> Finished ( Kalas )</a></li>
-          <li><a href="{{ route('invoices.warehouse', ['action_code'=>'returned']) }}"><i class="fa fa-circle-o"></i> Returned ( Radja )</a></li>
+          <li><a href="{{ route('invoices.warehouse', ['action_code'=>'finished_confirm']) }}"><i class="fa fa-circle-o"></i> Finished ( Kalas )</a></li>
+          <li><a href="{{ route('invoices.warehouse', ['action_code'=>'returned_confirm']) }}"><i class="fa fa-circle-o"></i> Returned ( Radja )</a></li>
         </ul>
       </li>
       <li class="treeview">
@@ -48,7 +49,6 @@
         </a>
         <ul class="treeview-menu">
           <li><a href="{{ url('invoices') }}"><i class="fa fa-circle-o"></i> Fatora List</a></li>
-          <li><a href="{{ url('invoices/create') }}"><i class="fa fa-circle-o"></i> Create Fatora</a></li>
           <li><a href="{{ url('invoices/unfinish') }}"><i class="fa fa-circle-o"></i> Unfinish ( Bagi )</a></li>
           <li><a href="{{ url('invoices/finish') }}"><i class="fa fa-circle-o"></i> Salesman Finish ( Kalas )</a></li>
           <li><a href="{{ url('invoices/return') }}"><i class="fa fa-circle-o"></i> Salesman Return ( Radja )</a></li>

@@ -73,6 +73,7 @@
           <!-- /.box-body -->
 
           <div class="box-footer">
+            {{ Form::hidden('action_url', $action_url) }}
             <a href="{{ url('invoices') }}" class="btn btn-default">Cancel</a>
             <button type="submit" class="btn btn-primary pull-right">Update</button>
           </div>
