@@ -1,7 +1,7 @@
 @extends('layouts.app_admin')
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('custom_adminlte/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('custom_adminlte/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css') }}">
 @endsection
 
 @section('content')
@@ -121,6 +121,8 @@
         }         
     });
 
-    $('#example1').DataTable();
+    $('#example1').DataTable( {
+      "ordering": false
+    } );
 </script>
 @endsection()

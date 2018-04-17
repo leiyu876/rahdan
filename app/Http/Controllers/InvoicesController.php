@@ -23,9 +23,9 @@ class InvoicesController extends Controller
      */
     public function index($user_id = 0, $action_id = 0)
     {
-        $query = Invoice::orderBy('date', 'desc');
+        $query = Invoice::orderBy('created_at', 'desc');
         $data['user_id_selected'] = null;
-
+        
         if($user_id) {
             $query->where('user_id', $user_id);
             $data['user_id_selected'] = $user_id;
