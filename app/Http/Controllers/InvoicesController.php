@@ -234,7 +234,27 @@ class InvoicesController extends Controller
 
     public function warehouse($action_code, $user_id = 0)
     {
-        $query = Invoice::orderBy('created_at', 'desc')->whereIn('action_code', ['unfinish', 'finish', 'return']);
+        $where_in = array();
+
+        switch ($action_code) {
+            case 'unfinish':
+                $where_in = array('unfinish', 'finish', 'return');
+                $data['page_title'] = 'Fatora Unfinish ( Bagi )';
+                break; 
+            case 'finished':
+                $where_in = array('finished_confirm');
+                $data['page_title'] = 'Fatora Finished ( Kalas )';
+                break; 
+            case 'returned':
+                $where_in = array($action_code);
+                $data['page_title'] = 'Parts Returned ( Radja )';
+                break;            
+            default:
+                return redirect('invoices/warehouse/unfinish');
+                break;
+        }
+
+        $query = Invoice::orderBy('created_at', 'desc')->whereIn('action_code', $where_in);
         $data['user_id_selected'] = null;
         
         if($user_id) {
@@ -245,12 +265,10 @@ class InvoicesController extends Controller
 
 
         $data['invoices'] = $query->get();
-            
+          
         $data['action_code'] = 'unfinish';
 
         $data['salesmans'] = User::whereIn('iqama', ['222','333','444'])->pluck('name', 'id');
-
-        $data['page_title'] = 'Fatora Unfinish ( Bagi )';
 
         return view('invoices.warehouse_index', $data);
     }
