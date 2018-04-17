@@ -53,6 +53,9 @@ Route::get('invoices/return', 'InvoicesController@return')->name('invoices.retur
 Route::get('invoices/index/{user_id?}/{action_id?}', 'InvoicesController@index')->name('invoices');
 Route::post('invoices/index_lists', 'InvoicesController@index_lists')->name('invoices.index_lists');
 
+Route::get('invoices/warehouse/{action_code}/{user_id?}', 'InvoicesController@warehouse')->name('invoices.warehouse');
+Route::post('invoices/warehouse_lists', 'InvoicesController@warehouse_lists')->name('invoices.warehouse_lists');
+
 Route::resources([
     'users' => 'UsersController',
     'actions' => 'ActionsController',

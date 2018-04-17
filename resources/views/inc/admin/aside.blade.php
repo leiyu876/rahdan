@@ -28,6 +28,19 @@
       <li><a href="{{ url('dashboard') }}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
       <li class="treeview">
         <a href="#">
+          <i class="fa fa-users"></i> <span>Fatora Mastoda</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li><a href="{{ route('invoices.warehouse', ['action_code'=>'unfinish']) }}"><i class="fa fa-circle-o"></i> Unfinish ( Bagi )</a></li>
+          <li><a href="{{ route('invoices.warehouse', ['action_code'=>'finished']) }}"><i class="fa fa-circle-o"></i> Finished ( Kalas )</a></li>
+          <li><a href="{{ route('invoices.warehouse', ['action_code'=>'returned']) }}"><i class="fa fa-circle-o"></i> Returned ( Radja )</a></li>
+        </ul>
+      </li>
+      <li class="treeview">
+        <a href="#">
           <i class="fa fa-users"></i> <span>Fatora</span>
           <span class="pull-right-container">
             <i class="fa fa-angle-left pull-right"></i>
