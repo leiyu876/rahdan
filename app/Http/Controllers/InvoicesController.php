@@ -181,7 +181,7 @@ class InvoicesController extends Controller
         return redirect('invoices/warehouse/'.$request->action_url)->with('success', 'Fatora Removed');
     }
 
-    public function changeAction($id, $action_code, $action_url = null) {
+    public function changeAction($id, $action_code, $action_url = null, $location = 'warehouse') {
 
         $action = Action::where('code', $action_code)->first();
 
@@ -205,10 +205,10 @@ class InvoicesController extends Controller
         if($action_url)
             $url = '/'.$action_url;
 
-        return redirect('invoices/warehouse/'.$action_url);
+        return redirect('invoices/'.$location.'/'.$action_url);
     }
 
-    public function unfinish() {
+    public function del_unfinish() {
         
         $data['page_title'] = 'Fatora Unfinish ( Bagi )';
 
@@ -219,7 +219,7 @@ class InvoicesController extends Controller
         return view('invoices.unfinish', $data);
     }
 
-    public function finish() {
+    public function del_finish() {
         
         $data['page_title'] = 'Fatora Finish ( Kalas )';
 
@@ -230,7 +230,7 @@ class InvoicesController extends Controller
         return view('invoices.finish', $data);
     }
 
-    public function return() {
+    public function del_return() {
         
         $data['page_title'] = 'Fatora Return ( Radja )';
 
@@ -258,7 +258,7 @@ class InvoicesController extends Controller
                 break;            
             default: 
                 $data['action_url'] = 'unfinish';
-                $where_in = array('unfinish', 'finish', 'return');
+                $where_in = array('unfinish', 'finished', 'returned');
                 $data['page_title'] = 'Fatora Unfinish ( Bagi )';
                 break; 
                 break;
@@ -288,5 +288,37 @@ class InvoicesController extends Controller
         $user_id   = $request->user_id;
 
         return redirect('invoices/warehouse/'.$request->action_code.'/'.$user_id);
+    }
+
+    public function shop($action_code)
+    {
+        $where_in = array();
+
+        switch ($action_code) {
+            case 'finished':
+                $data['action_url'] = $action_code;
+                $where_in = array($action_code);
+                $data['page_title'] = 'Fatora Finished ( Kalas )';
+                break; 
+            case 'returned':
+                $data['action_url'] = $action_code;
+                $where_in = array($action_code);
+                $data['page_title'] = 'Parts Returned ( Radja )';
+                break;            
+            default: 
+                $data['action_url'] = 'unfinish';
+                $where_in = array('unfinish', 'finish', 'return');
+                $data['page_title'] = 'Fatora Unfinish ( Bagi )';
+                break; 
+                break;
+        }
+
+        $query = Invoice::orderBy('created_at', 'desc')->whereIn('action_code', $where_in);
+        
+        $data['invoices'] = $query->get();
+          
+        $data['action_code'] = 'unfinish';
+
+        return view('invoices.shop_index', $data);
     }
 }
