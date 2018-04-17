@@ -96,13 +96,13 @@ class InvoicesController extends Controller
         $action = Action::where('code', 'unfinish')->first();
 
         if($action === null)
-        return redirect('/invoices')->with('error', 'Cannot add fatora. Fatora action not configured. Please contact administrator');
+        return redirect('invoices/warehouse/unfinish')->with('error', 'Cannot add fatora. Fatora action not configured. Please contact administrator');
 
-        $invoice->action_id = $action->id;
+        $invoice->action_code = $action->code;
         
         $invoice->save();
 
-        return redirect('/invoices')->with('success', 'Fatora Created');
+        return redirect('invoices/warehouse/unfinish/')->with('success', 'Fatora Created');
     }
 
     /**
