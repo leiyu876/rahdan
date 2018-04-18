@@ -26,7 +26,7 @@
     <ul class="sidebar-menu" data-widget="tree">
       <li class="header">MAIN NAVIGATION</li>
       <li><a href="{{ url('dashboard') }}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
-      @if(Auth::user()->name == 'Admin' ||  Auth::user()->name == 'vasim')
+      @if(Auth::user()->name == 'admin' ||  Auth::user()->name == 'vasim')
         <li class="treeview">
           <a href="#">
             <i class="fa fa-users"></i> <span>Fatora Mastoda</span>
@@ -42,7 +42,7 @@
           </ul>
         </li>
       @endif
-      @if(Auth::user()->name == 'Admin' ||  in_array(Auth::user()->name, ['moshin', 'salim', 'alex']))
+      @if(Auth::user()->name == 'admin' ||  in_array(Auth::user()->name, ['moshin', 'salim', 'alex']))
         <li class="treeview">
           <a href="#">
             <i class="fa fa-users"></i> <span>Fatora Mahal</span>
@@ -71,7 +71,7 @@
           <li><a href="{{ url('invoices/return') }}"><i class="fa fa-circle-o"></i> Salesman Return ( Radja )</a></li>
         </ul>
       </li>-->
-      @if(Auth::user()->name == 'Admin')
+      @if(Auth::user()->name == 'admin')
         <li class="treeview">
           <a href="#">
             <i class="fa fa-users"></i> <span>Users</span>

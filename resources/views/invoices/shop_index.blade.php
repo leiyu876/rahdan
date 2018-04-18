@@ -22,7 +22,6 @@
                               <th>Quantity</th>
                               <th>Date</th>
                               <th>Change Status To:</th>
-                              <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -47,22 +46,7 @@
                                                 <a href="{{ route('invoices.changeaction', ['id' => $invoice->id, 'action_code' => 'returned', 'action_url' => $action_url, 'location' => 'shop' ])}}" class="btn btn-info" role="button">radja</a>
                                             </div>
                                         </div>
-                                    </td>                                      
-                                    <td>
-                                        <a href="{{ route('invoices.edit', ['id' => $invoice->id, 'action_url' => $action_url])}}">
-                                            <i class="fa fa-fw fa-pencil" data-toggle="tooltip" title="Edit"></i>
-                                        </a>
-                                        <meta name="csrf-token" content="{{ csrf_token() }}">
-                                        <a href="#" data-method="delete" class="jquery-postback" value="{{ $invoice->id }}">
-                                            <i class="fa fa-fw fa-trash" data-toggle="tooltip" title="Delete"></i>
-                                        </a>
-
-                                        {!! Form::open(['action'=> ['InvoicesController@destroy', $invoice->id], 'method'=>'POST']) !!}
-                                            {{ Form::hidden('_method', 'DELETE') }}
-                                            {{ Form::hidden('action_url', $action_url) }}
-                                            {{ Form::submit('Delete', ['class'=>'btn btn-danger', 'id'=>'name'.$invoice->id, 'style'=>'display:none']) }}
-                                        {!! Form::close() !!}                                        
-                                    </td>
+                                    </td>   
                                 </tr>
                             @endforeach
                         </tbody>
