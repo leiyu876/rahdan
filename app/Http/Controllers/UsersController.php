@@ -48,7 +48,7 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
+        $request->validate([
             'iqama' => 'required|unique:users',
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
@@ -104,7 +104,7 @@ class UsersController extends Controller
     {
         $user = User::find($id);
 
-        $this->validate($request, [
+        $request->validate([
             'iqama' => 'required|unique:users,iqama,'.$user->id,
             'email' => 'required|unique:users,email,'.$user->id,
             'name' => 'required',

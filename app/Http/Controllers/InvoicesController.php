@@ -87,7 +87,7 @@ class InvoicesController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
+        $request->validate([
             'partno' => 'required',
             'user_id' => 'required',
             'date' => 'nullable|date',
@@ -149,7 +149,7 @@ class InvoicesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request, [
+        $request->validate([
             'partno' => 'required',
             'user_id' => 'required',
             'date' => 'nullable|date',

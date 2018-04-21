@@ -46,7 +46,7 @@ class ActionsController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
+        $request->validate([
             'code' => 'required|unique:actions',
             'name' => 'required|string|max:255',
         ]);
@@ -98,7 +98,7 @@ class ActionsController extends Controller
     {
         $action = Action::find($id);
 
-        $this->validate($request, [
+        $request->validate([
             'code' => 'required|unique:actions,code,'.$action->id,
             'name' => 'required',
         ]);
