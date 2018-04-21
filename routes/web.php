@@ -11,33 +11,15 @@
 |
 */
 
-Route::get('/', function () {
-	return view('index');
-});
-Route::get('/contact', function () {
-    return view('contact');
-});
-Route::get('/carwheels', function () {
-    return view('carwheels');
-});
-Route::get('/carlights', function () {
-    return view('carlights');
-});
-Route::get('/carbumpers', function () {
-    return view('carlights');
-});
-Route::get('/caradsystem', function () {
-    return view('caradsystem');
-});
-Route::get('/truckbumpers', function () {
-    return view('truckbumpers');
-});
-Route::get('/singlepage', function () {
-    return view('singlepage');
-});
-Route::get('/about', function () {
-    return view('about');
-});
+Route::view('/', 'pages.index');
+Route::view('/contact', 'pages.contact');
+Route::view('/carwheels', 'pages.carwheels');
+Route::view('/carlights', 'pages.carlights');
+Route::view('/carbumpers', 'pages.carbumpers');
+Route::view('/caradsystem', 'pages.caradsystem');
+Route::view('/truckbumpers', 'pages.truckbumpers');
+Route::view('/singlepage', 'pages.singlepage');
+Route::view('/about', 'pages.about');
 
 Auth::routes();
 
@@ -52,9 +34,6 @@ Route::get('invoices/changeAction/{id}/{action_code}/{action_url?}/{location?}',
 //Route::get('invoices/return', 'InvoicesController@return')->name('invoices.return');
 //Route::get('invoices/index/{user_id?}/{action_id?}', 'InvoicesController@index')->name('invoices');
 //Route::post('invoices/index_lists', 'InvoicesController@index_lists')->name('invoices.index_lists');
-
-
-
 
 Route::resources([
     'users' => 'UsersController',
