@@ -25,35 +25,35 @@
     <!-- sidebar menu: : style can be found in sidebar.less -->
     <ul class="sidebar-menu" data-widget="tree">
       <li class="header">MAIN NAVIGATION</li>
-      <li><a href="{{ url('dashboard') }}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
+      <li class="{{ Request::is('dashboard') ? 'active' : '' }}"><a href="{{ url('dashboard') }}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
       @if(Auth::user()->name == 'admin' ||  Auth::user()->name == 'vasim')
-        <li class="treeview">
+        <li class="treeview {{ Request::is('invoices/warehouse*') ? 'menu-open' : '' }}">
           <a href="#">
             <i class="fa fa-users"></i> <span>Fatora Mastoda</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
-          <ul class="treeview-menu">
+          <ul class="treeview-menu" style="{{ Request::is('invoices/warehouse*') || Request::is('invoices/create') ? 'display:block' : '' }}">
             <li class="{{ Request::is('invoices/create') ? 'active' : '' }}"><a href="{{ url('invoices/create') }}"><i class="fa fa-circle-o"></i> Create Fatora</a></li>
-            <li class="{{ Request::is('invoices/warehouse') ? 'active' : '' }}"><a href="{{ route('invoices.warehouse', ['action_code'=>'unfinish']) }}"><i class="fa fa-circle-o"></i> Unfinish ( Bagi )</a></li>
-            <li class="{{ Request::is('invoices.warehouse') ? 'active' : '' }}"><a href="{{ route('invoices.warehouse', ['action_code'=>'finished_confirm']) }}"><i class="fa fa-circle-o"></i> Finished ( Kalas )</a></li>
-            <li class="{{ Request::is('invoices.warehouse') ? 'active' : '' }}"><a href="{{ route('invoices.warehouse', ['action_code'=>'returned_confirm']) }}"><i class="fa fa-circle-o"></i> Returned ( Radja )</a></li>
+            <li class="{{ Request::is('invoices/warehouse/unfinish') ? 'active' : '' }}"><a href="{{ route('invoices.warehouse', ['action_code'=>'unfinish']) }}"><i class="fa fa-circle-o"></i> Unfinish ( Bagi )</a></li>
+            <li class="{{ Request::is('invoices/warehouse/finished_confirm') ? 'active' : '' }}"><a href="{{ route('invoices.warehouse', ['action_code'=>'finished_confirm']) }}"><i class="fa fa-circle-o"></i> Finished ( Kalas )</a></li>
+            <li class="{{ Request::is('invoices/warehouse/returned_confirm') ? 'active' : '' }}"><a href="{{ route('invoices.warehouse', ['action_code'=>'returned_confirm']) }}"><i class="fa fa-circle-o"></i> Returned ( Radja )</a></li>
           </ul>
         </li>
       @endif
       @if(Auth::user()->name == 'admin' ||  in_array(Auth::user()->name, ['moshin', 'salim', 'alex']))
-        <li class="treeview">
+        <li class="treeview {{ Request::is('invoices/shop*') ? 'menu-open' : '' }}">
           <a href="#">
             <i class="fa fa-users"></i> <span>Fatora Mahal</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
-          <ul class="treeview-menu">
-            <li class="{{ Request::is('invoices.shop') ? 'active' : '' }}"><a href="{{ route('invoices.shop', ['action_code'=>'unfinish']) }}"><i class="fa fa-circle-o"></i> Unfinish ( Bagi )</a></li>
-            <li class="{{ Request::is('invoices.shop') ? 'active' : '' }}"><a href="{{ route('invoices.shop', ['action_code'=>'finished']) }}"><i class="fa fa-circle-o"></i> Finished ( Kalas )</a></li>
-            <li class="{{ Request::is('invoices.shop') ? 'active' : '' }}"><a href="{{ route('invoices.shop', ['action_code'=>'returned']) }}"><i class="fa fa-circle-o"></i> Returned ( Radja )</a></li>
+          <ul class="treeview-menu" style="{{ Request::is('invoices/shop*') ? 'display:block' : '' }}">
+            <li class="{{ Request::is('invoices/shop/unfinish') ? 'active' : '' }}"><a href="{{ route('invoices.shop', ['action_code'=>'unfinish']) }}"><i class="fa fa-circle-o"></i> Unfinish ( Bagi )</a></li>
+            <li class="{{ Request::is('invoices/shop/finished') ? 'active' : '' }}"><a href="{{ route('invoices.shop', ['action_code'=>'finished']) }}"><i class="fa fa-circle-o"></i> Finished ( Kalas )</a></li>
+            <li class="{{ Request::is('invoices/shop/returned') ? 'active' : '' }}"><a href="{{ route('invoices.shop', ['action_code'=>'returned']) }}"><i class="fa fa-circle-o"></i> Returned ( Radja )</a></li>
           </ul>
         </li>
       @endif
@@ -72,26 +72,26 @@
         </ul>
       </li>-->
       @if(Auth::user()->name == 'admin')
-        <li class="treeview">
+        <li class="treeview {{ Request::is('users*') ? 'menu-open' : '' }}">
           <a href="#">
             <i class="fa fa-users"></i> <span>Users</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
-          <ul class="treeview-menu">
+          <ul class="treeview-menu" style="{{ Request::is('users*') ? 'display:block' : '' }}">
             <li class="{{ Request::is('users') ? 'active' : '' }}"><a href="{{ url('users') }}"><i class="fa fa-circle-o"></i> Users List</a></li>
             <li class="{{ Request::is('users/create') ? 'active' : '' }}"><a href="{{ url('users/create') }}"><i class="fa fa-circle-o"></i> Create User</a></li>
           </ul>
         </li>
-        <li class="treeview">
+        <li class="treeview {{ Request::is('actions*') ? 'menu-open' : '' }}">
           <a href="#">
             <i class="fa fa-users"></i> <span>Fatora Actions</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
-          <ul class="treeview-menu">
+          <ul class="treeview-menu" style="{{ Request::is('actions*') ? 'display:block' : '' }}">
             <li class="{{ Request::is('actions') ? 'active' : '' }}"><a href="{{ url('actions') }}"><i class="fa fa-circle-o"></i> Action List</a></li>
             <li class="{{ Request::is('actions/create') ? 'active' : '' }}"><a href="{{ url('actions/create') }}"><i class="fa fa-circle-o"></i> Create Action</a></li>
           </ul>
