@@ -134,9 +134,11 @@ class UsersController extends Controller
 
     public function change_pass($id)
     {
-        $user = User::find($id);
+        $data['page_title'] = 'Change Password';
 
-        return view('users.change_pass')->with('user', $user);
+        $data['user'] = User::find($id);
+
+        return view('users.change_pass')->with($data);
     }
 
     public function change_pass_save(Request $request, $id)

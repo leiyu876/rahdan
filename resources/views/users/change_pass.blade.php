@@ -8,7 +8,7 @@
       <!-- general form elements -->
       <div class="box box-primary">
         <div class="box-header with-border">
-          <h3 class="box-title">Change Password</h3>
+          <h3 class="box-title">{{ $page_title }}</h3>
         </div>
         <!-- /.box-header -->
         <!-- form start -->

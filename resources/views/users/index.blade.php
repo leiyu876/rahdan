@@ -35,16 +35,17 @@
                                         <a href="{{ url('users/change_pass/'.$user->id)}}">
                                             <i class="fa fa-fw fa-key" data-toggle="tooltip" title="Change Password"></i>
                                         </a>
+                                        @if(Auth::user()->id != $user->id)
+                                            <meta name="csrf-token" content="{{ csrf_token() }}">
+                                            <a href="#" data-method="delete" class="jquery-postback" value="{{ $user->id }}">
+                                                <i class="fa fa-fw fa-trash" data-toggle="tooltip" title="Delete"></i>
+                                            </a>
 
-                                        <meta name="csrf-token" content="{{ csrf_token() }}">
-                                        <a href="#" data-method="delete" class="jquery-postback" value="{{ $user->id }}">
-                                            <i class="fa fa-fw fa-trash" data-toggle="tooltip" title="Delete"></i>
-                                        </a>
-
-                                        {!! Form::open(['action'=> ['UsersController@destroy', $user->id], 'method'=>'POST']) !!}
-                                            {{ Form::hidden('_method', 'DELETE') }}
-                                            {{ Form::submit('Delete', ['class'=>'btn btn-danger', 'id'=>'name'.$user->id, 'style'=>'display:none']) }}
-                                        {!! Form::close() !!}                                        
+                                            {!! Form::open(['action'=> ['UsersController@destroy', $user->id], 'method'=>'POST']) !!}
+                                                {{ Form::hidden('_method', 'DELETE') }}
+                                                {{ Form::submit('Delete', ['class'=>'btn btn-danger', 'id'=>'name'.$user->id, 'style'=>'display:none']) }}
+                                            {!! Form::close() !!}                                        
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach
