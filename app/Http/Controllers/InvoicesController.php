@@ -30,7 +30,7 @@ class InvoicesController extends Controller
             return redirect('invoices/warehouse/unfinish');
         }
 
-        // delete all bottom
+        /*
         $query = Invoice::orderBy('created_at', 'desc');
         $data['user_id_selected'] = null;
         
@@ -55,6 +55,7 @@ class InvoicesController extends Controller
         $data['actions'] = Action::orderBy('name')->pluck('name', 'id');
 
         return view('invoices.index', $data);
+        */
     }
 
     public function index_lists(Request $request)

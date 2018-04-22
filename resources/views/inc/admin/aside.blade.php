@@ -35,10 +35,10 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="{{ url('invoices/create') }}"><i class="fa fa-circle-o"></i> Create Fatora</a></li>
-            <li><a href="{{ route('invoices.warehouse', ['action_code'=>'unfinish']) }}"><i class="fa fa-circle-o"></i> Unfinish ( Bagi )</a></li>
-            <li><a href="{{ route('invoices.warehouse', ['action_code'=>'finished_confirm']) }}"><i class="fa fa-circle-o"></i> Finished ( Kalas )</a></li>
-            <li><a href="{{ route('invoices.warehouse', ['action_code'=>'returned_confirm']) }}"><i class="fa fa-circle-o"></i> Returned ( Radja )</a></li>
+            <li class="{{ Request::is('invoices/create') ? 'active' : '' }}"><a href="{{ url('invoices/create') }}"><i class="fa fa-circle-o"></i> Create Fatora</a></li>
+            <li class="{{ Request::is('invoices/warehouse') ? 'active' : '' }}"><a href="{{ route('invoices.warehouse', ['action_code'=>'unfinish']) }}"><i class="fa fa-circle-o"></i> Unfinish ( Bagi )</a></li>
+            <li class="{{ Request::is('invoices.warehouse') ? 'active' : '' }}"><a href="{{ route('invoices.warehouse', ['action_code'=>'finished_confirm']) }}"><i class="fa fa-circle-o"></i> Finished ( Kalas )</a></li>
+            <li class="{{ Request::is('invoices.warehouse') ? 'active' : '' }}"><a href="{{ route('invoices.warehouse', ['action_code'=>'returned_confirm']) }}"><i class="fa fa-circle-o"></i> Returned ( Radja )</a></li>
           </ul>
         </li>
       @endif
@@ -51,9 +51,9 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="{{ route('invoices.shop', ['action_code'=>'unfinish']) }}"><i class="fa fa-circle-o"></i> Unfinish ( Bagi )</a></li>
-            <li><a href="{{ route('invoices.shop', ['action_code'=>'finished']) }}"><i class="fa fa-circle-o"></i> Finished ( Kalas )</a></li>
-            <li><a href="{{ route('invoices.shop', ['action_code'=>'returned']) }}"><i class="fa fa-circle-o"></i> Returned ( Radja )</a></li>
+            <li class="{{ Request::is('invoices.shop') ? 'active' : '' }}"><a href="{{ route('invoices.shop', ['action_code'=>'unfinish']) }}"><i class="fa fa-circle-o"></i> Unfinish ( Bagi )</a></li>
+            <li class="{{ Request::is('invoices.shop') ? 'active' : '' }}"><a href="{{ route('invoices.shop', ['action_code'=>'finished']) }}"><i class="fa fa-circle-o"></i> Finished ( Kalas )</a></li>
+            <li class="{{ Request::is('invoices.shop') ? 'active' : '' }}"><a href="{{ route('invoices.shop', ['action_code'=>'returned']) }}"><i class="fa fa-circle-o"></i> Returned ( Radja )</a></li>
           </ul>
         </li>
       @endif
@@ -80,8 +80,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="{{ url('users') }}"><i class="fa fa-circle-o"></i> Users List</a></li>
-            <li><a href="{{ url('users/create') }}"><i class="fa fa-circle-o"></i> Create User</a></li>
+            <li class="{{ Request::is('users') ? 'active' : '' }}"><a href="{{ url('users') }}"><i class="fa fa-circle-o"></i> Users List</a></li>
+            <li class="{{ Request::is('users/create') ? 'active' : '' }}"><a href="{{ url('users/create') }}"><i class="fa fa-circle-o"></i> Create User</a></li>
           </ul>
         </li>
         <li class="treeview">
@@ -92,8 +92,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="{{ url('actions') }}"><i class="fa fa-circle-o"></i> Action List</a></li>
-            <li><a href="{{ url('actions/create') }}"><i class="fa fa-circle-o"></i> Create Action</a></li>
+            <li class="{{ Request::is('actions') ? 'active' : '' }}"><a href="{{ url('actions') }}"><i class="fa fa-circle-o"></i> Action List</a></li>
+            <li class="{{ Request::is('actions/create') ? 'active' : '' }}"><a href="{{ url('actions/create') }}"><i class="fa fa-circle-o"></i> Create Action</a></li>
           </ul>
         </li>
       @endif
