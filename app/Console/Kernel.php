@@ -27,6 +27,12 @@ class Kernel extends ConsoleKernel
         // $schedule->command('inspire')
         //          ->hourly();
 
+        //leo via ssh, make sure in one line all command
+        //crontab -e
+        //* * * * * /usr/local/bin/ea-php70 /home4/virnezac/mysoftwares/rahdan/artisan schedule:run >> /dev/null 2>&1
+        // leo via local go to project root
+        //php artisan schedule:run >> /dev/null 2>&1
+
         $schedule->command('logdatetime:dologdatetime')
                  ->everyMinute();
     }
