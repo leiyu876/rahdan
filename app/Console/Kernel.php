@@ -34,7 +34,7 @@ class Kernel extends ConsoleKernel
         //php artisan schedule:run >> /dev/null 2>&1
 
         $schedule->command('logdatetime:dologdatetime')
-                 ->everyMinute();
+                 ->everyFiveMinutes();
     }
 
     /**
