@@ -42,7 +42,6 @@
 					
 					<span>Our logo :</span>
 					<p>We are happy to serve you</p>
-					
 				</div>
 			</div>
 		</div>

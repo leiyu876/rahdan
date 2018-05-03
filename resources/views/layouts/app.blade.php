@@ -4,7 +4,7 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title>Rahdan | Spare Parts Shop in Khobar Saudi Arabia</title>
 		<meta name="description" content="A shop in Khobar Saudi Arabia that sells Genuine Toyota, Lexus and American auto spare parts and provider.">
-        <meta name="keywords" content="Lexus, Toyota, American Cars, Spare parts, Khobar, Saudi Arabia, Sale, Shop, Company, Best, Top, Popular, Most">
+        <meta name="keywords" content="Lexus, Toyota, American Cars, Auto Spare parts, Khobar, Saudi Arabia, Sale, Shop, Company, Best, Top, Popular, Most">
 		<link rel="icon" href="{{ asset('custom/images/logo_rahdan_mini.png') }}" type="image/png" sizes="16x30">
 		<link href="{{ asset('custom/css/style.css') }}" rel="stylesheet" type="text/css"  media="all" />
 		<link href='//fonts.googleapis.com/css?family=Fauna+One' rel='stylesheet' type='text/css'>

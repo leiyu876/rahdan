@@ -19,15 +19,16 @@
 				    	<p>30th St, Sinayiat Al Thuqba,</p>
 				   		<p>Al Khobar 34626,</p> 
 				   		<p>Saudi Arabia</p>
-				   		<p>Mobile: +966501848990</p>
-		   				<p>Tel: +966138998700</p>
+				   		<p>Mobile: +966593326104</p>
+		   				<!--<p>Tel: +966138998700</p>
 		   				<p>Tel: +966138641144</p>
 		   				<p>Tax: +966138971566</p>
-		 	 			<p>Email: <span><a href="mailto:support@virneza.com">sales@rahdan.com.sa</a></span></p>
-		   				<p>Follow on: 
+		 	 			<p>Email: <span><a href="mailto:support@virneza.com">sales@rahdan.com.sa</a></span></p>-->
+		 	 			<p>Email: <span><a href="mailto:support@virneza.com">leiyu876@gmail.com</a></span></p>
+		   				<!--<p>Follow on: 
 		   					<a href="https://twitter.com/rahdan_sa"><span>Twitter</span></a>, 
 		   					<a href="https://www.instagram.com/p/BK00NrTjmdm/"><span>Instagram</span></a>
-		   				</p>
+		   				</p>-->
 		   			</div>
 				</div>				
 				<div class="col span_2_of_3">
