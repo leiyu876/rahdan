@@ -92,8 +92,8 @@ class PartnumbersController extends Controller
     public function update(Request $request, Partnumber $partnumber)
     {
         $request->validate([
-            'agencynum' => 'required|unique:partnumbers,agencynum,'.$partnumber->agencynum,
-            'rahdannum' => 'required|unique:partnumbers,rahdannum,'.$partnumber->rahdannum,
+            'agencynum' => 'required|unique:partnumbers,agencynum,'.$partnumber->id,
+            'rahdannum' => 'required|unique:partnumbers,rahdannum,'.$partnumber->id,
         ]);
 
         $partnumber->agencynum = strtoupper($request->input('agencynum'));
