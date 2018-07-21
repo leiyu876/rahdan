@@ -97,6 +97,7 @@
           </ul>
         </li>
       @endif
+      <li class="{{ Request::is('partsnumber') ? 'active' : '' }}"><a href="{{ url('partnumbers') }}"><i class="fa fa-dashboard"></i> <span>Parts Number</span></a></li>
     </ul>
   </section>
   <!-- /.sidebar -->

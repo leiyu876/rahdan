@@ -38,6 +38,7 @@ Route::get('invoices/changeAction/{id}/{action_code}/{action_url?}/{location?}',
 Route::resources([
     'users' => 'UsersController',
     'actions' => 'ActionsController',
+    'partnumbers' => 'PartnumbersController',
     //'invoices' => 'InvoicesController',
 ]);
 
