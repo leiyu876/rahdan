@@ -34,7 +34,7 @@
           <!-- /.box-body -->
 
           <div class="box-footer">
-            <a href="{{ url('movies') }}" class="btn btn-default">Cancel</a>
+            <a href="{{ url('partnumbers') }}" class="btn btn-default">Cancel</a>
             <input type="submit" value="Update" class="btn btn-primary pull-right">
           </div>
         {!! Form::close() !!}
