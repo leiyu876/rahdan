@@ -21,6 +21,10 @@ Route::view('/truckbumpers', 'pages.truckbumpers');
 Route::view('/singlepage', 'pages.singlepage');
 Route::view('/about', 'pages.about');
 
+Route::get('phpinfo', function() {
+	echo phpinfo();
+});
+
 Auth::routes();
 
 Route::get('/dashboard', 'DashboardController@index');
