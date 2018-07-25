@@ -35,12 +35,19 @@ Route::get('invoices/changeAction/{id}/{action_code}/{action_url?}/{location?}',
 //Route::get('invoices/index/{user_id?}/{action_id?}', 'InvoicesController@index')->name('invoices');
 //Route::post('invoices/index_lists', 'InvoicesController@index_lists')->name('invoices.index_lists');
 
-Route::resources([
-    'users' => 'UsersController',
-    'actions' => 'ActionsController',
-    'partnumbers' => 'PartnumbersController',
-    //'invoices' => 'InvoicesController',
-]);
+Route::group(['middleware' => ['auth']], function () {
+    
+	Route::resources([
+	    'users' => 'UsersController',
+	    'actions' => 'ActionsController',
+	    'partnumbers' => 'PartnumbersController',
+	    'permission' => 'PermissionController',
+	    'role' => 'RoleController',
+	    //'invoices' => 'InvoicesController',
+	]);
+});
+
+
 
 Route::get('invoices/create', 'InvoicesController@create')->name('invoices.create');
 Route::post('invoices', 'InvoicesController@store')->name('invoices.store');
@@ -52,4 +59,3 @@ Route::get('invoices/{invoice}/edit/{action_url}', 'InvoicesController@edit')->n
 Route::put('invoices/{invoice}', 'InvoicesController@update')->name('invoices.update');
 
 Route::get('invoices/shop/{action_code}', 'InvoicesController@shop')->name('invoices.shop');
-

@@ -71,7 +71,7 @@
           <li><a href="{{ url('invoices/return') }}"><i class="fa fa-circle-o"></i> Salesman Return ( Radja )</a></li>
         </ul>
       </li>-->
-      @if(Auth::user()->name == 'admin')
+      @if(Auth::user()->hasRole('Super Administrator'))
         <li class="treeview {{ Request::is('users*') ? 'menu-open' : '' }}">
           <a href="#">
             <i class="fa fa-users"></i> <span>Users</span>
@@ -97,7 +97,13 @@
           </ul>
         </li>
       @endif
-      <li class="{{ Request::is('partnumbers') ? 'active' : '' }}"><a href="{{ url('partnumbers') }}"><i class="fa fa-exchange"></i> <span>Parts Number</span></a></li>
+      @if(Auth::user()->hasRole('Order Picker'))
+        <li class="{{ Request::is('partnumbers') ? 'active' : '' }}"><a href="{{ url('partnumbers') }}"><i class="fa fa-exchange"></i> <span>Parts Number</span></a></li>
+      @endif
+      @if(Auth::user()->hasRole('Super Administrator'))
+        <li class="{{ Request::is('role') ? 'active' : '' }}"><a href="{{ url('role') }}"><i class="fa fa-exchange"></i> <span>Role</span></a></li>
+        <li class="{{ Request::is('permission') ? 'active' : '' }}"><a href="{{ url('permission') }}"><i class="fa fa-exchange"></i> <span>Permission</span></a></li>
+      @endif
     </ul>
   </section>
   <!-- /.sidebar -->

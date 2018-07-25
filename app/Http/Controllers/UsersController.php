@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\User;
 use Session;
+use Spatie\Permission\Models\Role;
 
 class UsersController extends Controller
 {
@@ -35,9 +36,11 @@ class UsersController extends Controller
      */
     public function create()
     {
-        $data['page_title'] = 'Create User';
+        $page_title = 'Create User';
 
-        return view('users.create', $data);
+        $roles = Role::get()->pluck('name', 'name');
+
+        return view('users.create', compact('page_title', 'roles'));
     }
 
     /**
@@ -53,16 +56,19 @@ class UsersController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
+            'roles' => 'required',
         ]);
 
         $user = new User;
 
-        $user->iqama = $request->input('iqama');
-        $user->name = $request->input('name');
-        $user->email = $request->input('email');
+        $user->iqama = $request->iqama;
+        $user->name = $request->name;
+        $user->email = $request->email;
         $user->password = Hash::make($request->input('password'));
 
         $user->save();
+
+        $user->assignRole($request->roles);
 
         return redirect('/users')->with('success', 'User Created');
     }
@@ -86,11 +92,13 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        $data['page_title'] = 'Update User';
+        $page_title = 'Update User';
 
-        $data['user'] = User::find($id);
+        $user = User::find($id);
 
-        return view('users.edit', $data);
+        $roles = Role::get()->pluck('name', 'name');
+
+        return view('users.edit', compact('page_title', 'user', 'roles'));
     }
 
     /**
@@ -110,11 +118,13 @@ class UsersController extends Controller
             'name' => 'required',
         ]);
 
-        $user->iqama = $request->input('iqama');
-        $user->name = $request->input('name');
-        $user->email = $request->input('email');
+        $user->iqama = $request->iqama;
+        $user->name = $request->name;
+        $user->email = $request->email;
 
         $user->save();
+
+        $user->syncRoles($request->roles);
 
         return redirect('/users')->with('success', 'User Updated');
     }

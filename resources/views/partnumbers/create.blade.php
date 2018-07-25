@@ -24,7 +24,7 @@
                 {{ Form::label('rahdannum', 'Rahdan Number') }}
                 {{ Form::text('rahdannum',null, ['class'=>'form-control', 'id'=>'rahdannum']) }}
               </div>
-          	</div>
+          </div>
           <div class="box-footer">
 	        	<a href="{{ url('partnumbers') }}" class="btn btn-default">Cancel</a>
 	        	<button type="submit" class="btn btn-primary pull-right">Create</button>

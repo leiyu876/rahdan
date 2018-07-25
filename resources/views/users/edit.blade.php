@@ -50,6 +50,12 @@
                     </span>
                 @endif
             </div>
+
+            <div class="form-group">
+              <label>Roles</label>
+              {{Form::select('roles[]',$roles, old('roles') ?? $user->roles->pluck('name', 'name'),array('class'=>'form-control','multiple'=>'multiple'))}}
+            </div>
+
           </div>
           <!-- /.box-body -->
 

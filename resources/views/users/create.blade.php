@@ -47,6 +47,11 @@
             </div>
 
             <div class="form-group">
+                  <label>Roles</label>
+              {{Form::select('roles[]',$roles,null,array('class'=>'form-control','multiple'=>'multiple'))}}
+            </div>
+
+            <div class="form-group">
               <label for="password">Password</label>
               <input type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required id="password">
                 @if ($errors->has('password'))
