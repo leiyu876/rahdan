@@ -22,7 +22,8 @@ Route::view('/singlepage', 'pages.singlepage');
 Route::view('/about', 'pages.about');
 
 Route::get('phpinfo', function() {
-	echo phpinfo();
+	echo 'gwapoko';
+	//echo phpinfo();
 });
 
 Auth::routes();
