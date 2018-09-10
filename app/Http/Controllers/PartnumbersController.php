@@ -46,10 +46,12 @@ class PartnumbersController extends Controller
      */
     public function store(Request $request)
     {
+        /*
         $request->validate([
             'agencynum' => 'required|unique:partnumbers',
             'rahdannum' => 'required|unique:partnumbers',
         ]);
+        */
 
         $partnumber = new Partnumber;
 
@@ -96,10 +98,12 @@ class PartnumbersController extends Controller
      */
     public function update(Request $request, Partnumber $partnumber)
     {
+        /*
         $request->validate([
             'agencynum' => 'required|unique:partnumbers,agencynum,'.$partnumber->id,
             'rahdannum' => 'required|unique:partnumbers,rahdannum,'.$partnumber->id,
         ]);
+        */
 
         $partnumber->agencynum = strtoupper($request->input('agencynum'));
         $partnumber->rahdannum = strtoupper($request->input('rahdannum'));
