@@ -19,7 +19,7 @@
 				    	<p>30th St, Sinayiat Al Thuqba,</p>
 				   		<p>Al Khobar 34626,</p> 
 				   		<p>Saudi Arabia</p>
-				   		<p>Mobile: +966593326104</p>
+				   		<p>Mobile: +966572408302</p>
 		   				<!--<p>Tel: +966138998700</p>
 		   				<p>Tel: +966138641144</p>
 		   				<p>Tax: +966138971566</p>
