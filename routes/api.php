@@ -16,3 +16,18 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+
+//delete this one, just testing
+Route::get('pai_get', function() {
+	
+	$data = array('leo', 'get');
+
+	return json_encode($data);
+});
+Route::post('pai_post', function(Request $request) {
+	
+	return json_encode($request);
+});
+//---------------------------------

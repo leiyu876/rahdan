@@ -64,6 +64,8 @@ Route::put('invoices/{invoice}', 'InvoicesController@update')->name('invoices.up
 
 Route::get('invoices/shop/{action_code}', 'InvoicesController@shop')->name('invoices.shop');
 
+
+//delete this one, just testing
 Route::get('pai', function() {
 	
 	$data = array('leo', 'gwapo');
