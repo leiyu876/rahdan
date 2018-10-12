@@ -63,3 +63,11 @@ Route::get('invoices/{invoice}/edit/{action_url}', 'InvoicesController@edit')->n
 Route::put('invoices/{invoice}', 'InvoicesController@update')->name('invoices.update');
 
 Route::get('invoices/shop/{action_code}', 'InvoicesController@shop')->name('invoices.shop');
+
+Route::get('pai', function() {
+	
+	$data = array('leo', 'gwapo');
+
+	return json_encode($data);
+});
+
