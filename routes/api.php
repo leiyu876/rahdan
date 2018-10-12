@@ -28,6 +28,8 @@ Route::get('pai_get', function() {
 });
 Route::post('pai_post', function(Request $request) {
 	
+	set_time_limit(0);
+	
 	return json_encode($request);
 });
 //---------------------------------
