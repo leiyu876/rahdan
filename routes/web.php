@@ -39,6 +39,10 @@ Route::get('invoices/changeAction/{id}/{action_code}/{action_url?}/{location?}',
 //Route::get('invoices/index/{user_id?}/{action_id?}', 'InvoicesController@index')->name('invoices');
 //Route::post('invoices/index_lists', 'InvoicesController@index_lists')->name('invoices.index_lists');
 
+Route::get('users/export', 'UsersController@export');
+Route::get('users/import', 'UsersController@import')->name('users.import');
+Route::post('users/importrun', 'UsersController@importrun')->name('users.importrun');
+
 Route::group(['middleware' => ['auth']], function () {
     
 	Route::resources([

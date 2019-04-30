@@ -82,6 +82,7 @@
           <ul class="treeview-menu" style="{{ Request::is('users*') ? 'display:block' : '' }}">
             <li class="{{ Request::is('users') ? 'active' : '' }}"><a href="{{ url('users') }}"><i class="fa fa-circle-o"></i> Users List</a></li>
             <li class="{{ Request::is('users/create') ? 'active' : '' }}"><a href="{{ url('users/create') }}"><i class="fa fa-circle-o"></i> Create User</a></li>
+            <li class="{{ Request::is('users/import') ? 'active' : '' }}"><a href="{{ url('users/import') }}"><i class="fa fa-circle-o"></i> Import Users</a></li>
           </ul>
         </li>
         <li class="treeview {{ Request::is('actions*') ? 'menu-open' : '' }}">

@@ -7,6 +7,9 @@
             <div class="box">
                 <div class="box-header">
                     <h3 class="box-title">List of Users</h3>
+                    <div class="pull-right" style="margin-left: 10px;">
+                        <a href="{{ url('users/export') }}" class="btn btn-block btn-default"><i class="fa fa-file-excel-o"></i> Export Users</a>
+                    </div>
                     <div class="pull-right">
                         <a href="{{ url('users/create') }}" class="btn btn-block btn-primary"><i class="fa fa-plus"></i> Add User</a>
                     </div>

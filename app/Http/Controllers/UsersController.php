@@ -7,6 +7,9 @@ use Illuminate\Support\Facades\Hash;
 use App\User;
 use Session;
 use Spatie\Permission\Models\Role;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\UsersExport;
+use App\Imports\UsersImport;
 
 class UsersController extends Controller
 {
@@ -181,5 +184,35 @@ class UsersController extends Controller
         $user->save();
 
         return redirect('/users')->with('success', 'User password successfully change.');
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function export()
+    {
+        return Excel::download(new UsersExport, 'Users.xlsx');
+    }
+
+    public function import()
+    {
+        $data['page_title'] = 'Import Users';
+
+        return view('users.import', $data);
+    }
+
+    public function importrun(Request $request)
+    {
+        $users = Excel::toCollection(new UsersImport(), $request->file);
+        
+        foreach ($users[0] as $user) {
+            User::where('id', $user[0])->update([
+                'name' => $user[2]
+            ]);
+        }
+
+        return redirect('/users')->with('success', 'Users Imported');
     }
 }
