@@ -25,7 +25,7 @@ Route::get('pai_get', function() {
 	$data = array();
 	$data['group'] = 'toyota';
 
-	for ($i=0; $i < 100000; $i++) { 
+	for ($i=0; $i < 5800; $i++) { 
 		$data['data'][] = array('partnum_'.$i, 'qty_'.$i);
 	}
 
