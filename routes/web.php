@@ -65,9 +65,11 @@ Route::get('invoices', 'InvoicesController@edit')->name('invoices.edit');
 Route::delete('invoices/{invoices}', 'InvoicesController@destroy')->name('invoices.destroy');
 Route::get('invoices/{invoice}/edit/{action_url}', 'InvoicesController@edit')->name('invoices.edit');
 Route::put('invoices/{invoice}', 'InvoicesController@update')->name('invoices.update');
-
 Route::get('invoices/shop/{action_code}', 'InvoicesController@shop')->name('invoices.shop');
 
+Route::get('argas/new', 'ArgasController@new')->name('argas.new');
+Route::get('argas/import', 'ArgasController@import')->name('argas.import');
+Route::post('argas/importrun', 'ArgasController@importrun')->name('argas.importrun');
 
 //delete this one, just testing
 Route::get('pai', function() {

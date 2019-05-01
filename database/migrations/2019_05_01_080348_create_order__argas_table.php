@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePickslipArgasTable extends Migration
+class CreateOrderArgasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,11 @@ class CreatePickslipArgasTable extends Migration
      */
     public function up()
     {
-        Schema::create('pickslip_argas', function (Blueprint $table) {
+        Schema::create('order__argas', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('order_id');
-            $table->string('partno');
-            $table->string('description');
-            $table->integer('qty');
-            $table->integer('qty_send');
+            $table->integer('pickslip_id');
+            $table->date('date');
+            $table->string('status');
             $table->timestamps();
         });
     }
@@ -31,6 +29,6 @@ class CreatePickslipArgasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pickslip_argas');
+        Schema::dropIfExists('order_argas');
     }
 }
