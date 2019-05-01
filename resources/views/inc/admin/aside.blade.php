@@ -26,6 +26,20 @@
     <ul class="sidebar-menu" data-widget="tree">
       <li class="header">MAIN NAVIGATION</li>
       <li class="{{ Request::is('dashboard') ? 'active' : '' }}"><a href="{{ url('dashboard') }}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
+      <li class="treeview {{ Request::is('invoices/warehouse*') ? 'menu-open' : '' }}">
+        <a href="#">
+          <i class="fa fa-users"></i> <span>Argas</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu" style="{{ Request::is('invoices/warehouse*') || Request::is('invoices/create') ? 'display:block' : '' }}">
+          <li class="{{ Request::is('invoices/warehouse/unfinish') ? 'active' : '' }}"><a href="{{ route('invoices.warehouse', ['action_code'=>'unfinish']) }}"><i class="fa fa-circle-o"></i> New</a></li>
+          <li class="{{ Request::is('invoices/warehouse/finished_confirm') ? 'active' : '' }}"><a href="{{ route('invoices.warehouse', ['action_code'=>'finished_confirm']) }}"><i class="fa fa-circle-o"></i> Ready</a></li>
+          <li class="{{ Request::is('invoices/warehouse/finished_confirm') ? 'active' : '' }}"><a href="{{ route('invoices.warehouse', ['action_code'=>'finished_confirm']) }}"><i class="fa fa-circle-o"></i> Old</a></li>
+          <li class="{{ Request::is('invoices/warehouse/returned_confirm') ? 'active' : '' }}"><a href="{{ route('invoices.warehouse', ['action_code'=>'returned_confirm']) }}"><i class="fa fa-circle-o"></i> Done</a></li>
+        </ul>
+      </li>
       @if(Auth::user()->name == 'admin' ||  Auth::user()->name == 'vasim')
         <li class="treeview {{ Request::is('invoices/warehouse*') ? 'menu-open' : '' }}">
           <a href="#">
