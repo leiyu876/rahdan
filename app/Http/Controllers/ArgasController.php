@@ -50,15 +50,19 @@ class ArgasController extends Controller
  
         $excel = Excel::toCollection(new PickslipImport(), $request->file);
         
+        $count = count($excel[0]);
         $num_date = $excel[0][4];
-
-        $pickslip_num  = str_replace("Delivery Note No. : ", "", $num_date[0]);
-        $pickslip_date = str_replace("Date : ", "", $num_date[4]);
-		$pickslip_date = DateTime::createFromFormat('d/m/Y', $pickslip_date);
+        
+        $pickslip_total = str_replace("Total Amount :     ", "", $excel[0][$count-5][0]);
+        $pickslip_total = str_replace(",", "", $pickslip_total);
+        $pickslip_num   = str_replace("Delivery Note No. : ", "", $num_date[0]);
+        $pickslip_date  = str_replace("Date : ", "", $num_date[4]);
+		$pickslip_date  = DateTime::createFromFormat('d/m/Y', $pickslip_date);
         
         $order = new Order_Argas;
 
         $order->pickslip_id = $pickslip_num;
+        $order->total       = (double)$pickslip_total;
         $order->date        = $pickslip_date->format('Y-m-d');
         $order->status      = 'NEW';
         
@@ -67,7 +71,7 @@ class ArgasController extends Controller
         foreach ($excel[0] as $k => $v) {
 
 		   	if ($k < 9) continue;
-		   	if ($k > (count($excel[0])-7)) continue;
+		   	if ($k > ($count-7)) continue;
 
 		   	$pickslip = new Pickslip_Argas;
 

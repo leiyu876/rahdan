@@ -17,6 +17,7 @@
                         <thead>
                             <tr>
                                 <th>Pickslip Number</th>
+                                <th>Total</th>
                                 <th>Date</th>
                                 <th>Status</th>
                             </tr>
@@ -25,6 +26,7 @@
                             @foreach($orders as $order)
                                 <tr>
                                     <td>{{ $order->pickslip_id }}</td>
+                                    <td>{{ number_format($order->total, 2) }}</td>
                                     <td>{{ $order->date }}</td>
                                     <td>{{ $order->status }}</td>
                                 </tr>
