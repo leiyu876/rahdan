@@ -24,6 +24,7 @@
                                 <th>Total</th>
                                 <th>Date</th>
                                 <th>Status</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -33,6 +34,17 @@
                                     <td>{{ number_format($order->total, 2) }}</td>
                                     <td>{{ $order->date }}</td>
                                     <td>{{ $order->status }}</td>
+                                    <td>
+                                        <meta name="csrf-token" content="{{ csrf_token() }}">
+                                        <a href="#" data-method="delete" class="jquery-postback" value="{{ $order->id }}">
+                                            <i class="fa fa-fw fa-trash" data-toggle="tooltip" title="Delete"></i>
+                                        </a>
+
+                                        {!! Form::open(['action'=> ['ArgasController@destroy', $order], 'method'=>'POST']) !!}
+                                            {{ Form::hidden('_method', 'DELETE') }}
+                                            {{ Form::submit('Delete', ['class'=>'btn btn-danger', 'id'=>'name'.$order->id, 'style'=>'display:none']) }}
+                                        {!! Form::close() !!}
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -57,7 +69,7 @@
 
         e.preventDefault(); // does not go through with the link.
         
-        var ask = window.confirm("Are you sure you want to delete this user?");
+        var ask = window.confirm("Are you sure you want to delete this pickslip?");
         
         if (ask) {
             

@@ -31,6 +31,6 @@ class CreatePickslipArgasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pickslip_argas');
+        Schema::dropIfExists('pickslip__argas');
     }
 }

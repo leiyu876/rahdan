@@ -35,6 +35,15 @@ class ArgasController extends Controller
         return view('argas.new', $data);
     }
 
+    public function destroy(Order_Argas $order)
+    {
+    	Pickslip_Argas::where('order_id', $order->id)->delete();
+    	
+    	$order->delete();
+        
+        return redirect('argas/new')->with('success', 'Pickslip Remove.');
+    }
+
     public function import()
     {
         $data['page_title'] = 'Import Pickslip';
