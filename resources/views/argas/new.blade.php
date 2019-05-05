@@ -24,6 +24,7 @@
                                 <th>Total</th>
                                 <th>Date</th>
                                 <th>Status</th>
+                                <th>Balance</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -34,7 +35,11 @@
                                     <td>{{ number_format($order->total, 2) }}</td>
                                     <td>{{ $order->date }}</td>
                                     <td>{{ $order->status }}</td>
+                                    <td>{{ $order->balance() }}</td>
                                     <td>
+                                        <a href="{{ route('order.edit', ['id' => $order->id])}}">
+                                            <i class="fa fa-fw fa-pencil" data-toggle="tooltip" title="Edit"></i>
+                                        </a>
                                         <meta name="csrf-token" content="{{ csrf_token() }}">
                                         <a href="#" data-method="delete" class="jquery-postback" value="{{ $order->id }}">
                                             <i class="fa fa-fw fa-trash" data-toggle="tooltip" title="Delete"></i>

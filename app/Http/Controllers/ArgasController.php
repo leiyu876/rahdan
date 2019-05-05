@@ -35,6 +35,40 @@ class ArgasController extends Controller
         return view('argas.new', $data);
     }
 
+    public function edit($id)
+    {
+        $data['page_title'] = 'Delivery Status';
+
+        $data['order'] = Order_Argas::find($id);
+        $data['pickslips'] = Pickslip_Argas::where('order_id', $data['order']->id)->get();
+
+        return view('argas.edit', $data);
+    }
+
+    public function update(Request $request, $id)
+    {
+        foreach ($request->input() as $pickslip_id => $amount) {
+            if ($pickslip_id < 1 || $amount === null) continue;
+            
+            $pickslip = Pickslip_Argas::find($pickslip_id);
+
+            $pickslip->qty_send += $amount;
+
+            $pickslip->update();
+
+        }
+
+        $order = Order_Argas::find($id);
+
+        if($order->balance() == 0) {
+            $order->status = 'READY';            
+        }
+
+        $order->update();
+        
+        return redirect('/argas/new')->with('success', 'Parts Ready');
+    }
+
     public function destroy(Order_Argas $order)
     {
     	Pickslip_Argas::where('order_id', $order->id)->delete();

@@ -10,4 +10,9 @@ class Pickslip_Argas extends Model
 
     	return $this->belongsTo('App\Models\Order_Argas', 'order_id', 'id');
     }
+
+    public function balance() {
+    	
+    	return $this->qty - $this->qty_send;
+	}
 }
