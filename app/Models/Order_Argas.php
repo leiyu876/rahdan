@@ -13,10 +13,10 @@ class Order_Argas extends Model
     }
 
     public function balance() {
+        
+        $balance = 0;
 
-    	$balance = 0;
-
-    	foreach (Pickslip_Argas::all() as $k => $v) {
+    	foreach (Pickslip_Argas::where('order_id', $this->id)->get() as $v) {
     		
     		$balance += ($v->qty - $v->qty_send);
     	}
