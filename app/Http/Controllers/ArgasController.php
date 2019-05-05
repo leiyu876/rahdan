@@ -8,6 +8,7 @@ use App\Imports\PickslipImport;
 use App\Models\Order_Argas;
 use App\Models\Pickslip_Argas;
 use DateTime;
+use Auth;
 
 class ArgasController extends Controller
 {
@@ -28,7 +29,7 @@ class ArgasController extends Controller
 
     public function new()
     {
-    	$data['page_title'] = 'Argas New';
+        $data['page_title'] = 'Argas New';
 
     	$data['orders'] = Order_Argas::where('status', '!=', 'OLD')->where('status', '!=', 'DONE')->get();
         
@@ -40,6 +41,15 @@ class ArgasController extends Controller
         $data['page_title'] = 'Argas old';
 
         $data['orders'] = Order_Argas::where('status', 'OLD')->get();
+        
+        return view('argas.new', $data);
+    }
+
+    public function done()
+    {
+        $data['page_title'] = 'Argas Done';
+
+        $data['orders'] = Order_Argas::where('status', 'DONE')->get();
         
         return view('argas.new', $data);
     }

@@ -11,9 +11,11 @@
             <div class="box">
                 <div class="box-header">
                     <h3 class="box-title"></h3>
-                    <div class="pull-right">
-                        <a href="{{ url('argas/import') }}" class="btn btn-block btn-primary"><i class="fa fa-file-excel-o"></i> Import Pickslip</a>
-                    </div>
+                    @if(Auth::user()->hasRole('Super Administrator'))
+                        <div class="pull-right">
+                            <a href="{{ url('argas/import') }}" class="btn btn-block btn-primary"><i class="fa fa-file-excel-o"></i> Import Pickslip</a>
+                        </div>
+                    @endif
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
@@ -40,20 +42,22 @@
                                         <a href="{{ route('order.edit', ['id' => $order->id])}}">
                                             <i class="fa fa-fw fa-pencil" data-toggle="tooltip" title="Edit"></i>
                                         </a>
-                                        @if($order->qty_total() != $order->balance())
-                                            <a href="{{ route('order.send', ['id' => $order->id])}}">
-                                                <i class="fa fa-fw fa-send" data-toggle="tooltip" title="Send"></i>
+                                        @if(Auth::user()->hasRole('Super Administrator'))
+                                            @if($order->qty_total() != $order->balance() && $order->status != 'DONE')
+                                                <a href="{{ route('order.send', ['id' => $order->id])}}">
+                                                    <i class="fa fa-fw fa-send" data-toggle="tooltip" title="Send"></i>
+                                                </a>
+                                            @endif
+                                            <meta name="csrf-token" content="{{ csrf_token() }}">
+                                            <a href="#" data-method="delete" class="jquery-postback" value="{{ $order->id }}">
+                                                <i class="fa fa-fw fa-trash" data-toggle="tooltip" title="Delete"></i>
                                             </a>
-                                        @endif
-                                        <meta name="csrf-token" content="{{ csrf_token() }}">
-                                        <a href="#" data-method="delete" class="jquery-postback" value="{{ $order->id }}">
-                                            <i class="fa fa-fw fa-trash" data-toggle="tooltip" title="Delete"></i>
-                                        </a>
 
-                                        {!! Form::open(['action'=> ['ArgasController@destroy', $order], 'method'=>'POST']) !!}
-                                            {{ Form::hidden('_method', 'DELETE') }}
-                                            {{ Form::submit('Delete', ['class'=>'btn btn-danger', 'id'=>'name'.$order->id, 'style'=>'display:none']) }}
-                                        {!! Form::close() !!}
+                                            {!! Form::open(['action'=> ['ArgasController@destroy', $order], 'method'=>'POST']) !!}
+                                                {{ Form::hidden('_method', 'DELETE') }}
+                                                {{ Form::submit('Delete', ['class'=>'btn btn-danger', 'id'=>'name'.$order->id, 'style'=>'display:none']) }}
+                                            {!! Form::close() !!}
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach

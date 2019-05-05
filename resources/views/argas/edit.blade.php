@@ -28,7 +28,7 @@
                   <th style="width:100px">Qty ready</th>
                 </tr>
                 @foreach($pickslips as $index => $pickslip)
-                  <tr>
+                  <tr style="{{ $pickslip->qty != $pickslip->qty_send ? 'background-color: #ffff99' : ''}}">
                     <td>{{ $index+1 }}</td>
                     <td>{{ $pickslip->partno }}</td>
                     <td>{{ $pickslip->qty }}</td>
@@ -37,7 +37,6 @@
                       <? $error_css = false; ?>
                       @if($pickslip->qty != $pickslip->qty_send)
                         <input type="number" name="{{ $pickslip->id }}" min="0" max="{{ $pickslip->qty - $pickslip->qty_send }}" data-bind="value:replyNumber" style="width:100%"}}>
-                        
                       @else
                         finish
                       @endif
@@ -49,7 +48,11 @@
             <!-- /.box-body -->
             <div class="box-footer clearfix">
               <a href="{{ url('argas/new') }}" class="btn btn-default">Back</a>
-              <input type="submit" value="Ready" class="btn btn-primary pull-right jquery-postback">
+              @if(Auth::user()->hasRole('Super Administrator'))
+                @if($order->status != 'DONE')
+                  <input type="submit" value="Ready" class="btn btn-primary pull-right jquery-postback">
+                @endif
+              @endif
             </div>
           </div>
           <!-- /.box -->
