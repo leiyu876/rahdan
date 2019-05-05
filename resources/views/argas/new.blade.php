@@ -40,6 +40,11 @@
                                         <a href="{{ route('order.edit', ['id' => $order->id])}}">
                                             <i class="fa fa-fw fa-pencil" data-toggle="tooltip" title="Edit"></i>
                                         </a>
+                                        @if($order->qty_total() != $order->balance())
+                                            <a href="{{ route('order.send', ['id' => $order->id])}}">
+                                                <i class="fa fa-fw fa-send" data-toggle="tooltip" title="Send"></i>
+                                            </a>
+                                        @endif
                                         <meta name="csrf-token" content="{{ csrf_token() }}">
                                         <a href="#" data-method="delete" class="jquery-postback" value="{{ $order->id }}">
                                             <i class="fa fa-fw fa-trash" data-toggle="tooltip" title="Delete"></i>

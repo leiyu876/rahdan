@@ -69,6 +69,7 @@ Route::get('invoices/shop/{action_code}', 'InvoicesController@shop')->name('invo
 
 Route::get('argas/new', 'ArgasController@new')->name('argas.new');
 Route::get('argas/edit/{id}', 'ArgasController@edit')->name('order.edit');
+Route::get('argas/send/{id}', 'ArgasController@send')->name('order.send');
 Route::put('argas/update/{id}', 'ArgasController@update')->name('order.update');
 Route::delete('argas/destroy/{order}', 'ArgasController@destroy')->name('argas.destroy');
 Route::get('argas/import', 'ArgasController@import')->name('argas.import');

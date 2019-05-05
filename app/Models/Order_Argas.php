@@ -23,4 +23,16 @@ class Order_Argas extends Model
 
     	return $balance;
     }
+
+    public function qty_total() {
+        
+        $qty_total = 0;
+
+        foreach (Pickslip_Argas::where('order_id', $this->id)->get() as $v) {
+            
+            $qty_total += $v->qty;
+        }
+
+        return $qty_total;
+    }
 }

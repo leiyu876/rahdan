@@ -35,7 +35,6 @@
         </a>
         <ul class="treeview-menu" style="{{ Request::is('invoices/warehouse*') || Request::is('invoices/create') ? 'display:block' : '' }}">
           <li class="{{ Request::is('argas/new') ? 'active' : '' }}"><a href="{{ url('argas/new') }}"><i class="fa fa-circle-o"></i> New</a></li>
-          <li class="{{ Request::is('agras/ready') ? 'active' : '' }}"><a href="{{ url('argas/ready') }}"><i class="fa fa-circle-o"></i> Ready</a></li>
           <li class="{{ Request::is('argas/old') ? 'active' : '' }}"><a href="{{ url('argas/old') }}"><i class="fa fa-circle-o"></i> old</a></li>
           <li class="{{ Request::is('argas/done') ? 'active' : '' }}"><a href="{{ url('argas/done') }}"><i class="fa fa-circle-o"></i> Done</a></li>
         </ul>

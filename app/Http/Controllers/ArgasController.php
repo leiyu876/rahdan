@@ -30,8 +30,8 @@ class ArgasController extends Controller
     {
     	$data['page_title'] = 'Argas New';
 
-    	$data['orders'] = Order_Argas::all();
-    	
+    	$data['orders'] = Order_Argas::where('status', '!=', 'OLD')->where('status', '!=', 'DONE')->get();
+        
         return view('argas.new', $data);
     }
 
@@ -60,13 +60,25 @@ class ArgasController extends Controller
 
         $order = Order_Argas::find($id);
 
-        if($order->balance() == 0) {
-            $order->status = 'READY';            
-        }
-
+        if($order->balance() == 0) $order->status = 'READY';            
+        
         $order->update();
         
         return redirect('/argas/new')->with('success', 'Parts Ready');
+    }
+
+    public function send($id)
+    {
+        $order = Order_Argas::find($id);
+
+        if($order->balance() == 0) 
+            $order->status = 'DONE';
+        else
+            $order->status = 'OLD';
+        
+        $order->update();
+
+        return redirect('/argas/new')->with('success', 'Parts Send');   
     }
 
     public function destroy(Order_Argas $order)
