@@ -35,6 +35,15 @@ class ArgasController extends Controller
         return view('argas.new', $data);
     }
 
+    public function old()
+    {
+        $data['page_title'] = 'Argas old';
+
+        $data['orders'] = Order_Argas::where('status', 'OLD')->get();
+        
+        return view('argas.new', $data);
+    }
+
     public function edit($id)
     {
         $data['page_title'] = 'Delivery Status';
@@ -47,8 +56,10 @@ class ArgasController extends Controller
 
     public function update(Request $request, $id)
     {
+        $balance_change = false;
+
         foreach ($request->input() as $pickslip_id => $amount) {
-            if ($pickslip_id < 1 || $amount === null) continue;
+            if ($pickslip_id < 1 || $amount === null || $amount === "0") continue;
             
             $pickslip = Pickslip_Argas::find($pickslip_id);
 
@@ -56,15 +67,22 @@ class ArgasController extends Controller
 
             $pickslip->update();
 
+            $balance_change = true;
         }
 
         $order = Order_Argas::find($id);
 
-        if($order->balance() == 0) $order->status = 'READY';            
+        if($order->balance() == 0) 
+            $order->status = 'READY';            
+        elseif($balance_change)
+            $order->status = 'NEW';
         
         $order->update();
         
-        return redirect('/argas/new')->with('success', 'Parts Ready');
+        if($balance_change)
+            return redirect('/argas/new')->with('success', 'Parts Ready');
+        else
+            return redirect()->back();
     }
 
     public function send($id)

@@ -10,7 +10,7 @@
         <div class="col-xs-12">
             <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title">New Pickslips</h3>
+                    <h3 class="box-title"></h3>
                     <div class="pull-right">
                         <a href="{{ url('argas/import') }}" class="btn btn-block btn-primary"><i class="fa fa-file-excel-o"></i> Import Pickslip</a>
                     </div>
