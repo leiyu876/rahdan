@@ -12,9 +12,11 @@
             <div class="box">
                 <div class="box-header">
                     <h3 class="box-title">List of partnumbers</h3>
-                    <div class="pull-right">
-                        <a href="{{ url('partnumbers/create') }}" class="btn btn-block btn-primary"><i class="fa fa-plus"></i> Add New</a>
-                    </div>
+                    @if(Auth::user()->hasRole('Super Administrator'))
+                        <div class="pull-right">
+                            <a href="{{ url('partnumbers/create') }}" class="btn btn-block btn-primary"><i class="fa fa-plus"></i> Add New</a>
+                        </div>
+                    @endif
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
@@ -32,18 +34,20 @@
                                     <td>{{ $partnumber->agencynum }}</td>
                                     <td>{{ $partnumber->rahdannum }}</td>
                                     <td>
-                                        <a href="{{ route('partnumbers.edit', ['id' => $partnumber->id])}}">
-                                            <i class="fa fa-fw fa-pencil" data-toggle="tooltip" title="Edit"></i>
-                                        </a>
-                                        <meta name="csrf-token" content="{{ csrf_token() }}">
-                                        <a href="#" data-method="delete" class="jquery-postback" value="{{ $partnumber->id }}">
-                                            <i class="fa fa-fw fa-trash" data-toggle="tooltip" title="Delete"></i>
-                                        </a>
+                                        @if(Auth::user()->hasRole('Super Administrator'))
+                                            <a href="{{ route('partnumbers.edit', ['id' => $partnumber->id])}}">
+                                                <i class="fa fa-fw fa-pencil" data-toggle="tooltip" title="Edit"></i>
+                                            </a>
+                                            <meta name="csrf-token" content="{{ csrf_token() }}">
+                                            <a href="#" data-method="delete" class="jquery-postback" value="{{ $partnumber->id }}">
+                                                <i class="fa fa-fw fa-trash" data-toggle="tooltip" title="Delete"></i>
+                                            </a>
 
-                                        {!! Form::open(['action'=> ['PartnumbersController@destroy', $partnumber->id], 'method'=>'POST']) !!}
-                                            {{ Form::hidden('_method', 'DELETE') }}
-                                            {{ Form::submit('Delete', ['class'=>'btn btn-danger', 'id'=>'name'.$partnumber->id, 'style'=>'display:none']) }}
-                                        {!! Form::close() !!} 
+                                            {!! Form::open(['action'=> ['PartnumbersController@destroy', $partnumber->id], 'method'=>'POST']) !!}
+                                                {{ Form::hidden('_method', 'DELETE') }}
+                                                {{ Form::submit('Delete', ['class'=>'btn btn-danger', 'id'=>'name'.$partnumber->id, 'style'=>'display:none']) }}
+                                            {!! Form::close() !!} 
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach

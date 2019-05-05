@@ -4,7 +4,7 @@
     <!-- Sidebar user panel -->
     <div class="user-panel">
       <div class="pull-left image">
-        <img src="{{ asset('custom_adminlte/dist/img/user2-160x160.jpg') }}" class="img-circle" alt="User Image">
+        <img src="{{ asset('custom_adminlte/dist/img/serious_me.jpg') }}" class="img-circle" alt="User Image">
       </div>
       <div class="pull-left info">
         <p>{{ ucwords(Auth::user()->name) }}</p>
@@ -39,7 +39,7 @@
           <li class="{{ Request::is('argas/done') ? 'active' : '' }}"><a href="{{ url('argas/done') }}"><i class="fa fa-circle-o"></i> Done</a></li>
         </ul>
       </li>
-      @if(Auth::user()->name == 'admin' ||  Auth::user()->name == 'vasim')
+      @if(Auth::user()->hasRole('Super Administrator'))
         <li class="treeview {{ Request::is('invoices/warehouse*') ? 'menu-open' : '' }}">
           <a href="#">
             <i class="fa fa-users"></i> <span>Fatora Mastoda</span>
@@ -111,7 +111,7 @@
           </ul>
         </li>
       @endif
-      @if(Auth::user()->hasRole('Order Picker'))
+      @if(Auth::user()->hasRole('Super Administrator') || Auth::user()->hasRole('salesman'))
         <li class="{{ Request::is('partnumbers') ? 'active' : '' }}"><a href="{{ url('partnumbers') }}"><i class="fa fa-exchange"></i> <span>Parts Number</span></a></li>
       @endif
       @if(Auth::user()->hasRole('Super Administrator'))
