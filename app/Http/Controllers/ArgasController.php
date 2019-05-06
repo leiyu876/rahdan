@@ -24,7 +24,11 @@ class ArgasController extends Controller
      */
     public function index()
     {
-        return redirect('argas/new');
+        $data['page_title'] = 'Argas Balance';
+
+        $data['pickslips'] = Pickslip_Argas::whereRaw('qty != qty_send')->get();
+
+        return view('argas.index', $data);
     }
 
     public function new()

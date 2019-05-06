@@ -34,9 +34,10 @@
           </span>
         </a>
         <ul class="treeview-menu" style="{{ Request::is('argas*') ? 'display:block' : '' }}">
-          <li class="{{ Request::is('argas/new') ? 'active' : '' }}"><a href="{{ url('argas/new') }}"><i class="fa fa-circle-o"></i> New</a></li>
-          <li class="{{ Request::is('argas/old') ? 'active' : '' }}"><a href="{{ url('argas/old') }}"><i class="fa fa-circle-o"></i> Old</a></li>
-          <li class="{{ Request::is('argas/done') ? 'active' : '' }}"><a href="{{ url('argas/done') }}"><i class="fa fa-circle-o"></i> Done</a></li>
+          <li class="{{ Request::is('argas') ? 'active' : '' }}"><a href="{{ url('argas') }}"><i class="fa fa-circle-o"></i> Balance</a></li>
+          <li class="{{ Request::is('argas/new') ? 'active' : '' }}"><a href="{{ url('argas/new') }}"><i class="fa fa-circle-o"></i> Pickslip New</a></li>
+          <li class="{{ Request::is('argas/old') ? 'active' : '' }}"><a href="{{ url('argas/old') }}"><i class="fa fa-circle-o"></i> Pickslip Old</a></li>
+          <li class="{{ Request::is('argas/done') ? 'active' : '' }}"><a href="{{ url('argas/done') }}"><i class="fa fa-circle-o"></i> Pickslip Done</a></li>
         </ul>
       </li>
       @if(Auth::user()->hasRole('Super Administrator'))

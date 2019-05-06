@@ -35,7 +35,7 @@
                                 <tr>
                                     <td>{{ $order->pickslip_id }}</td>
                                     <td>{{ number_format($order->total, 2) }}</td>
-                                    <td>{{ $order->date }}</td>
+                                    <td>{{date('d-m-Y', strtotime($order->date)) }}</td>
                                     <td>{{ $order->status }}</td>
                                     <td>{{ $order->balance() }}</td>
                                     <td>
