@@ -78,6 +78,10 @@ Route::delete('argas/destroy/{order}', 'ArgasController@destroy')->name('argas.d
 Route::get('argas/import', 'ArgasController@import')->name('argas.import');
 Route::post('argas/importrun', 'ArgasController@importrun')->name('argas.importrun');
 
+Route::get('paypal_client_integration', 'PaypalController@paypal_client_integration')->name('paypal_client_integration');
+Route::get('paypal_server_integration', 'PaypalController@paypal_server_integration')->name('paypal_server_integration');
+Route::get('paypal_catch_response', 'PaypalController@paypal_catch_response')->name('paypal_catch_response');
+
 //delete this one, just testing
 Route::get('pai', function() {
 	
