@@ -26,11 +26,15 @@
                             </tr>
                         </thead>
                         <tbody>
-                          <? $color = array('burlywood', 'dodgerblue') ?>
-                          <? $indicator = ''; ?>
+                          <? $color = array('dodgerblue', 'burlywood') ?>
+                          <? $indicator = ''; ?> 
                           <? $color_index = 0; ?>
                           @foreach($pickslips as $index => $pickslip)
-                          
+                            <? 
+                              if ($indicator != $pickslip->pickslip_number())
+                                $color_index = $color_index ? 0 : 1;
+                              $indicator = $pickslip->pickslip_number();
+                            ?>
                             <tr class="for_ajax_update" style="background-color:{{ $color[$color_index]  }}">
                               <td>{{ $index+1 }}</td>
                               <td>{{ $pickslip->partno }}</td>
@@ -44,14 +48,6 @@
                                 <i class="fa fa-fw fa-save" data-toggle="tooltip" title="save"></i>
                               </td>
                             </tr>
-                            <?
-                              if($pickslip->pickslip_number() != $indicator) {
-                                $indicator = $pickslip->pickslip_number();
-                                $color_index = 1;
-                              } else {
-                                $color_index = 0;
-                              }
-                            ?>
                           @endforeach
                         </tbody>
                      </table>
