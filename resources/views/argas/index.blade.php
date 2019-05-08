@@ -26,21 +26,33 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($pickslips as $index => $pickslip)
-                              <tr class="for_ajax_update">
-                                <td>{{ $index+1 }}</td>
-                                <td>{{ $pickslip->partno }}</td>
-                                <td>{{ $pickslip->description }}</td>
-                                <td>{{ $pickslip->pickslip_number() }}</td>
-                                <td>{{ $pickslip->qty }}</td>
-                                <td>{{ $pickslip->balance() }}</td>
-                                <td>
-                                  <input type="text" name="comments" value="{{ $pickslip->comments }}">
-                                  <input type="text" name="id" value="{{ $pickslip->id }}" style="display:none">
-                                  <i class="fa fa-fw fa-save" data-toggle="tooltip" title="save"></i>
-                                </td>
-                              </tr>
-                            @endforeach
+                          <? $color = array('burlywood', 'dodgerblue') ?>
+                          <? $indicator = ''; ?>
+                          <? $color_index = 0; ?>
+                          @foreach($pickslips as $index => $pickslip)
+                          
+                            <tr class="for_ajax_update" style="background-color:{{ $color[$color_index]  }}">
+                              <td>{{ $index+1 }}</td>
+                              <td>{{ $pickslip->partno }}</td>
+                              <td>{{ $pickslip->description }}</td>
+                              <td>{{ $pickslip->pickslip_number() }}</td>
+                              <td>{{ $pickslip->qty }}</td>
+                              <td>{{ $pickslip->balance() }}</td>
+                              <td>
+                                <input type="text" name="comments" value="{{ $pickslip->comments }}">
+                                <input type="text" name="id" value="{{ $pickslip->id }}" style="display:none">
+                                <i class="fa fa-fw fa-save" data-toggle="tooltip" title="save"></i>
+                              </td>
+                            </tr>
+                            <?
+                              if($pickslip->pickslip_number() != $indicator) {
+                                $indicator = $pickslip->pickslip_number();
+                                $color_index = 1;
+                              } else {
+                                $color_index = 0;
+                              }
+                            ?>
+                          @endforeach
                         </tbody>
                      </table>
                 </div>
