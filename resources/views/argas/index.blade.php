@@ -61,7 +61,8 @@
     });
 
     $('#example1').DataTable( {
-      "ordering": false
+      "ordering": false,
+      pageLength : 200,
     } );
 
      $( document ).ready(function() {
