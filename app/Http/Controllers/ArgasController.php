@@ -183,6 +183,7 @@ class ArgasController extends Controller
 	        $pickslip->description = $v[2];
 	        $pickslip->qty = $v[4];
 	        $pickslip->qty_send = 0;
+            $pickslip->comments = '-';
 	        
 	        $pickslip->save();
 		}
