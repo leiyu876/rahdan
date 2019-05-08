@@ -68,6 +68,7 @@ Route::put('invoices/{invoice}', 'InvoicesController@update')->name('invoices.up
 Route::get('invoices/shop/{action_code}', 'InvoicesController@shop')->name('invoices.shop');
 
 Route::get('argas', 'ArgasController@index')->name('argas');
+Route::post('argas/balance/update', 'ArgasController@balance_update')->name('balance_update');
 Route::get('argas/new', 'ArgasController@new')->name('argas.new');
 Route::get('argas/old', 'ArgasController@old')->name('argas.old');
 Route::get('argas/done', 'ArgasController@done')->name('argas.done');

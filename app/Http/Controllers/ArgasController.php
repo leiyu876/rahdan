@@ -99,6 +99,22 @@ class ArgasController extends Controller
             return redirect()->back();
     }
 
+    public function balance_update(Request $request)
+    {
+        $comments    = $request->input()['comments'];
+        $pickslip_id = $request->input()['id'];
+
+        $pickslip = Pickslip_Argas::find($pickslip_id);
+
+        $pickslip->comments = $comments;
+
+        $pickslip->update();
+
+        return response()->json([
+            'status' => 'updated!',
+        ]);
+    }
+
     public function send($id)
     {
         $order = Order_Argas::find($id);

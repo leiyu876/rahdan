@@ -22,17 +22,23 @@
                               <th>Pickslip #</th>
                               <th>Qty Request</th>
                               <th>Qty Balance</th>
+                              <th>Comments</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($pickslips as $index => $pickslip)
-                              <tr>
+                              <tr class="for_ajax_update">
                                 <td>{{ $index+1 }}</td>
                                 <td>{{ $pickslip->partno }}</td>
                                 <td>{{ $pickslip->description }}</td>
                                 <td>{{ $pickslip->pickslip_number() }}</td>
                                 <td>{{ $pickslip->qty }}</td>
                                 <td>{{ $pickslip->balance() }}</td>
+                                <td>
+                                  <input type="text" name="comments" value="{{ $pickslip->comments }}">
+                                  <input type="text" name="id" value="{{ $pickslip->id }}" style="display:none">
+                                  <i class="fa fa-fw fa-save" data-toggle="tooltip" title="save"></i>
+                                </td>
                               </tr>
                             @endforeach
                         </tbody>
@@ -57,5 +63,32 @@
     $('#example1').DataTable( {
       "ordering": false
     } );
+
+     $( document ).ready(function() {
+
+        $( ".fa-save" ).click(function() {
+              
+            var formData = {
+                comments       : $(this).closest("tr.for_ajax_update").find("input[name=comments]").val(),
+                id             : $(this).closest("tr.for_ajax_update").find("input[name=id]").val(),
+                "_token": "{{ csrf_token() }}",
+            };
+
+            $.ajax({
+                type: "POST",
+                url: 'argas/balance/update',
+                data: formData,
+                dataType: 'json',
+                success: function (data) {
+                        //alert('Record updated successfully');
+                  console.log(data);
+                },
+                error: function (data) {
+                    console.log('Error:gwapo');
+                }
+            });
+        });
+    });
+
 </script>
 @endsection()
