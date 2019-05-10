@@ -26,7 +26,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                          <? $color = array('dodgerblue', 'burlywood') ?>
+                          <? $color = array('lightcyan', 'antiquewhite') ?>
                           <? $indicator = ''; ?> 
                           <? $color_index = 0; ?>
                           @foreach($pickslips as $index => $pickslip)
@@ -39,7 +39,11 @@
                               <td>{{ $index+1 }}</td>
                               <td>{{ $pickslip->partno }}</td>
                               <td>{{ $pickslip->description }}</td>
-                              <td>{{ $pickslip->pickslip_number() }}</td>
+                              <td>
+                                <a href="{{ route('order.edit', ['id' => $pickslip->order_id])}}" style="color: blue">
+                                    {{ $pickslip->pickslip_number() }}
+                                </a>
+                              </td>
                               <td>{{ $pickslip->qty }}</td>
                               <td>{{ $pickslip->balance() }}</td>
                               <td>

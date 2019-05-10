@@ -99,6 +99,9 @@ class ArgasController extends Controller
             return redirect()->back();
     }
 
+    /*
+        Only update the comments in argas balance view
+    */
     public function balance_update(Request $request)
     {
         $comments    = $request->input()['comments'];
@@ -106,12 +109,12 @@ class ArgasController extends Controller
 
         $pickslip = Pickslip_Argas::find($pickslip_id);
 
-        $pickslip->comments = $comments;
+        $pickslip->comments = $comments ? $comments : '-';
 
         $pickslip->update();
 
         return response()->json([
-            'status' => 'updated!',
+            'status' => 'ok',
         ]);
     }
 
