@@ -9,6 +9,7 @@ use App\Models\Order_Argas;
 use App\Models\Pickslip_Argas;
 use DateTime;
 use Auth;
+use App\Exports\ArgasBalanceExport;
 
 class ArgasController extends Controller
 {
@@ -146,6 +147,11 @@ class ArgasController extends Controller
         $data['page_title'] = 'Import Pickslip';
 
         return view('argas.import', $data);
+    }
+
+    public function balance_print($order_id)
+    {
+        return Excel::download(new ArgasBalanceExport($order_id), 'argasbalance.xlsx');
     }
 
     public function importrun(Request $request)

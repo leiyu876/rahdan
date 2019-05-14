@@ -8,7 +8,10 @@
             <div class="box-header with-border">
               <h3 class="box-title">Pickslip # : {{ $order->pickslip_id }}</h3>
               <h3 class="box-title" style="margin-left: 15%;">Date : {{ date('d-m-Y', strtotime($order->date)) }}</h3>
-              <h3 class="box-title pull-right">Total : {{ number_format($order->total, 2) }}</h3>
+              <h3 class="box-title" style="margin-left: 15%;">Total : {{ number_format($order->total, 2) }}</h3>
+              <div class="pull-right">
+                  <a href="{{ route('argas.balance_print', 8) }}" class="btn btn-block btn-default"><i class="fa fa-print"></i> Print Balance</a>
+              </div>
             </div>
             <!-- /.box-header -->
             {!! Form::open([

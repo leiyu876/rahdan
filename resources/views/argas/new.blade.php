@@ -26,7 +26,8 @@
                                 <th>Total</th>
                                 <th>Date</th>
                                 <th>Status</th>
-                                <th>Balance</th>
+                                <th>Balance Item</th>
+                                <th>Balance Qty</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -37,6 +38,7 @@
                                     <td>{{ number_format($order->total, 2) }}</td>
                                     <td>{{date('d-m-Y', strtotime($order->date)) }}</td>
                                     <td>{{ $order->status }}</td>
+                                    <td>{{ $order->balance_item() }}</td>
                                     <td>{{ $order->balance() }}</td>
                                     <td>
                                         <a href="{{ route('order.edit', ['id' => $order->id])}}">
