@@ -151,6 +151,9 @@ class ArgasController extends Controller
 
     public function balance_print($order_id)
     {
+        //$order = new ArgasBalanceExport($order_id);
+        //dd($order->collection());
+
         return Excel::download(new ArgasBalanceExport($order_id), 'argasbalance.xlsx');
     }
 
