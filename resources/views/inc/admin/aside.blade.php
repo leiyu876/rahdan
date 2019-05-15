@@ -41,6 +41,9 @@
         </ul>
       </li>
       @if(Auth::user()->hasRole('Super Administrator'))
+        <li class="{{ Request::is('discount_compute') ? 'active' : '' }}"><a href="{{ url('discount_compute') }}"><i class="fa fa-exchange"></i> <span>Discount Compute حساب الخصم</span></a></li>
+      @endif
+      @if(Auth::user()->hasRole('Super Administrator'))
         <li class="treeview {{ Request::is('invoices/warehouse*') ? 'menu-open' : '' }}">
           <a href="#">
             <i class="fa fa-users"></i> <span>Fatora Mastoda</span>

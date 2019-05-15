@@ -80,6 +80,11 @@ Route::get('argas/import', 'ArgasController@import')->name('argas.import');
 Route::post('argas/importrun', 'ArgasController@importrun')->name('argas.importrun');
 Route::get('argas/balance_print/{order_id}', 'ArgasController@balance_print')->name('argas.balance_print');
 
+//Route::view('/discount_compute', 'pages.discount_compute');
+Route::get('discount_compute', function() {
+	$data['page_title'] = 'Discount Compute حساب الخصم';
+	return view('pages.discount_compute', $data);
+});
 
 Route::get('paypal_client_integration', 'PaypalController@paypal_client_integration')->name('paypal_client_integration');
 Route::get('paypal_server_integration', 'PaypalController@paypal_server_integration')->name('paypal_server_integration');
