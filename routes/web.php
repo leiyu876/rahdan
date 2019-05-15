@@ -72,7 +72,7 @@ Route::post('argas/balance/update', 'ArgasController@balance_update')->name('bal
 Route::get('argas/new', 'ArgasController@new')->name('argas.new');
 Route::get('argas/old', 'ArgasController@old')->name('argas.old');
 Route::get('argas/done', 'ArgasController@done')->name('argas.done');
-Route::get('argas/edit/{id}', 'ArgasController@edit')->name('order.edit');
+Route::get('argas/edit/{order_argas}', 'ArgasController@edit')->name('order.edit');
 Route::get('argas/send/{id}', 'ArgasController@send')->name('order.send');
 Route::put('argas/update/{id}', 'ArgasController@update')->name('order.update');
 Route::delete('argas/destroy/{order}', 'ArgasController@destroy')->name('argas.destroy');

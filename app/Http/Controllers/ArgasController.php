@@ -59,12 +59,12 @@ class ArgasController extends Controller
         return view('argas.new', $data);
     }
 
-    public function edit($id)
+    public function edit(Order_Argas $order_argas)
     {
         $data['page_title'] = 'Delivery Status';
 
-        $data['order'] = Order_Argas::find($id);
-        $data['pickslips'] = Pickslip_Argas::where('order_id', $data['order']->id)->get();
+        $data['order'] = $order_argas;
+        $data['pickslips'] = Pickslip_Argas::where('order_id', $order_argas->id)->get();
 
         return view('argas.edit', $data);
     }
