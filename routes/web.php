@@ -56,29 +56,33 @@ Route::group(['middleware' => ['auth']], function () {
 });
 
 
+Route::prefix('invoices')->group(function() {
+	Route::get('create', 'InvoicesController@create')->name('invoices.create');
+	Route::post('invoices', 'InvoicesController@store')->name('invoices.store');
+	Route::get('warehouse/{action_code}/{user_id?}', 'InvoicesController@warehouse')->name('invoices.warehouse');
+	Route::post('warehouse_lists', 'InvoicesController@warehouse_lists')->name('invoices.warehouse_lists');
+	Route::get('', 'InvoicesController@edit')->name('invoices.edit');
+	Route::delete('{invoices}', 'InvoicesController@destroy')->name('invoices.destroy');
+	Route::get('{invoice}/edit/{action_url}', 'InvoicesController@edit')->name('invoices.edit');
+	Route::put('{invoice}', 'InvoicesController@update')->name('invoices.update');
+	Route::get('shop/{action_code}', 'InvoicesController@shop')->name('invoices.shop');
+});
 
-Route::get('invoices/create', 'InvoicesController@create')->name('invoices.create');
-Route::post('invoices', 'InvoicesController@store')->name('invoices.store');
-Route::get('invoices/warehouse/{action_code}/{user_id?}', 'InvoicesController@warehouse')->name('invoices.warehouse');
-Route::post('invoices/warehouse_lists', 'InvoicesController@warehouse_lists')->name('invoices.warehouse_lists');
-Route::get('invoices', 'InvoicesController@edit')->name('invoices.edit');
-Route::delete('invoices/{invoices}', 'InvoicesController@destroy')->name('invoices.destroy');
-Route::get('invoices/{invoice}/edit/{action_url}', 'InvoicesController@edit')->name('invoices.edit');
-Route::put('invoices/{invoice}', 'InvoicesController@update')->name('invoices.update');
-Route::get('invoices/shop/{action_code}', 'InvoicesController@shop')->name('invoices.shop');
+Route::prefix('argas')->group(function() {
+	Route::get('', 'ArgasController@index')->name('argas');
+	Route::post('balance/update', 'ArgasController@balance_update')->name('balance_update');
+	Route::get('new', 'ArgasController@new')->name('argas.new');
+	Route::get('old', 'ArgasController@old')->name('argas.old');
+	Route::get('done', 'ArgasController@done')->name('argas.done');
+	Route::get('edit/{order_argas}', 'ArgasController@edit')->name('order.edit');
+	Route::get('send/{id}', 'ArgasController@send')->name('order.send');
+	Route::put('update/{id}', 'ArgasController@update')->name('order.update');
+	Route::delete('destroy/{order}', 'ArgasController@destroy')->name('argas.destroy');
+	Route::get('import', 'ArgasController@import')->name('argas.import');
+	Route::post('importrun', 'ArgasController@importrun')->name('argas.importrun');
+	Route::get('balance_print/{order_id}', 'ArgasController@balance_print')->name('argas.balance_print');
+});
 
-Route::get('argas', 'ArgasController@index')->name('argas');
-Route::post('argas/balance/update', 'ArgasController@balance_update')->name('balance_update');
-Route::get('argas/new', 'ArgasController@new')->name('argas.new');
-Route::get('argas/old', 'ArgasController@old')->name('argas.old');
-Route::get('argas/done', 'ArgasController@done')->name('argas.done');
-Route::get('argas/edit/{order_argas}', 'ArgasController@edit')->name('order.edit');
-Route::get('argas/send/{id}', 'ArgasController@send')->name('order.send');
-Route::put('argas/update/{id}', 'ArgasController@update')->name('order.update');
-Route::delete('argas/destroy/{order}', 'ArgasController@destroy')->name('argas.destroy');
-Route::get('argas/import', 'ArgasController@import')->name('argas.import');
-Route::post('argas/importrun', 'ArgasController@importrun')->name('argas.importrun');
-Route::get('argas/balance_print/{order_id}', 'ArgasController@balance_print')->name('argas.balance_print');
 
 //Route::view('/discount_compute', 'pages.discount_compute');
 Route::get('discount_compute', function() {
