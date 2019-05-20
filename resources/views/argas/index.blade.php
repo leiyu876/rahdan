@@ -10,6 +10,9 @@
         <div class="col-xs-12">
             <div class="box">
                 <div class="box-header">
+                  <div class="pull-right">
+                    <a href="{{ route('argas.balance_print_all') }}" class="btn btn-block btn-default"><i class="fa fa-print"></i> Print Balance</a>
+                  </div>
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
