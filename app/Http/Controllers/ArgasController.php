@@ -95,10 +95,7 @@ class ArgasController extends Controller
         
         $order->update();
         
-        if($balance_change)
-            return redirect('/argas/new')->with('success', 'Parts Ready');
-        else
-            return redirect()->back();
+        return redirect()->back()->with('success', 'Balance Updated');
     }
 
     /*
