@@ -115,7 +115,7 @@
           </ul>
         </li>
       @endif
-      @if(Auth::user()->hasRole('Super Administrator') || Auth::user()->hasRole('salesman'))
+      @if(Auth::user()->hasRole('Super Administrator') || Auth::user()->hasRole('salesman') || Auth::user()->hasRole('Order Picker'))
         <li class="{{ Request::is('partnumbers') ? 'active' : '' }}"><a href="{{ url('partnumbers') }}"><i class="fa fa-exchange"></i> <span>Parts Number</span></a></li>
       @endif
       @if(Auth::user()->hasRole('Super Administrator'))
