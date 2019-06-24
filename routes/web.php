@@ -82,6 +82,8 @@ Route::prefix('argas')->group(function() {
 	Route::post('importrun', 'ArgasController@importrun')->name('argas.importrun');
 	Route::get('balance_print/{order_id}', 'ArgasController@balance_print')->name('argas.balance_print');
 	Route::get('balance_print_all', 'ArgasController@balance_print_all')->name('argas.balance_print_all');
+	Route::get('revert/{pickslip_argas}', 'ArgasController@revert_create')->name('argas.revert.create');
+	Route::post('revert/{pickslip_argas}', 'ArgasController@revert_store')->name('argas.revert.store');	
 });
 
 

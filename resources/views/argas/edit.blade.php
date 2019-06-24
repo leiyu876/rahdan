@@ -30,10 +30,11 @@
                   <th>Qty</th>
                   <th>Balance</th>
                   <th style="width:100px">Qty ready</th>
+                  <th>Actions</th>
                 </tr>
-                @foreach($pickslips as $index => $pickslip)
+                @foreach($pickslips as $pickslip)
                   <tr style="{{ $pickslip->qty != $pickslip->qty_send ? 'background-color: #ffff99' : ''}}">
-                    <td>{{ $index+1 }}</td>
+                    <td>{{ $loop->iteration }}</td>
                     <td>{{ $pickslip->partno }}</td>
                     <td>{{ $pickslip->description }}</td>
                     <td>{{ $pickslip->qty }}</td>
@@ -44,6 +45,11 @@
                         <input type="number" name="{{ $pickslip->id }}" min="0" max="{{ $pickslip->qty - $pickslip->qty_send }}" data-bind="value:replyNumber" style="width:100%"}}>
                       @else
                         finish
+                      @endif
+                    </td>
+                    <td> 
+                      @if($pickslip->qty != $pickslip->balance())
+                        <a href="{{ route('argas.revert.create', $pickslip) }}">Revert</a> 
                       @endif
                     </td>
                   </tr>

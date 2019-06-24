@@ -205,4 +205,26 @@ class ArgasController extends Controller
 
         return redirect('argas/new')->with('success', 'New Pickslip Added.');
     }
+
+    public function revert_create(Pickslip_Argas $pickslip_argas)
+    {   
+        $d['page_title'] = 'Reverting Quantity';
+
+        $d['pickslip_argas'] = $pickslip_argas;
+
+        return view('argas.revert_create', $d);
+    }
+
+    public function revert_store(Request $request, Pickslip_Argas $pickslip_argas)
+    {
+        $data = $request->validate([
+            'qty' => 'required'
+        ]);
+
+        $pickslip_argas->qty_send -= $data['qty'];
+
+        $pickslip_argas->update();
+
+        return redirect()->route('order.edit', $pickslip_argas->order_id)->with('success', 'Successfully Revert');
+    }
 }
