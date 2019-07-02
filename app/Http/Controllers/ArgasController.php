@@ -76,6 +76,16 @@ class ArgasController extends Controller
 
         $data['order'] = $order_argas;
         $data['pickslips'] = Pickslip_Argas::where('order_id', $order_argas->id)->get();
+        /*
+        // emergency report
+        $items = Pickslip_Argas::where('order_id', $order_argas->id)->orderBy('partno')->get();
+        foreach ($items as $item) {
+            //echo $item->partno.'&nbsp;'.$item->qty.'&nbsp;'.$item->qty_send.'<br/>';
+            echo ($item->qty-$item->qty_send).'<br/>';
+        }
+        exit;
+        // end of emergency report
+        */
 
         return view('argas.edit', $data);
     }
