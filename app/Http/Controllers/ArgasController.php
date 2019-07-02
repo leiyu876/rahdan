@@ -33,6 +33,16 @@ class ArgasController extends Controller
         return view('argas.index', $data);
     }
 
+    public function all()
+    {
+        $data['page_title'] = 'Argas All';
+
+        $data['pickslips'] = Pickslip_Argas::all();
+        
+        return view('argas.all', $data);
+    }
+
+
     public function new()
     {
         $data['page_title'] = 'Argas New';

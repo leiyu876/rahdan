@@ -73,6 +73,7 @@ Route::prefix('argas')->group(function() {
 	Route::post('balance/update', 'ArgasController@balance_update')->name('balance_update');
 	Route::get('new', 'ArgasController@new')->name('argas.new');
 	Route::get('old', 'ArgasController@old')->name('argas.old');
+	Route::get('all', 'ArgasController@all')->name('argas.all');
 	Route::get('done', 'ArgasController@done')->name('argas.done');
 	Route::get('edit/{order_argas}', 'ArgasController@edit')->name('order.edit');
 	Route::get('send/{id}', 'ArgasController@send')->name('order.send');

@@ -38,6 +38,7 @@
           <li class="{{ Request::is('argas/new') ? 'active' : '' }}"><a href="{{ url('argas/new') }}"><i class="fa fa-circle-o"></i> Pickslip New</a></li>
           <li class="{{ Request::is('argas/old') ? 'active' : '' }}"><a href="{{ url('argas/old') }}"><i class="fa fa-circle-o"></i> Pickslip Old</a></li>
           <li class="{{ Request::is('argas/done') ? 'active' : '' }}"><a href="{{ url('argas/done') }}"><i class="fa fa-circle-o"></i> Pickslip Done</a></li>
+          <li class="{{ Request::is('argas/all') ? 'active' : '' }}"><a href="{{ url('argas/all') }}"><i class="fa fa-circle-o"></i> Display All</a></li>
         </ul>
       </li>
       @if(Auth::user()->hasRole('Super Administrator'))
