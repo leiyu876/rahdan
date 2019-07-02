@@ -28,6 +28,7 @@
                   <th>Part Number</th>
                   <th>Part Name</th>
                   <th>Qty</th>
+                  <th>Qty Send</th>
                   <th>Balance</th>
                   <th style="width:100px">Qty ready</th>
                   <th>Actions</th>
@@ -38,13 +39,14 @@
                     <td>{{ $pickslip->partno }}</td>
                     <td>{{ $pickslip->description }}</td>
                     <td>{{ $pickslip->qty }}</td>
+                    <td>{{ $pickslip->qty_send }}</td>
                     <td>{{ $pickslip->balance() }}</td>
                     <td>
                       <? $error_css = false; ?>
                       @if($pickslip->qty != $pickslip->qty_send)
                         <input type="number" name="{{ $pickslip->id }}" min="0" max="{{ $pickslip->qty - $pickslip->qty_send }}" data-bind="value:replyNumber" style="width:100%"}}>
                       @else
-                        finish
+                        Done
                       @endif
                     </td>
                     <td> 
