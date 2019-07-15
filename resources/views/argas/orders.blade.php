@@ -23,8 +23,10 @@
                               <th>Part Number</th>
                               <th>Part Name</th>
                               <th>Pickslip #</th>
-                              <th>Qty Request</th>
-                              <th>Qty Balance</th>
+                              <th>Request</th>
+                              <th>Send</th>
+                              <th>Ready</th>
+                              <th>Balance</th>
                               <th>Status</th>
                             </tr>
                         </thead>
@@ -32,27 +34,34 @@
                           <? $color = array('lightcyan', 'antiquewhite') ?>
                           <? $indicator = ''; ?> 
                           <? $color_index = 0; ?>
-                          @foreach($pickslips as $index => $pickslip)
-                            <? 
-                              if ($indicator != $pickslip->pickslip_number())
-                                $color_index = $color_index ? 0 : 1;
-                              $indicator = $pickslip->pickslip_number();
+                          @foreach($orders as $order)
+                            <?php
+                              $pickslips = App\Models\Pickslip_Argas::where('order_id', $order->id)->get();
                             ?>
-                            <tr class="for_ajax_update" style="background-color:{{ $color[$color_index]  }}; {{ $pickslip->order->status == 'DONE' ? 'color:gray' : ''}}">
-                              <td>{{ $index+1 }}</td>
-                              <td>{{ $pickslip->partno }}</td>
-                              <td>{{ $pickslip->description }}</td>
-                              <td>
-                                <a href="{{ route('order.edit', ['id' => $pickslip->order_id])}}" style="color: blue">
-                                    {{ $pickslip->pickslip_number() }}
-                                </a>
-                              </td>
-                              <td>{{ $pickslip->qty }}</td>
-                              <td>{{ $pickslip->balance() }}</td>
-                              <td>
-                                  {{ $pickslip->order->status }}
-                              </td>
-                            </tr>
+                            @foreach($pickslips as $index => $pickslip)
+                              <? 
+                                if ($indicator != $pickslip->pickslip_number())
+                                  $color_index = $color_index ? 0 : 1;
+                                $indicator = $pickslip->pickslip_number();
+                              ?>
+                              <tr class="for_ajax_update" style="background-color:{{ $color[$color_index]  }}; {{ $pickslip->order->status == 'DONE' ? 'color:gray' : ''}}">
+                                <td>{{ $index+1 }}</td>
+                                <td>{{ $pickslip->partno }}</td>
+                                <td>{{ $pickslip->description }}</td>
+                                <td>
+                                  <a href="{{ route('order.edit', ['id' => $pickslip->order_id])}}" style="color: blue">
+                                      {{ $pickslip->pickslip_number() }}
+                                  </a>
+                                </td>
+                                <td>{{ $pickslip->qty }}</td>
+                                <td>{{ $pickslip->qty_send }}</td>
+                                <td>{{ $pickslip->qty_ready }}</td>
+                                <td>{{ $pickslip->balance() }}</td>
+                                <td>
+                                    {{ $pickslip->order->status }}
+                                </td>
+                              </tr>
+                            @endforeach
                           @endforeach
                         </tbody>
                      </table>

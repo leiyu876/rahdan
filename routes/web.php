@@ -77,6 +77,7 @@ Route::prefix('argas')->group(function() {
 	Route::get('done', 'ArgasController@done')->name('argas.done');
 	Route::get('edit/{order_argas}', 'ArgasController@edit')->name('order.edit');
 	Route::get('send/{id}', 'ArgasController@send')->name('order.send');
+	Route::get('invoice_store/{order_argas}', 'ArgasController@invoice_store')->name('order.invoice.store');
 	Route::put('update/{id}', 'ArgasController@update')->name('order.update');
 	Route::delete('destroy/{order}', 'ArgasController@destroy')->name('argas.destroy');
 	Route::get('import', 'ArgasController@import')->name('argas.import');
@@ -85,6 +86,7 @@ Route::prefix('argas')->group(function() {
 	Route::get('balance_print_all', 'ArgasController@balance_print_all')->name('argas.balance_print_all');
 	Route::get('revert/{pickslip_argas}', 'ArgasController@revert_create')->name('argas.revert.create');
 	Route::post('revert/{pickslip_argas}', 'ArgasController@revert_store')->name('argas.revert.store');	
+	Route::get('invoiced', 'ArgasController@invoiced')->name('argas.invoiced');
 });
 
 

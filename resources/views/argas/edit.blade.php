@@ -31,7 +31,7 @@
                   <th>Send</th>
                   <th>Ready</th>
                   <th>Balance</th>
-                  <th style="width:100px">Qty ready</th>
+                  <th style="width:100px">Add Ready</th>
                   <th>Actions</th>
                 </tr>
                 @foreach($pickslips as $pickslip)
@@ -46,7 +46,7 @@
                     <td>
                       <? $error_css = false; ?>
                       @if($pickslip->qty != $pickslip->qty_send)
-                        <input type="number" name="{{ $pickslip->id }}" min="0" max="{{ $pickslip->qty - $pickslip->qty_send }}" data-bind="value:replyNumber" style="width:100%"}}>
+                        <input type="number" name="{{ $pickslip->id }}" min="0" max="{{ $pickslip->balance() }}" data-bind="value:replyNumber" style="width:100%"}}>
                       @else
                         Done
                       @endif

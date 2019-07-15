@@ -18,7 +18,7 @@ class Order_Argas extends Model
 
     	foreach (Pickslip_Argas::where('order_id', $this->id)->get() as $v) {
     		
-    		$balance += ($v->qty - $v->qty_send);
+    		$balance += ($v->qty - $v->qty_send - $v->qty_ready);
     	}
 
     	return $balance;
@@ -33,7 +33,7 @@ class Order_Argas extends Model
 
         foreach (Pickslip_Argas::where('order_id', $this->id)->get() as $v) {
             
-            if(($v->qty - $v->qty_send) != 0)
+            if(($v->qty - $v->qty_send - $v->qty_ready) != 0)
                 $item += 1;
         }
 

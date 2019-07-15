@@ -35,11 +35,11 @@ class ArgasController extends Controller
 
     public function all()
     {
-        $data['page_title'] = 'Argas All';
+        $d['page_title'] = 'Argas All';
 
-        $data['pickslips'] = Pickslip_Argas::all();
+        $d['orders'] = Order_Argas::where('status', '!=', 'INVOICED')->get();
         
-        return view('argas.all', $data);
+        return view('argas.orders', $d);
     }
 
 
@@ -47,7 +47,7 @@ class ArgasController extends Controller
     {
         $data['page_title'] = 'Argas New';
 
-    	$data['orders'] = Order_Argas::where('status', '!=', 'OLD')->where('status', '!=', 'DONE')->get();
+    	$data['orders'] = Order_Argas::where('status', '!=', 'INVOICED')->where('status', '!=', 'OLD')->where('status', '!=', 'DONE')->get();
         
         return view('argas.new', $data);
     }
@@ -147,14 +147,14 @@ class ArgasController extends Controller
             $order->status = 'DONE';
         else {
             $order->status = 'OLD';
+        }
 
-            $items = Pickslip_Argas::where('order_id', $order->id)->get();
+        $items = Pickslip_Argas::where('order_id', $order->id)->get();
         
-            foreach ($items as $item) {
-                $item->qty_send += $item->qty_ready;
-                $item->qty_ready = 0;
-                $item->update();
-            }
+        foreach ($items as $item) {
+            $item->qty_send += $item->qty_ready;
+            $item->qty_ready = 0;
+            $item->update();
         }
         
         $order->update();
@@ -256,6 +256,30 @@ class ArgasController extends Controller
 
         $pickslip_argas->update();
 
+        $order = Order_Argas::where('id', $pickslip_argas->order_id)->first();
+
+        $order->status = 'READY';
+
+        $order->update();
+
         return redirect()->route('order.edit', $pickslip_argas->order_id)->with('success', 'Successfully Revert');
+    }
+
+    public function invoice_store(Order_Argas $order_argas)
+    {
+        $order_argas->status = "INVOICED";        
+        
+        $order_argas->update();
+
+        return redirect()->route('argas.done')->with('success', 'Order move to Invoiced.');  
+    }
+
+    public function invoiced()
+    {
+        $d['page_title'] = 'This was posted on the System';
+
+        $d['orders'] = Order_Argas::where('status', 'INVOICED')->get();
+        
+        return view('argas.orders', $d);
     }
 }

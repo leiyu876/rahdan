@@ -50,6 +50,11 @@
                                                     <i class="fa fa-fw fa-send" data-toggle="tooltip" title="Send"></i>
                                                 </a>
                                             @endif
+                                            @if($order->status == 'DONE')
+                                                <a href="{{ route('order.invoice.store', $order)}}">
+                                                    <i class="fa fa-fw fa-money" data-toggle="tooltip" title="Invoiced"></i>
+                                                </a>
+                                            @endif
                                             <meta name="csrf-token" content="{{ csrf_token() }}">
                                             <a href="#" data-method="delete" class="jquery-postback" value="{{ $order->id }}">
                                                 <i class="fa fa-fw fa-trash" data-toggle="tooltip" title="Delete"></i>
