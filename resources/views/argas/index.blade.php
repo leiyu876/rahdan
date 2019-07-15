@@ -23,8 +23,10 @@
                               <th>Part Number</th>
                               <th>Part Name</th>
                               <th>Pickslip #</th>
-                              <th>Qty Request</th>
-                              <th>Qty Balance</th>
+                              <th>Request</th>
+                              <th>Send</th>
+                              <th>Ready</th>
+                              <th>Balance</th>
                               <th>Comments</th>
                             </tr>
                         </thead>
@@ -48,6 +50,8 @@
                                 </a>
                               </td>
                               <td>{{ $pickslip->qty }}</td>
+                              <td>{{ $pickslip->qty_send }}</td>
+                              <td>{{ $pickslip->qty_ready }}</td>
                               <td>{{ $pickslip->balance() }}</td>
                               <td>
                                 <input type="text" name="comments" value="{{ $pickslip->comments }}">

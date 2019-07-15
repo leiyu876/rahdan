@@ -99,7 +99,9 @@ class ArgasController extends Controller
             
             $pickslip = Pickslip_Argas::find($pickslip_id);
 
-            $pickslip->qty_send += $amount;
+            // amount + qty send
+            //$pickslip->qty_send += $amount;
+            $pickslip->qty_ready += $amount;
 
             $pickslip->update();
 
@@ -143,8 +145,17 @@ class ArgasController extends Controller
 
         if($order->balance() == 0) 
             $order->status = 'DONE';
-        else
+        else {
             $order->status = 'OLD';
+
+            $items = Pickslip_Argas::where('order_id', $order->id)->get();
+        
+            foreach ($items as $item) {
+                $item->qty_send += $item->qty_ready;
+                $item->qty_ready = 0;
+                $item->update();
+            }
+        }
         
         $order->update();
 
@@ -241,7 +252,7 @@ class ArgasController extends Controller
             'qty' => 'required'
         ]);
 
-        $pickslip_argas->qty_send -= $data['qty'];
+        $pickslip_argas->qty_ready -= $data['qty'];
 
         $pickslip_argas->update();
 

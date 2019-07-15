@@ -14,7 +14,7 @@ class Pickslip_Argas extends Model
 
     public function balance() {
     	
-    	return $this->qty - $this->qty_send;
+    	return $this->qty - $this->qty_send - $this->qty_ready;
 	}
 
 	public function pickslip_number() {

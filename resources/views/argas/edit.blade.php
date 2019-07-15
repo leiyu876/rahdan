@@ -27,8 +27,9 @@
                   <th style="width: 10px">#</th>
                   <th>Part Number</th>
                   <th>Part Name</th>
-                  <th>Qty</th>
-                  <th>Qty Send</th>
+                  <th>Request</th>
+                  <th>Send</th>
+                  <th>Ready</th>
                   <th>Balance</th>
                   <th style="width:100px">Qty ready</th>
                   <th>Actions</th>
@@ -40,6 +41,7 @@
                     <td>{{ $pickslip->description }}</td>
                     <td>{{ $pickslip->qty }}</td>
                     <td>{{ $pickslip->qty_send }}</td>
+                    <td>{{ $pickslip->qty_ready }}</td>
                     <td>{{ $pickslip->balance() }}</td>
                     <td>
                       <? $error_css = false; ?>
