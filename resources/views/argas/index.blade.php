@@ -35,30 +35,32 @@
                           <? $indicator = ''; ?> 
                           <? $color_index = 0; ?>
                           @foreach($pickslips as $index => $pickslip)
-                            <? 
-                              if ($indicator != $pickslip->pickslip_number())
-                                $color_index = $color_index ? 0 : 1;
-                              $indicator = $pickslip->pickslip_number();
-                            ?>
-                            <tr class="for_ajax_update" style="background-color:{{ $color[$color_index]  }}">
-                              <td>{{ $index+1 }}</td>
-                              <td>{{ $pickslip->partno }}</td>
-                              <td>{{ $pickslip->description }}</td>
-                              <td>
-                                <a href="{{ route('order.edit', ['id' => $pickslip->order_id])}}" style="color: blue">
-                                    {{ $pickslip->pickslip_number() }}
-                                </a>
-                              </td>
-                              <td>{{ $pickslip->qty }}</td>
-                              <td>{{ $pickslip->qty_send }}</td>
-                              <td>{{ $pickslip->qty_ready }}</td>
-                              <td>{{ $pickslip->balance() }}</td>
-                              <td>
-                                <input type="text" name="comments" value="{{ $pickslip->comments }}">
-                                <input type="text" name="id" value="{{ $pickslip->id }}" style="display:none">
-                                <i class="fa fa-fw fa-save" data-toggle="tooltip" title="save"></i>
-                              </td>
-                            </tr>
+                            @if($pickslip->balance())
+                              <? 
+                                if ($indicator != $pickslip->pickslip_number())
+                                  $color_index = $color_index ? 0 : 1;
+                                $indicator = $pickslip->pickslip_number();
+                              ?>
+                              <tr class="for_ajax_update" style="background-color:{{ $color[$color_index]  }}">
+                                <td>{{ $index+1 }}</td>
+                                <td>{{ $pickslip->partno }}</td>
+                                <td>{{ $pickslip->description }}</td>
+                                <td>
+                                  <a href="{{ route('order.edit', ['id' => $pickslip->order_id])}}" style="color: blue">
+                                      {{ $pickslip->pickslip_number() }}
+                                  </a>
+                                </td>
+                                <td>{{ $pickslip->qty }}</td>
+                                <td>{{ $pickslip->qty_send }}</td>
+                                <td>{{ $pickslip->qty_ready }}</td>
+                                <td>{{ $pickslip->balance() }}</td>
+                                <td>
+                                  <input type="text" name="comments" value="{{ $pickslip->comments }}">
+                                  <input type="text" name="id" value="{{ $pickslip->id }}" style="display:none">
+                                  <i class="fa fa-fw fa-save" data-toggle="tooltip" title="save"></i>
+                                </td>
+                              </tr>
+                             @endif 
                           @endforeach
                         </tbody>
                      </table>

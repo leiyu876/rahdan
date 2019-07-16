@@ -23,16 +23,21 @@ class ArgasBalanceExport implements FromCollection, ShouldAutoSize, WithEvents
     */
     public function collection()
     {
-        $items = Pickslip_Argas::where('order_id', $this->order_id)->whereColumn('qty', '!=', 'qty_send')->get()->toArray();
+        $items = Pickslip_Argas::where('order_id', $this->order_id)
+            ->whereColumn('qty', '!=', 'qty_send')
+            ->get()
+            ->toArray();
 
     	$results = array();
 
         foreach ($items as $key => $item) {
         	
-        	$bal = $item['qty'] - $item['qty_send'];
+            if($item['qty'] != $item['qty_send'] + $item['qty_ready'])
+            {
+            	$bal = $item['qty'] - $item['qty_send'] - $item['qty_ready'];
 
-        	$results[] = array($item['partno'], $bal);
-
+            	$results[] = array($item['partno'], $bal);
+            }
         }
 
         return collect($results);

@@ -35,7 +35,7 @@
                   <th>Actions</th>
                 </tr>
                 @foreach($pickslips as $pickslip)
-                  <tr style="{{ $pickslip->qty != $pickslip->qty_send ? 'background-color: #ffff99' : ''}}">
+                  <tr style="{{ $pickslip->qty != $pickslip->qty_send + $pickslip->qty_ready ? 'background-color: #ffff99' : ''}}">
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $pickslip->partno }}</td>
                     <td>{{ $pickslip->description }}</td>
@@ -45,7 +45,7 @@
                     <td>{{ $pickslip->balance() }}</td>
                     <td>
                       <? $error_css = false; ?>
-                      @if($pickslip->qty != $pickslip->qty_send)
+                      @if($pickslip->qty != $pickslip->qty_send + $pickslip->qty_ready)
                         <input type="number" name="{{ $pickslip->id }}" min="0" max="{{ $pickslip->balance() }}" data-bind="value:replyNumber" style="width:100%"}}>
                       @else
                         Done
