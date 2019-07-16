@@ -11,6 +11,7 @@ use DateTime;
 use Auth;
 use App\Exports\ArgasBalanceExport;
 use App\Exports\ArgasReadyExport;
+use App\Exports\ArgasReadyAndBalanceExport;
 use App\Exports\ArgasBalanceAllExport;
 
 class ArgasController extends Controller
@@ -190,6 +191,11 @@ class ArgasController extends Controller
     public function ready_print($order_id)
     {
         return Excel::download(new ArgasReadyExport($order_id), 'argasready.xlsx');
+    }
+
+    public function ready_balance_print($order_id)
+    {
+        return Excel::download(new ArgasReadyAndBalanceExport($order_id), 'argasreadybalance.xlsx');
     }
 
     public function balance_print_all() 

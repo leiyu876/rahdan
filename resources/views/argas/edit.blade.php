@@ -12,6 +12,7 @@
               <div class="pull-right">
                   <a href="{{ route('argas.ready_print', $order->id) }}" class="btn btn-block btn-default"><i class="fa fa-print"></i> Print Ready</a>
                   <a href="{{ route('argas.balance_print', $order->id) }}" class="btn btn-block btn-default"><i class="fa fa-print"></i> Print Balance</a>
+                  <a href="{{ route('argas.ready_balance_print', $order->id) }}" class="btn btn-block btn-default"><i class="fa fa-print"></i> Print Both</a>
               </div>
             </div>
             <!-- /.box-header -->
