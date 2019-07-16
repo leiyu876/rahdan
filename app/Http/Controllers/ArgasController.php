@@ -10,6 +10,7 @@ use App\Models\Pickslip_Argas;
 use DateTime;
 use Auth;
 use App\Exports\ArgasBalanceExport;
+use App\Exports\ArgasReadyExport;
 use App\Exports\ArgasBalanceAllExport;
 
 class ArgasController extends Controller
@@ -184,6 +185,11 @@ class ArgasController extends Controller
         //dd($order->collection());
 
         return Excel::download(new ArgasBalanceExport($order_id), 'argasbalance.xlsx');
+    }
+
+    public function ready_print($order_id)
+    {
+        return Excel::download(new ArgasReadyExport($order_id), 'argasready.xlsx');
     }
 
     public function balance_print_all() 
