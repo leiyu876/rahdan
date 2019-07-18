@@ -41,10 +41,10 @@
                                     <td>{{ $order->balance_item() }}</td>
                                     <td>{{ $order->balance() }}</td>
                                     <td>
-                                        <a href="{{ route('order.edit', ['id' => $order->id])}}">
-                                            <i class="fa fa-fw fa-pencil" data-toggle="tooltip" title="Edit"></i>
-                                        </a>
                                         @if(Auth::user()->hasRole('Super Administrator'))
+                                            <a href="{{ route('order.edit', ['id' => $order->id])}}">
+                                                <i class="fa fa-fw fa-pencil" data-toggle="tooltip" title="Edit"></i>
+                                            </a>
                                             @if($order->qty_total() != $order->balance() && $order->status != 'DONE')
                                                 <a href="{{ route('order.send', ['id' => $order->id])}}">
                                                     <i class="fa fa-fw fa-send" data-toggle="tooltip" title="Send"></i>

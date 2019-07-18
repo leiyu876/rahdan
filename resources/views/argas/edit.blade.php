@@ -47,14 +47,14 @@
                     <td>{{ $pickslip->balance() }}</td>
                     <td>
                       <? $error_css = false; ?>
-                      @if($pickslip->qty != $pickslip->qty_send + $pickslip->qty_ready)
+                      @if($pickslip->qty != ($pickslip->qty_send + $pickslip->qty_ready) && Auth::user()->hasRole('Super Administrator'))
                         <input type="number" name="{{ $pickslip->id }}" min="0" max="{{ $pickslip->balance() }}" data-bind="value:replyNumber" style="width:100%"}}>
                       @else
                         Done
                       @endif
                     </td>
                     <td> 
-                      @if($pickslip->qty != $pickslip->balance())
+                      @if($pickslip->qty != $pickslip->balance() && Auth::user()->hasRole('Super Administrator'))
                         <a href="{{ route('argas.revert.create', $pickslip) }}">Revert</a> 
                       @endif
                     </td>
