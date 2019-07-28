@@ -21,9 +21,12 @@ class ArgasBalanceAllExport implements FromCollection, ShouldAutoSize, WithEvent
 
         foreach ($pickslips as $key => $item) {
         	
-        	$bal = $item['qty'] - $item['qty_send'];
+        	if($item['qty'] != $item['qty_send'] + $item['qty_ready'])
+            {
+                $bal = $item['qty'] - $item['qty_send'] - $item['qty_ready'];
 
-        	$results[] = array($item['partno'], $bal);
+                $results[] = array($item['partno'], $bal);
+            }
 
         }
 
