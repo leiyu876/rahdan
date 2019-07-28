@@ -51,52 +51,55 @@ Route::group(['middleware' => ['auth']], function () {
 	    'partnumbers' => 'PartnumbersController',
 	    'permission' => 'PermissionController',
 	    'role' => 'RoleController',
+	    'suppliers' => 'SuppliersController',
 	    //'invoices' => 'InvoicesController',
 	]);
+
+	Route::prefix('invoices')->group(function() {
+		Route::get('create', 'InvoicesController@create')->name('invoices.create');
+		Route::post('invoices', 'InvoicesController@store')->name('invoices.store');
+		Route::get('warehouse/{action_code}/{user_id?}', 'InvoicesController@warehouse')->name('invoices.warehouse');
+		Route::post('warehouse_lists', 'InvoicesController@warehouse_lists')->name('invoices.warehouse_lists');
+		Route::get('', 'InvoicesController@edit')->name('invoices.edit');
+		Route::delete('{invoices}', 'InvoicesController@destroy')->name('invoices.destroy');
+		Route::get('{invoice}/edit/{action_url}', 'InvoicesController@edit')->name('invoices.edit');
+		Route::put('{invoice}', 'InvoicesController@update')->name('invoices.update');
+		Route::get('shop/{action_code}', 'InvoicesController@shop')->name('invoices.shop');
+	});
+
+	Route::prefix('argas')->group(function() {
+		Route::get('', 'ArgasController@index')->name('argas');
+		Route::post('balance/update', 'ArgasController@balance_update')->name('balance_update');
+		Route::get('new', 'ArgasController@new')->name('argas.new');
+		Route::get('old', 'ArgasController@old')->name('argas.old');
+		Route::get('all', 'ArgasController@all')->name('argas.all');
+		Route::get('done', 'ArgasController@done')->name('argas.done');
+		Route::get('edit/{order_argas}', 'ArgasController@edit')->name('order.edit');
+		Route::get('send/{id}', 'ArgasController@send')->name('order.send');
+		Route::get('invoice_store/{order_argas}', 'ArgasController@invoice_store')->name('order.invoice.store');
+		Route::put('update/{id}', 'ArgasController@update')->name('order.update');
+		Route::delete('destroy/{order}', 'ArgasController@destroy')->name('argas.destroy');
+		Route::get('import', 'ArgasController@import')->name('argas.import');
+		Route::post('importrun', 'ArgasController@importrun')->name('argas.importrun');
+		Route::get('balance_print/{order_id}', 'ArgasController@balance_print')->name('argas.balance_print');
+		Route::get('ready_print/{order_id}', 'ArgasController@ready_print')->name('argas.ready_print');
+		Route::get('ready_balance_print/{order_id}', 'ArgasController@ready_balance_print')->name('argas.ready_balance_print');
+		Route::get('balance_print_all', 'ArgasController@balance_print_all')->name('argas.balance_print_all');
+		Route::get('revert/{pickslip_argas}', 'ArgasController@revert_create')->name('argas.revert.create');
+		Route::post('revert/{pickslip_argas}', 'ArgasController@revert_store')->name('argas.revert.store');	
+		Route::get('invoiced', 'ArgasController@invoiced')->name('argas.invoiced');
+	});
+
+
+	//Route::view('/discount_compute', 'pages.discount_compute');
+	Route::get('discount_compute', function() {
+		$data['page_title'] = 'Discount Compute حساب الخصم';
+		return view('pages.discount_compute', $data);
+	});
 });
 
 
-Route::prefix('invoices')->group(function() {
-	Route::get('create', 'InvoicesController@create')->name('invoices.create');
-	Route::post('invoices', 'InvoicesController@store')->name('invoices.store');
-	Route::get('warehouse/{action_code}/{user_id?}', 'InvoicesController@warehouse')->name('invoices.warehouse');
-	Route::post('warehouse_lists', 'InvoicesController@warehouse_lists')->name('invoices.warehouse_lists');
-	Route::get('', 'InvoicesController@edit')->name('invoices.edit');
-	Route::delete('{invoices}', 'InvoicesController@destroy')->name('invoices.destroy');
-	Route::get('{invoice}/edit/{action_url}', 'InvoicesController@edit')->name('invoices.edit');
-	Route::put('{invoice}', 'InvoicesController@update')->name('invoices.update');
-	Route::get('shop/{action_code}', 'InvoicesController@shop')->name('invoices.shop');
-});
 
-Route::prefix('argas')->group(function() {
-	Route::get('', 'ArgasController@index')->name('argas');
-	Route::post('balance/update', 'ArgasController@balance_update')->name('balance_update');
-	Route::get('new', 'ArgasController@new')->name('argas.new');
-	Route::get('old', 'ArgasController@old')->name('argas.old');
-	Route::get('all', 'ArgasController@all')->name('argas.all');
-	Route::get('done', 'ArgasController@done')->name('argas.done');
-	Route::get('edit/{order_argas}', 'ArgasController@edit')->name('order.edit');
-	Route::get('send/{id}', 'ArgasController@send')->name('order.send');
-	Route::get('invoice_store/{order_argas}', 'ArgasController@invoice_store')->name('order.invoice.store');
-	Route::put('update/{id}', 'ArgasController@update')->name('order.update');
-	Route::delete('destroy/{order}', 'ArgasController@destroy')->name('argas.destroy');
-	Route::get('import', 'ArgasController@import')->name('argas.import');
-	Route::post('importrun', 'ArgasController@importrun')->name('argas.importrun');
-	Route::get('balance_print/{order_id}', 'ArgasController@balance_print')->name('argas.balance_print');
-	Route::get('ready_print/{order_id}', 'ArgasController@ready_print')->name('argas.ready_print');
-	Route::get('ready_balance_print/{order_id}', 'ArgasController@ready_balance_print')->name('argas.ready_balance_print');
-	Route::get('balance_print_all', 'ArgasController@balance_print_all')->name('argas.balance_print_all');
-	Route::get('revert/{pickslip_argas}', 'ArgasController@revert_create')->name('argas.revert.create');
-	Route::post('revert/{pickslip_argas}', 'ArgasController@revert_store')->name('argas.revert.store');	
-	Route::get('invoiced', 'ArgasController@invoiced')->name('argas.invoiced');
-});
-
-
-//Route::view('/discount_compute', 'pages.discount_compute');
-Route::get('discount_compute', function() {
-	$data['page_title'] = 'Discount Compute حساب الخصم';
-	return view('pages.discount_compute', $data);
-});
 
 Route::get('paypal_client_integration', 'PaypalController@paypal_client_integration')->name('paypal_client_integration');
 Route::get('paypal_server_integration', 'PaypalController@paypal_server_integration')->name('paypal_server_integration');

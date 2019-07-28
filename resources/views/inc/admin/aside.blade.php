@@ -42,6 +42,7 @@
           <li class="{{ Request::is('argas/invoiced') ? 'active' : '' }}"><a href="{{ route('argas.invoiced') }}"><i class="fa fa-circle-o"></i> Invoiced</a></li>
         </ul>
       </li>
+      <li class="{{ Request::is('suppliers') ? 'active' : '' }}"><a href="{{ route('suppliers.index') }}"><i class="fa fa-exchange"></i> <span>Suppliers الموردين</span></a></li>
       @if(Auth::user()->hasRole('Super Administrator'))
         <li class="{{ Request::is('discount_compute') ? 'active' : '' }}"><a href="{{ url('discount_compute') }}"><i class="fa fa-exchange"></i> <span>Discount Compute حساب الخصم</span></a></li>
       @endif
