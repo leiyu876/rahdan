@@ -18,7 +18,7 @@
                         <label for="quantity" class="col-sm-2 control-label">Quantity</label>
 
                         <div class="col-sm-3">
-                          <input type="text" class="form-control" id="quantity">
+                          <input type="text" class="form-control" id="quantity" disabled>
                         </div>
                         كمية
                       </div>
@@ -26,15 +26,15 @@
                         <label for="price" class="col-sm-2 control-label">Price</label>
 
                         <div class="col-sm-3">
-                          <input type="text" class="form-control" id="price">
+                          <input type="text" class="form-control" id="price" disabled>
                         </div>
                         السعر
                       </div>
                       <div class="form-group">
-                        <label for="total_price" class="col-sm-2 control-label">Total Price</label>
+                        <label for="total_price" class="col-sm-2 control-label">Total Price Computer</label>
 
                         <div class="col-sm-3">
-                          <input type="text" class="form-control" id="total_price" disabled>
+                          <input type="text" class="form-control" id="total_price">
                         </div>
                         السعر الكلي
                       </div>
@@ -84,6 +84,10 @@
     sumada();
   });
   
+  $( "#total_price" ).keyup(function() {
+    sumada_discount();
+  });
+
   $( "#total_price_invoice" ).keyup(function() {
     sumada_discount();
   });
