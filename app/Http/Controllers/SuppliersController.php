@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Supplier;
+use Illuminate\Support\Facades\Input;
 
 class SuppliersController extends Controller
 {
@@ -47,10 +48,18 @@ class SuppliersController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'code' => 'required|unique:suppliers',
+            //'code' => 'required|unique:suppliers',
+            'code' => 'required',
             'name' => 'required',
             'type' => 'required',
         ]);
+
+        if($data['code'] != '2000') {
+
+            $supplier = Supplier::where('code', $data['code'])->count();
+
+            if($supplier) return redirect()->back()->with('error', 'Code already exist.')->withInput(Input::all());
+        }       
 
         Supplier::create($data);
 
@@ -93,10 +102,18 @@ class SuppliersController extends Controller
     public function update(Request $request, Supplier $supplier)
     {
         $data = $request->validate([
-            'code' => 'required|unique:suppliers,code,'.$supplier->id,
+            //'code' => 'required|unique:suppliers,code,'.$supplier->id,
+            'code' => 'required',
             'name' => 'required',
             'type' => 'required',
         ]);
+
+        if($data['code'] != '2000') {
+
+            $count = Supplier::where('code', $data['code'])->where('id', '!=', $supplier->id)->count();
+
+            if($count) return redirect()->back()->with('error', 'Code already exist.')->withInput(Input::all());
+        }  
 
         $supplier->update($data);
 
