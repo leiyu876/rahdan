@@ -43,6 +43,7 @@
         </ul>
       </li>
       <li class="{{ Request::is('suppliers') ? 'active' : '' }}"><a href="{{ route('suppliers.index') }}"><i class="fa fa-exchange"></i> <span>Suppliers الموردين</span></a></li>
+      <li class="{{ Request::is('shortparts') ? 'active' : '' }}"><a href="{{ route('shortparts.index') }}"><i class="fa fa-exchange"></i> <span>Short partnumbers أجزاء قصيرة</span></a></li>
       <li class="{{ Request::is('discount_compute') ? 'active' : '' }}"><a href="{{ url('discount_compute') }}"><i class="fa fa-exchange"></i> <span>Discount Compute حساب الخصم</span></a></li>
       @if(Auth::user()->hasRole('Super Administrator'))
         <li class="treeview {{ Request::is('invoices/warehouse*') ? 'menu-open' : '' }}">
