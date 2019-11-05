@@ -49194,7 +49194,7 @@ module.exports = Component.exports
 /* 44 */
 /***/ (function(module, exports) {
 
-throw new Error("Module build failed: SyntaxError: C:/xampp/htdocs/virneza_rahdan/resources/assets/js/components/ShortPartsFormTable.vue: Unexpected token, expected ; (250:17)\n\n  248 | \n  249 |         finalSubmit : function() {\n> 250 |             make this functionality\n      |                  ^\n  251 |             axios.post(this.apisubmiturl, this.items)\n  252 |                 .then(res => {\n  253 |                 console.log(res)\n");
+throw new Error("Module build failed: SyntaxError: C:/xampp/htdocs/virneza_rahdan/resources/assets/js/components/ShortPartsFormTable.vue: Unexpected token, expected ; (274:17)\n\n  272 | \n  273 |         changeSelectVal : function  () {\n> 274 |             make this select2 working \n      |                  ^\n  275 |             alert('working on hcange')\n  276 |         }\n  277 |     }\n");
 
 /***/ }),
 /* 45 */
@@ -49216,34 +49216,157 @@ var render = function() {
           _c("div", { staticClass: "row" }, [
             _c("div", { staticClass: "col-md-6" }, [
               _c("div", { staticClass: "form-group" }, [
-                _c(
-                  "label",
-                  {
-                    staticClass: "col-sm-4 control-label",
-                    attrs: { for: "supplier" }
-                  },
-                  [_vm._v("Supplier Name")]
-                ),
+                _c("label", { staticClass: "col-sm-4 control-label" }, [
+                  _vm._v("Supplier Name")
+                ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "col-sm-8" }, [
                   _c(
                     "select",
                     {
-                      staticClass: "form-control select2",
-                      staticStyle: { width: "100%" }
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.supplier,
+                          expression: "supplier"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      staticStyle: { width: "100%" },
+                      attrs: { id: "supplier_id" },
+                      on: {
+                        change: function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.supplier = $event.target.multiple
+                            ? $$selectedVal
+                            : $$selectedVal[0]
+                        }
+                      }
                     },
                     _vm._l(_vm.suppliers, function(supplier) {
-                      return _c("option", [_vm._v(_vm._s(supplier.name))])
+                      return _c(
+                        "option",
+                        { domProps: { value: supplier.id } },
+                        [
+                          _vm._v(
+                            "\n                                  " +
+                              _vm._s(supplier.name) +
+                              "\n                              "
+                          )
+                        ]
+                      )
                     }),
                     0
                   )
+                ]),
+                _vm._v(" "),
+                _c("span", [_vm._v("Supplier: " + _vm._s(_vm.supplier))])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
+                _c("label", { staticClass: "col-sm-4 control-label" }, [
+                  _vm._v("Supplier Invoice Date")
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-sm-8" }, [
+                  _c("div", { staticClass: "input-group date" }, [
+                    _vm._m(0),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.supplier_date,
+                          expression: "supplier_date"
+                        }
+                      ],
+                      staticClass: "form-control pull-right",
+                      attrs: { type: "text", id: "date" },
+                      domProps: { value: _vm.supplier_date },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.supplier_date = $event.target.value
+                        }
+                      }
+                    })
+                  ])
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md-6" }, [
+              _c("div", { staticClass: "form-group" }, [
+                _c("label", { staticClass: "col-sm-4 control-label" }, [
+                  _vm._v("Supplier Invoice Number")
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-sm-8" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.supplier_invoice_num,
+                        expression: "supplier_invoice_num"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: { type: "text" },
+                    domProps: { value: _vm.supplier_invoice_num },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.supplier_invoice_num = $event.target.value
+                      }
+                    }
+                  })
                 ])
               ]),
               _vm._v(" "),
-              _vm._m(0)
-            ]),
-            _vm._v(" "),
-            _vm._m(1)
+              _c("div", { staticClass: "form-group" }, [
+                _c("label", { staticClass: "col-sm-4 control-label" }, [
+                  _vm._v("Rahdan Invoice Number")
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-sm-8" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.rahdan_invoice_num,
+                        expression: "rahdan_invoice_num"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: { type: "text" },
+                    domProps: { value: _vm.rahdan_invoice_num },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.rahdan_invoice_num = $event.target.value
+                      }
+                    }
+                  })
+                ])
+              ])
+            ])
           ]),
           _vm._v(" "),
           _c("hr"),
@@ -49470,7 +49593,7 @@ var render = function() {
     ),
     _vm._v(" "),
     _c("table", { staticClass: "table table-bordered table-striped" }, [
-      _vm._m(2),
+      _vm._m(1),
       _vm._v(" "),
       _c(
         "tbody",
@@ -49529,67 +49652,8 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group" }, [
-      _c(
-        "label",
-        { staticClass: "col-sm-4 control-label", attrs: { for: "date" } },
-        [_vm._v("Supplier Invoice Date")]
-      ),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-sm-8" }, [
-        _c("div", { staticClass: "input-group date" }, [
-          _c("div", { staticClass: "input-group-addon" }, [
-            _c("i", { staticClass: "fa fa-calendar" })
-          ]),
-          _vm._v(" "),
-          _c("input", {
-            staticClass: "form-control pull-right",
-            attrs: { name: "date", type: "text", id: "date" }
-          })
-        ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-6" }, [
-      _c("div", { staticClass: "form-group" }, [
-        _c(
-          "label",
-          {
-            staticClass: "col-sm-4 control-label",
-            attrs: { for: "total_price" }
-          },
-          [_vm._v("Supplier Invoice Number")]
-        ),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-sm-8" }, [
-          _c("input", {
-            staticClass: "form-control",
-            attrs: { type: "text", id: "total_price" }
-          })
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "form-group" }, [
-        _c(
-          "label",
-          {
-            staticClass: "col-sm-4 control-label",
-            attrs: { for: "total_price" }
-          },
-          [_vm._v("Rahdan Invoice Number")]
-        ),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-sm-8" }, [
-          _c("input", {
-            staticClass: "form-control",
-            attrs: { type: "text", id: "total_price" }
-          })
-        ])
-      ])
+    return _c("div", { staticClass: "input-group-addon" }, [
+      _c("i", { staticClass: "fa fa-calendar" })
     ])
   },
   function() {

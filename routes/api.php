@@ -17,10 +17,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-//Route::post('shortparts_submit', 'ShortpartsController@shortparts_submit');
-Route::post('shortparts_submit', function() {
-	return 'adf';
-});
+Route::post('shortparts_submit', 'ShortpartsController@shortparts_submit');
+
 
 //delete this one, just testing
 Route::get('pai_get', function() {

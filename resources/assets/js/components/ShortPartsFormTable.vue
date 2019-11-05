@@ -5,21 +5,24 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="supplier" class="col-sm-4 control-label">Supplier Name</label>                              
+                            <label class="col-sm-4 control-label">Supplier Name</label>                              
                             <div class="col-sm-8">
-                                <select class="form-control select2" style="width: 100%;">
-                                  <option v-for="supplier in suppliers">{{ supplier.name }}</option>
+                                <select v-model="supplier" class="form-control" style="width: 100%;" id="supplier_id">
+                                  <option v-for="supplier in suppliers" v-bind:value="supplier.id">
+                                      {{ supplier.name }}
+                                  </option>
                                 </select>                                 
                             </div>
+                            <span>Supplier: {{ supplier }}</span>
                         </div>
                         <div class="form-group">
-                            <label for="date" class="col-sm-4 control-label">Supplier Invoice Date</label>
+                            <label class="col-sm-4 control-label">Supplier Invoice Date</label>
                             <div class="col-sm-8">
                                 <div class="input-group date">
                                   <div class="input-group-addon">
                                     <i class="fa fa-calendar"></i>
                                   </div>
-                                  <input name="date" type="text" class="form-control pull-right" id="date">                                  
+                                  <input v-model="supplier_date" type="text" class="form-control pull-right" id="date">                                  
                                 </div>
                             </div>
                         </div>
@@ -28,16 +31,16 @@
                         
 
                         <div class="form-group">
-                            <label for="total_price" class="col-sm-4 control-label">Supplier Invoice Number</label>
+                            <label class="col-sm-4 control-label">Supplier Invoice Number</label>
                             <div class="col-sm-8">
-                              <input type="text" class="form-control" id="total_price">
+                              <input v-model="supplier_invoice_num" type="text" class="form-control">
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label for="total_price" class="col-sm-4 control-label">Rahdan Invoice Number</label>
+                            <label class="col-sm-4 control-label">Rahdan Invoice Number</label>
                             <div class="col-sm-8">
-                              <input type="text" class="form-control" id="total_price">
+                              <input v-model="rahdan_invoice_num" type="text" class="form-control">
                             </div>
                         </div>    
                     </div>
@@ -129,7 +132,7 @@
     
     export default {
         mounted() {
-            
+            console.log(this.apisubmiturl)
         },
 
         props : [
@@ -140,6 +143,11 @@
 
         data : function () {
             return {
+                
+                supplier: 3,
+                supplier_date: null,
+                supplier_invoice_num: '',
+                rahdan_invoice_num: '',
 
                 isUpdate : false,
                 itemToBeUpdate : null,
@@ -247,14 +255,27 @@
             },
 
             finalSubmit : function() {
-                make this functionality
-                axios.post(this.apisubmiturl, this.items)
+                
+                axios.post(this.apisubmiturl, {
+                    supplier:this.supplier,
+                    supplier_date:this.supplier_date,
+                    supplier_invoice_num:this.supplier_invoice_num,
+                    rahdan_invoice_num:this.rahdan_invoice_num,
+                    details: this.items,
+                    })
                     .then(res => {
                     console.log(res)
                 }).catch(err => {
                     console.log(err)
                 })
+            },
+
+            changeSelectVal : function  () {
+                make this select2 working 
+                alert('working on hcange')
             }
         }
     }
+
+    
 </script>

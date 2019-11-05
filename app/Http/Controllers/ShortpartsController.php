@@ -7,11 +7,14 @@ use App\Models\Supplier;
 use Illuminate\Http\Request;
 
 class ShortpartsController extends Controller
-{
+{   
+    // This was commented because of axios request 401 error. Dont have any solution for now
+    /*
     public function __construct() {
 
         $this->middleware('auth');
     }
+    */
 
     /**
      * Display a listing of the resource.
@@ -54,9 +57,9 @@ class ShortpartsController extends Controller
         //
     }
 
-    public function shortparts_submit()
+    public function shortparts_submit(Request $request)
     {
-        return 'from shark';
+        dd($request->input());
     }
 
     
