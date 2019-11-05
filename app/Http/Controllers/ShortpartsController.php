@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Short_parts;
+use App\Models\Supplier;
 use Illuminate\Http\Request;
 
 class ShortpartsController extends Controller
@@ -33,7 +34,11 @@ class ShortpartsController extends Controller
      */
     public function create()
     {
-        $data['page_title'] = 'Create New List of Short Parts';
+        $data['page_title'] = 'Create New Short Parts';
+
+        $data['suppliers'] = Supplier::all();
+
+        $data['shortpart_details'] = array();
 
         return view('shortparts.create', $data);
     }

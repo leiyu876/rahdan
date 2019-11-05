@@ -5,6 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Rahdan</title>
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <link rel="icon" href="{{ asset('custom/images/logo_rahdan_mini.png') }}" type="image/png" sizes="16x16">
   <link rel="stylesheet" href="{{ asset('custom_adminlte/bower_components/bootstrap/dist/css/bootstrap.min.css') }}">
   <link rel="stylesheet" href="{{ asset('custom_adminlte/bower_components/font-awesome/css/font-awesome.min.css') }}">
@@ -38,11 +39,13 @@
 <script src="{{ asset('custom_adminlte/bower_components/jquery-slimscroll/jquery.slimscroll.min.js') }}"></script>
 <script src="{{ asset('custom_adminlte/bower_components/fastclick/lib/fastclick.js') }}"></script>
 <script src="{{ asset('custom_adminlte/dist/js/adminlte.min.js') }}"></script>
-<script src="{{ asset('custom_adminlte/dist/js/demo.js') }}"></script>
+<!--<script src="{{ asset('custom_adminlte/dist/js/demo.js') }}"></script>-->
 <script>
+  /*
   $(document).ready(function () {
     $('.sidebar-menu').tree()
   })
+  */
 </script>
 @yield('js')
 </body>
