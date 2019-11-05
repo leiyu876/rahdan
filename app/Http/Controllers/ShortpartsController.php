@@ -54,6 +54,13 @@ class ShortpartsController extends Controller
         //
     }
 
+    public function shortparts_submit()
+    {
+        return 'from shark';
+    }
+
+    
+
     /**
      * Display the specified resource.
      *
