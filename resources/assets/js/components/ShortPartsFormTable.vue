@@ -13,7 +13,6 @@
                                   </option>
                                 </select>                                 
                             </div>
-                            <span>Supplier: {{ supplier }}</span>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-4 control-label">Supplier Invoice Date</label>
@@ -22,7 +21,7 @@
                                   <div class="input-group-addon">
                                     <i class="fa fa-calendar"></i>
                                   </div>
-                                  <input v-model="supplier_date" type="text" class="form-control pull-right" id="date">                                  
+                                  <input v-model="supplier_date" type="date"  required class="form-control pull-right">                                  
                                 </div>
                             </div>
                         </div>
@@ -33,7 +32,7 @@
                         <div class="form-group">
                             <label class="col-sm-4 control-label">Supplier Invoice Number</label>
                             <div class="col-sm-8">
-                              <input v-model="supplier_invoice_num" type="text" class="form-control">
+                              <input v-model="supplier_invoice_num" type="text" class="form-control" required>
                             </div>
                         </div>
 
@@ -124,7 +123,7 @@
                 </tr>
             </tbody>
          </table>
-         <button class="btn btn-primary" @click="finalSubmit">Final Save</button>
+         <button v-if="supplier && supplier_date && supplier_invoice_num" class="btn btn-primary pull-right" @click="finalSubmit">Final Save</button>
     </div>
 </template>
 
@@ -144,10 +143,10 @@
         data : function () {
             return {
                 
-                supplier: 3,
+                supplier: null,
                 supplier_date: null,
-                supplier_invoice_num: '',
-                rahdan_invoice_num: '',
+                supplier_invoice_num: null,
+                rahdan_invoice_num: null,
 
                 isUpdate : false,
                 itemToBeUpdate : null,
@@ -257,22 +256,17 @@
             finalSubmit : function() {
                 
                 axios.post(this.apisubmiturl, {
-                    supplier:this.supplier,
-                    supplier_date:this.supplier_date,
-                    supplier_invoice_num:this.supplier_invoice_num,
-                    rahdan_invoice_num:this.rahdan_invoice_num,
-                    details: this.items,
+                        supplier:this.supplier,
+                        supplier_date:this.supplier_date,
+                        supplier_invoice_num:this.supplier_invoice_num,
+                        rahdan_invoice_num:this.rahdan_invoice_num,
+                        details: this.items,
                     })
                     .then(res => {
                     console.log(res)
                 }).catch(err => {
                     console.log(err)
                 })
-            },
-
-            changeSelectVal : function  () {
-                make this select2 working 
-                alert('working on hcange')
             }
         }
     }

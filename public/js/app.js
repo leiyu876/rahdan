@@ -49192,9 +49192,275 @@ module.exports = Component.exports
 
 /***/ }),
 /* 44 */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-throw new Error("Module build failed: SyntaxError: C:/xampp/htdocs/virneza_rahdan/resources/assets/js/components/ShortPartsFormTable.vue: Unexpected token, expected ; (274:17)\n\n  272 | \n  273 |         changeSelectVal : function  () {\n> 274 |             make this select2 working \n      |                  ^\n  275 |             alert('working on hcange')\n  276 |         }\n  277 |     }\n");
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    mounted: function mounted() {
+        console.log(this.apisubmiturl);
+    },
+
+
+    props: ['apisubmiturl', 'suppliers'],
+
+    data: function data() {
+        return {
+
+            supplier: null,
+            supplier_date: null,
+            supplier_invoice_num: null,
+            rahdan_invoice_num: null,
+
+            isUpdate: false,
+            itemToBeUpdate: null,
+            items: [{
+                partno: '04465-06090',
+                request: 100,
+                received: 80,
+                price: 350,
+                discount: 50
+            }, {
+                partno: '88501-06060',
+                request: 10,
+                received: 8,
+                price: 200,
+                discount: 25
+            }],
+            partno: null,
+            request: null,
+            received: null,
+            price: null,
+            discount: null
+        };
+    },
+
+    methods: {
+        addToList: function addToList() {
+            var newItem = {
+                partno: this.partno,
+                request: this.request,
+                received: this.received,
+                price: this.price,
+                discount: this.discount
+            };
+
+            this.clearAll();
+
+            this.items.push(newItem);
+        },
+
+        itemRemove: function itemRemove(key) {
+
+            var confirmvar = confirm("Delete this record?");
+
+            if (confirmvar == true) {
+
+                var newArray = [];
+                var i;
+                for (i = 0; i < this.items.length; i++) {
+
+                    if (i != key) {
+                        newArray.push(this.items[i]);
+                    }
+                }
+                this.items = newArray;
+            }
+        },
+
+        itemEdit: function itemEdit(key) {
+
+            var confirmvar = confirm("Edit this record?");
+
+            if (confirmvar == true) {
+
+                this.partno = this.items[key].partno;
+                this.request = this.items[key].request;
+                this.received = this.items[key].received;
+                this.price = this.items[key].price;
+                this.discount = this.items[key].discount;
+
+                this.isUpdate = true;
+                this.itemToBeUpdate = key;
+            }
+        },
+
+        itemUpdateCancel: function itemUpdateCancel(key) {
+
+            this.clearAll();
+            this.isUpdate = false;
+            this.itemToBeUpdate = null;
+        },
+
+        itemUpdate: function itemUpdate() {
+
+            this.items[this.itemToBeUpdate].partno = this.partno;
+            this.items[this.itemToBeUpdate].request = this.request;
+            this.items[this.itemToBeUpdate].received = this.received;
+            this.items[this.itemToBeUpdate].price = this.price;
+            this.items[this.itemToBeUpdate].discount = this.discount;
+
+            this.clearAll();
+            this.isUpdate = false;
+            this.itemToBeUpdate = null;
+        },
+
+        clearAll: function clearAll() {
+
+            this.partno = null;
+            this.request = null;
+            this.received = null;
+            this.price = null;
+            this.discount = null;
+        },
+
+        finalSubmit: function finalSubmit() {
+
+            axios.post(this.apisubmiturl, {
+                supplier: this.supplier,
+                supplier_date: this.supplier_date,
+                supplier_invoice_num: this.supplier_invoice_num,
+                rahdan_invoice_num: this.rahdan_invoice_num,
+                details: this.items
+            }).then(function (res) {
+                console.log(res);
+            }).catch(function (err) {
+                console.log(err);
+            });
+        }
+    }
+});
 
 /***/ }),
 /* 45 */
@@ -49266,9 +49532,7 @@ var render = function() {
                     }),
                     0
                   )
-                ]),
-                _vm._v(" "),
-                _c("span", [_vm._v("Supplier: " + _vm._s(_vm.supplier))])
+                ])
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "form-group" }, [
@@ -49290,7 +49554,7 @@ var render = function() {
                         }
                       ],
                       staticClass: "form-control pull-right",
-                      attrs: { type: "text", id: "date" },
+                      attrs: { type: "date", required: "" },
                       domProps: { value: _vm.supplier_date },
                       on: {
                         input: function($event) {
@@ -49323,7 +49587,7 @@ var render = function() {
                       }
                     ],
                     staticClass: "form-control",
-                    attrs: { type: "text" },
+                    attrs: { type: "text", required: "" },
                     domProps: { value: _vm.supplier_invoice_num },
                     on: {
                       input: function($event) {
@@ -49640,11 +49904,16 @@ var render = function() {
       )
     ]),
     _vm._v(" "),
-    _c(
-      "button",
-      { staticClass: "btn btn-primary", on: { click: _vm.finalSubmit } },
-      [_vm._v("Final Save")]
-    )
+    _vm.supplier && _vm.supplier_date && _vm.supplier_invoice_num
+      ? _c(
+          "button",
+          {
+            staticClass: "btn btn-primary pull-right",
+            on: { click: _vm.finalSubmit }
+          },
+          [_vm._v("Final Save")]
+        )
+      : _vm._e()
   ])
 }
 var staticRenderFns = [

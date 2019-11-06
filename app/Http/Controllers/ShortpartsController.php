@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Short_parts;
+use App\Models\Short_part_detail;
 use App\Models\Supplier;
 use Illuminate\Http\Request;
 
@@ -59,10 +60,31 @@ class ShortpartsController extends Controller
 
     public function shortparts_submit(Request $request)
     {
-        dd($request->input());
-    }
+        $short_part = new Short_parts;
 
-    
+        $short_part->supplier_id = $request->input('supplier');
+        $short_part->invoicedate_supplier = $request->input('supplier_date');
+        $short_part->invoicenum_supplier = $request->input('supplier_invoice_num');
+        $short_part->invoicenum_rahdan = $request->input('rahdan_invoice_num');
+        
+        $short_part_id = $short_part->save();
+
+        foreach ($request->input('details') as $v) {
+        
+            $detail = new Short_part_detail;
+
+            $detail->short_part_id = $short_part->id;
+            $detail->partno = $v['partno'];    
+            $detail->request = $v['request'];    
+            $detail->received = $v['received'];    
+            $detail->price = $v['price'];    
+            $detail->discount = $v['discount'];   
+
+            $detail->save(); 
+        }
+
+        return 'ok';
+    }    
 
     /**
      * Display the specified resource.

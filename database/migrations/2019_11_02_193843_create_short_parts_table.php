@@ -17,7 +17,7 @@ class CreateShortPartsTable extends Migration
             $table->increments('id');
             $table->integer('supplier_id');
             $table->string('invoicenum_supplier');
-            $table->string('invoicenum_rahdan');
+            $table->string('invoicenum_rahdan')->nullable();
             $table->date('invoicedate_supplier');
             $table->timestamps();
         });
