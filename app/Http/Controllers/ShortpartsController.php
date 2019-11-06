@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Short_parts;
+use App\Models\Short_part;
 use App\Models\Short_part_detail;
 use App\Models\Supplier;
 use Illuminate\Http\Request;
@@ -26,7 +26,7 @@ class ShortpartsController extends Controller
     {
         $data['page_title'] = 'Short Parts Lists';
 
-        $data['shortparts'] = Short_parts::all();
+        $data['shortparts'] = Short_part::all();
 
         return view('shortparts.index', $data);
     }
@@ -41,8 +41,6 @@ class ShortpartsController extends Controller
         $data['page_title'] = 'Create New Short Parts';
 
         $data['suppliers'] = Supplier::all();
-
-        $data['shortpart_details'] = array();
 
         return view('shortparts.create', $data);
     }
@@ -60,7 +58,7 @@ class ShortpartsController extends Controller
 
     public function shortparts_submit(Request $request)
     {
-        $short_part = new Short_parts;
+        $short_part = new Short_part;
 
         $short_part->supplier_id = $request->input('supplier');
         $short_part->invoicedate_supplier = $request->input('supplier_date');
@@ -92,7 +90,7 @@ class ShortpartsController extends Controller
      * @param  \App\Models\Short_parts  $short_parts
      * @return \Illuminate\Http\Response
      */
-    public function show(Short_parts $short_parts)
+    public function show(Short_part $short_part)
     {
         //
     }
@@ -103,9 +101,17 @@ class ShortpartsController extends Controller
      * @param  \App\Models\Short_parts  $short_parts
      * @return \Illuminate\Http\Response
      */
-    public function edit(Short_parts $short_parts)
+    public function edit(Short_part $shortpart)
     {
-        //
+        $data['short_part'] = $shortpart;   
+        
+        $data['page_title'] = 'Updating Short Parts';
+
+        $data['suppliers'] = Supplier::all();
+
+        show all data in edit view
+
+        return view('shortparts.edit', $data);
     }
 
     /**
@@ -115,7 +121,7 @@ class ShortpartsController extends Controller
      * @param  \App\Models\Short_parts  $short_parts
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Short_parts $short_parts)
+    public function update(Request $request, Short_part $short_part)
     {
         //
     }
@@ -126,7 +132,7 @@ class ShortpartsController extends Controller
      * @param  \App\Models\Short_parts  $short_parts
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Short_parts $short_parts)
+    public function destroy(Short_part $short_part)
     {
         //
     }

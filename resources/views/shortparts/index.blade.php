@@ -24,9 +24,11 @@
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Rahdan Invoice #</th>
                                 <th>Supplier Name</th>
                                 <th>Supplier Invoice #</th>
+                                <th>Rahdan Invoice #</th>
+                                
+                                
                                 <th>Supplier Date</th>
                                 <th>Action</th>
                             </tr>
@@ -35,9 +37,11 @@
                             @foreach($shortparts as $shortpart)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $shortpart->invoicenum_rahdan }}</td>
                                     <td>{{ $shortpart->supplier_id }}</td>
                                     <td>{{ $shortpart->invoicenum_supplier }}</td>
+                                    <td>{{ $shortpart->invoicenum_rahdan }}</td>
+                                    
+                                    
                                     <td>{{ $shortpart->invoicedate_supplier }}</td>
                                     <td>
                                         @if(Auth::user()->hasRole('Super Administrator'))
@@ -49,7 +53,7 @@
                                                 <i class="fa fa-fw fa-trash" data-toggle="tooltip" title="Delete"></i>
                                             </a>
 
-                                            {!! Form::open(['action'=> ['shortpartsController@destroy', $shortpart->id], 'method'=>'POST']) !!}
+                                            {!! Form::open(['action'=> ['ShortpartsController@destroy', $shortpart->id], 'method'=>'POST']) !!}
                                                 {{ Form::hidden('_method', 'DELETE') }}
                                                 {{ Form::submit('Delete', ['class'=>'btn btn-danger', 'id'=>'name'.$shortpart->id, 'style'=>'display:none']) }}
                                             {!! Form::close() !!} 
