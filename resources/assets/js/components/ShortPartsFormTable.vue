@@ -88,7 +88,7 @@
                     <div class="col-md-4">
                         <button class="btn btn-default" @click="itemUpdateCancel" v-if="isUpdate">Cancel</button>
                         <button class="btn btn-default" @click="itemUpdate" v-if="isUpdate">Update</button>
-                        <button class="btn btn-default" @click="addToList" v-if="!isUpdate">Add to List</button>
+                        <button class="btn btn-default" @click="addToList" v-if="!isUpdate && partno && request" >Add to List</button>
                     </div>
                 </div>
             </div>
@@ -123,7 +123,7 @@
                 </tr>
             </tbody>
          </table>
-         <button v-if="supplier && supplier_date && supplier_invoice_num" class="btn btn-primary pull-right" @click="finalSubmit">Final Save</button>
+         <button v-if="items && supplier && supplier_date && supplier_invoice_num" class="btn btn-primary pull-right" @click="finalSubmit">Final Save</button>
     </div>
 </template>
 
@@ -150,31 +150,17 @@
 
                 isUpdate : false,
                 itemToBeUpdate : null,
-                items : [
-                    {
-                        partno: '04465-06090', 
-                        request: 100, 
-                        received: 80, 
-                        price: 350, 
-                        discount: 50, 
-                    },
-                    {
-                        partno: '88501-06060', 
-                        request: 10, 
-                        received: 8, 
-                        price: 200, 
-                        discount: 25, 
-                    },
-                ],
+                items : [],
                 partno: null,
                 request: null,
-                received: null,
-                price: null,
-                discount: null
+                received: 0,
+                price: 0,
+                discount: 0
             }
         },
 
         methods : {
+
             addToList : function () {
                 var newItem = {
                     partno: this.partno, 
@@ -204,6 +190,8 @@
                       }                  
                     }
                     this.items = newArray
+
+                    alert(this.items.length)
                 }
             },
 
@@ -248,9 +236,9 @@
 
                 this.partno = null
                 this.request= null
-                this.received= null
-                this.price= null
-                this.discount= null
+                this.received= 0
+                this.price= 0
+                this.discount= 0
             },
 
             finalSubmit : function() {

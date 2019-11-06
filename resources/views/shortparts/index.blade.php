@@ -37,7 +37,7 @@
                             @foreach($shortparts as $shortpart)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $shortpart->supplier_id }}</td>
+                                    <td>{{ $shortpart->supplier->name }}</td>
                                     <td>{{ $shortpart->invoicenum_supplier }}</td>
                                     <td>{{ $shortpart->invoicenum_rahdan }}</td>
                                     

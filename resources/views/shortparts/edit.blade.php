@@ -16,7 +16,12 @@
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
-                    <shortparts-formtable-edit apisubmiturl="{{ url('api/shortparts_submit/' . $short_part->id) }}" :suppliers="{{ $suppliers }}"></shortparts-formtable-edit>
+                    <shortparts-formtable-edit 
+                        apisubmiturl="{{ url('api/shortparts_update', $short_part->id) }}" 
+                        :suppliers="{{ $suppliers }}"
+                        :short_part="{{ $short_part }}"
+                        :details="{{ $short_part->items }}"
+                    ></shortparts-formtable-edit>
                 </div>
              </div>
         </div>

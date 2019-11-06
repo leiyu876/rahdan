@@ -18,6 +18,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::post('shortparts_submit', 'ShortpartsController@shortparts_submit');
+Route::patch('shortparts_update/{short_part}', 'ShortpartsController@shortparts_update');
 
 
 //delete this one, just testing

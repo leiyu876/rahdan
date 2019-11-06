@@ -88,7 +88,7 @@
                     <div class="col-md-4">
                         <button class="btn btn-default" @click="itemUpdateCancel" v-if="isUpdate">Cancel</button>
                         <button class="btn btn-default" @click="itemUpdate" v-if="isUpdate">Update</button>
-                        <button class="btn btn-default" @click="addToList" v-if="!isUpdate">Add to List</button>
+                        <button class="btn btn-default" @click="addToList" v-if="!isUpdate && partno && request">Add to List</button>
                     </div>
                 </div>
             </div>
@@ -131,13 +131,23 @@
     
     export default {
         mounted() {
+            
+            console.log(this.short_part);
+
+            this.supplier=this.short_part.supplier_id
+            this.supplier_date=this.short_part.invoicedate_supplier
+            this.supplier_invoice_num=this.short_part.invoicenum_supplier
+            this.rahdan_invoice_num=this.short_part.invoicenum_rahdan
+            this.items = this.details
+
             console.log(this.apisubmiturl)
         },
 
         props : [
             'apisubmiturl',
-            'suppliers',
-            
+            'suppliers',  
+            'short_part',
+            'details'          
         ],
 
         data : function () {
@@ -150,22 +160,7 @@
 
                 isUpdate : false,
                 itemToBeUpdate : null,
-                items : [
-                    {
-                        partno: '04465-06090', 
-                        request: 100, 
-                        received: 80, 
-                        price: 350, 
-                        discount: 50, 
-                    },
-                    {
-                        partno: '88501-06060', 
-                        request: 10, 
-                        received: 8, 
-                        price: 200, 
-                        discount: 25, 
-                    },
-                ],
+                items : [],
                 partno: null,
                 request: null,
                 received: null,
@@ -257,11 +252,14 @@
                 
                 axios.post(this.apisubmiturl, {
                     
-                        supplier:this.supplier,
-                        supplier_date:this.supplier_date,
-                        supplier_invoice_num:this.supplier_invoice_num,
-                        rahdan_invoice_num:this.rahdan_invoice_num,
-                        details: this.items,
+                        data : {
+                            supplier:this.supplier,
+                            supplier_date:this.supplier_date,
+                            supplier_invoice_num:this.supplier_invoice_num,
+                            rahdan_invoice_num:this.rahdan_invoice_num,
+                            details: this.items,
+                        },
+                        _method: 'patch'
                     
                     }).then(res => {
                     

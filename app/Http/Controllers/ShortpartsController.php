@@ -72,7 +72,7 @@ class ShortpartsController extends Controller
             $detail = new Short_part_detail;
 
             $detail->short_part_id = $short_part->id;
-            $detail->partno = $v['partno'];    
+            $detail->partno = strtoupper($v['partno']);    
             $detail->request = $v['request'];    
             $detail->received = $v['received'];    
             $detail->price = $v['price'];    
@@ -109,10 +109,37 @@ class ShortpartsController extends Controller
 
         $data['suppliers'] = Supplier::all();
 
-        show all data in edit view
-
         return view('shortparts.edit', $data);
     }
+
+    public function shortparts_update(Request $request, Short_part $short_part)
+    {
+        
+        $d = $request->data;
+
+        $short_part->supplier_id = $d['supplier'];
+        $short_part->invoicedate_supplier = $d['supplier_date'];
+        $short_part->invoicenum_supplier = $d['supplier_invoice_num'];
+        $short_part->invoicenum_rahdan = $d['rahdan_invoice_num'];
+        
+        Short_part_detail::where('short_part_id', $short_part->id)->delete();
+
+        foreach ($d['details'] as $v) {
+        
+            $detail = new Short_part_detail;
+
+            $detail->short_part_id = $short_part->id;
+            $detail->partno = strtoupper($v['partno']);    
+            $detail->request = $v['request'];    
+            $detail->received = $v['received'];    
+            $detail->price = $v['price'];    
+            $detail->discount = $v['discount'];   
+
+            $detail->save(); 
+        }
+
+        return 'ok';
+    }   
 
     /**
      * Update the specified resource in storage.
@@ -132,8 +159,10 @@ class ShortpartsController extends Controller
      * @param  \App\Models\Short_parts  $short_parts
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Short_part $short_part)
+    public function destroy(Short_part $shortpart)
     {
-        //
+        $shortpart->delete();
+        
+        return back()->with('success', 'Short Part Removed');
     }
 }
