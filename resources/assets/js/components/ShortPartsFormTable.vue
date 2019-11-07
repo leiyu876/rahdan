@@ -73,7 +73,7 @@
                         <div class="form-group">
                             <label for="total_price" class="col-sm-4 control-label">Qty Received</label>
                             <div class="col-sm-8">
-                              <input  class="form-control" v-model="received" type="number" min="1">
+                              <input  class="form-control" v-model="received" type="number" min="1" v-bind:max="request" v-bind:style="receivedError : 1">
                             </div>
                         </div>
 
@@ -113,7 +113,7 @@
                     <td>{{ item.partno}}</td>
                     <td>{{ item.request}}</td>
                     <td>{{ item.received}}</td>
-                    <td>{{ item.request - item.received}}</td>
+                    <td style="color:red">{{ item.request - item.received}}</td>
                     <td>{{ item.price}}</td>
                     <td>{{ item.discount}}</td>
                     <td>
@@ -155,7 +155,17 @@
                 request: null,
                 received: 0,
                 price: 0,
-                discount: 0
+                discount: 0,
+
+                here you need to add red border to received input if its higher than request
+
+                classObject : {
+
+                }/
+
+                receivedError : {
+                    border:'1px solid blue'
+                }
             }
         },
 

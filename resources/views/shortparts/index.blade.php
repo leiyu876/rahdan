@@ -25,8 +25,9 @@
                             <tr>
                                 <th>#</th>
                                 <th>Supplier Name</th>
-                                <th>Supplier Invoice #</th>
-                                <th>Rahdan Invoice #</th>
+                                <th>Items</th>
+                                <th>Quantities</th>
+                                <th>Rahdan Invoice#</th>
                                 
                                 
                                 <th>Supplier Date</th>
@@ -34,11 +35,12 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($shortparts as $shortpart)
+                            @foreach($shortparts as $shortpart)                                                            
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $shortpart->supplier->name }}</td>
-                                    <td>{{ $shortpart->invoicenum_supplier }}</td>
+                                    <td>{{ count($shortpart->items) }}</td>
+                                    <td>{{ $shortpart->totalShortQuantities() }}</td>
                                     <td>{{ $shortpart->invoicenum_rahdan }}</td>
                                     
                                     

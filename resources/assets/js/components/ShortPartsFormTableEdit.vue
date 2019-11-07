@@ -113,7 +113,7 @@
                     <td>{{ item.partno}}</td>
                     <td>{{ item.request}}</td>
                     <td>{{ item.received}}</td>
-                    <td>{{ item.request - item.received}}</td>
+                    <td style="color:red">{{ item.request - item.received}}</td>
                     <td>{{ item.price}}</td>
                     <td>{{ item.discount}}</td>
                     <td>
