@@ -73,7 +73,7 @@
                         <div class="form-group">
                             <label for="total_price" class="col-sm-4 control-label">Qty Received</label>
                             <div class="col-sm-8">
-                              <input  class="form-control" v-model="received" type="number" min="1">
+                              <input  class="form-control" v-model="received" type="number" min="1" v-bind:max="request" :class="{ 'field_border_red' : requestError }">
                             </div>
                         </div>
 
@@ -87,8 +87,8 @@
                     </div>
                     <div class="col-md-4">
                         <button class="btn btn-default" @click="itemUpdateCancel" v-if="isUpdate">Cancel</button>
-                        <button class="btn btn-default" @click="itemUpdate" v-if="isUpdate">Update</button>
-                        <button class="btn btn-default" @click="addToList" v-if="!isUpdate && partno && request">Add to List</button>
+                        <button class="btn btn-default" @click="itemUpdate" v-if="isUpdate && partno && request && !requestError">Update</button>
+                        <button class="btn btn-default" @click="addToList" v-if="!isUpdate && partno && request && !requestError">Add to List</button>
                     </div>
                 </div>
             </div>
@@ -169,14 +169,23 @@
             }
         },
 
+        computed : {
+
+            requestError : function () {
+
+                return parseInt(this.request) < parseInt(this.received);
+            }
+        },
+
         methods : {
             addToList : function () {
+
                 var newItem = {
                     partno: this.partno, 
                     request: this.request, 
-                    received: this.received, 
-                    price: this.price, 
-                    discount: this.discount, 
+                    received: this.received ? this.received : 0, 
+                    price: this.price ? this.price : 0, 
+                    discount: this.discount ? this.discount : 0, 
                 }
 
                 this.clearAll()
@@ -273,6 +282,10 @@
             }
         }
     }
-
-    
 </script>
+
+<style>
+    .field_border_red {
+        border-color : red
+    }
+</style>

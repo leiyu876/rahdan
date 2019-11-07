@@ -73,7 +73,7 @@
                         <div class="form-group">
                             <label for="total_price" class="col-sm-4 control-label">Qty Received</label>
                             <div class="col-sm-8">
-                              <input  class="form-control" v-model="received" type="number" min="1" v-bind:max="request" v-bind:style="receivedError : 1">
+                              <input  class="form-control" v-model="received" type="number" min="1" v-bind:max="request" :class="{ 'field_border_red' : requestError }">
                             </div>
                         </div>
 
@@ -87,8 +87,8 @@
                     </div>
                     <div class="col-md-4">
                         <button class="btn btn-default" @click="itemUpdateCancel" v-if="isUpdate">Cancel</button>
-                        <button class="btn btn-default" @click="itemUpdate" v-if="isUpdate">Update</button>
-                        <button class="btn btn-default" @click="addToList" v-if="!isUpdate && partno && request" >Add to List</button>
+                        <button class="btn btn-default" @click="itemUpdate" v-if="isUpdate && partno && request && !requestError">Update</button>
+                        <button class="btn btn-default" @click="addToList" v-if="!isUpdate && partno && request && !requestError" >Add to List</button>
                     </div>
                 </div>
             </div>
@@ -130,8 +130,9 @@
 <script>
     
     export default {
-        mounted() {
-            console.log(this.apisubmiturl)
+
+        mounted() {            
+            
         },
 
         props : [
@@ -155,17 +156,15 @@
                 request: null,
                 received: 0,
                 price: 0,
-                discount: 0,
+                discount: 0, 
+            }
+        },
 
-                here you need to add red border to received input if its higher than request
+        computed : {
 
-                classObject : {
+            requestError : function () {
 
-                }/
-
-                receivedError : {
-                    border:'1px solid blue'
-                }
+                return parseInt(this.request) <= parseInt(this.received);
             }
         },
 
@@ -276,3 +275,9 @@
 
     
 </script>
+
+<style>
+    .field_border_red {
+        border-color : red
+    }
+</style>
