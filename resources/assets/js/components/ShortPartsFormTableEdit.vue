@@ -7,11 +7,12 @@
                         <div class="form-group">
                             <label class="col-sm-4 control-label">Supplier Name</label>                              
                             <div class="col-sm-8">
-                                <select v-model="supplier" class="form-control" style="width: 100%;" id="supplier_id">
+                                <select v-model="supplier" class="form-control select2" style="width: 100%;" 
+                                    id="supplier_id" name="mySelect2">
                                   <option v-for="supplier in suppliers" v-bind:value="supplier.id">
                                       {{ supplier.name }}
                                   </option>
-                                </select>                                 
+                                </select>
                             </div>
                         </div>
                         <div class="form-group">
@@ -131,16 +132,16 @@
     
     export default {
         mounted() {
-            
-            console.log(this.short_part);
-
             this.supplier=this.short_part.supplier_id
             this.supplier_date=this.short_part.invoicedate_supplier
             this.supplier_invoice_num=this.short_part.invoicenum_supplier
             this.rahdan_invoice_num=this.short_part.invoicenum_rahdan
             this.items = this.details
 
-            console.log(this.apisubmiturl)
+        },
+
+        created() {
+            this.interval = setInterval(() => this.checkSelect2Val(), 2000);
         },
 
         props : [
@@ -179,7 +180,7 @@
 
         methods : {
             addToList : function () {
-
+                
                 var newItem = {
                     partno: this.partno, 
                     request: this.request, 
@@ -277,8 +278,13 @@
                     location.reload();
 
                 }).catch(err => {
-                    console.log(err)
+                    alert(err)
                 })
+            },
+
+            // this function was made because select2 with autocomplete has error inside vue
+            checkSelect2Val : function () {
+                this.supplier = $('select[name="mySelect2"] option:selected').val()
             }
         }
     }

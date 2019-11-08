@@ -7,27 +7,27 @@
 
 @section('content')
 
-<div id="app">
-    <div class="row">   
-        <div class="col-xs-12">
-            <div class="box">
-                <div class="box-header">
-                    <h3 class="box-title"></h3>
-                </div>
-                <!-- /.box-header -->
-                <div class="box-body">
-                    <shortparts-formtable-edit 
-                        apisubmiturl="{{ url('api/shortparts_update', $short_part->id) }}" 
-                        :suppliers="{{ $suppliers }}"
-                        :short_part="{{ $short_part }}"
-                        :details="{{ $short_part->items }}"
-                    ></shortparts-formtable-edit>
-                </div>
-             </div>
+    <div id="app">
+        <div class="row">   
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title"></h3>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <shortparts-formtable-edit 
+                            apisubmiturl="{{ url('api/shortparts_update', $short_part->id) }}" 
+                            :suppliers="{{ $suppliers }}"
+                            :short_part="{{ $short_part }}"
+                            :details="{{ $short_part->items }}"
+                        ></shortparts-formtable-edit>
+                    </div>
+                 </div>
+            </div>
         </div>
-    </div>     
-</div>
-  @endsection()
+    </div>
+@endsection()
 
 @section('js')
 <script src="{{ asset('js/app.js') }}"></script>

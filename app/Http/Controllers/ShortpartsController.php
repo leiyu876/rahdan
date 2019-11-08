@@ -114,7 +114,6 @@ class ShortpartsController extends Controller
 
     public function shortparts_update(Request $request, Short_part $short_part)
     {
-        
         $d = $request->data;
 
         $short_part->supplier_id = $d['supplier'];
@@ -122,6 +121,8 @@ class ShortpartsController extends Controller
         $short_part->invoicenum_supplier = $d['supplier_invoice_num'];
         $short_part->invoicenum_rahdan = $d['rahdan_invoice_num'];
         
+        $short_part->update();
+
         Short_part_detail::where('short_part_id', $short_part->id)->delete();
 
         foreach ($d['details'] as $v) {

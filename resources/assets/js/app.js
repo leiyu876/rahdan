@@ -20,5 +20,5 @@ Vue.component('shortparts-formtable', require('./components/ShortPartsFormTable.
 Vue.component('shortparts-formtable-edit', require('./components/ShortPartsFormTableEdit.vue'));
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
 });

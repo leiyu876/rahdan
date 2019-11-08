@@ -7,7 +7,8 @@
                         <div class="form-group">
                             <label class="col-sm-4 control-label">Supplier Name</label>                              
                             <div class="col-sm-8">
-                                <select v-model="supplier" class="form-control" style="width: 100%;" id="supplier_id">
+                                <select v-model="supplier" class="form-control select2" style="width: 100%;" 
+                                    id="supplier_id" name="mySelect2">
                                   <option v-for="supplier in suppliers" v-bind:value="supplier.id">
                                       {{ supplier.name }}
                                   </option>
@@ -133,6 +134,10 @@
 
         mounted() {            
             
+        },
+
+        created() {
+            this.interval = setInterval(() => this.checkSelect2Val(), 2000);
         },
 
         props : [
@@ -269,6 +274,11 @@
                 }).catch(err => {
                     console.log(err)
                 })
+            },
+
+            checkSelect2Val : function () {
+                this.supplier = $('select[name="mySelect2"] option:selected').val()
+                console.log(this.supplier)
             }
         }
     }
