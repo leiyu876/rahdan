@@ -49855,13 +49855,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
                 location.reload();
             }).catch(function (err) {
-                console.log(err);
+                alert(err);
             });
         },
 
         checkSelect2Val: function checkSelect2Val() {
             this.supplier = $('select[name="mySelect2"] option:selected').val();
-            console.log(this.supplier);
         }
     }
 });
@@ -50311,7 +50310,10 @@ var render = function() {
       )
     ]),
     _vm._v(" "),
-    _vm.items && _vm.supplier && _vm.supplier_date && _vm.supplier_invoice_num
+    _vm.items.length &&
+    _vm.supplier &&
+    _vm.supplier_date &&
+    _vm.supplier_invoice_num
       ? _c(
           "button",
           {

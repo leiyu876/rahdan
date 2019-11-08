@@ -124,7 +124,7 @@
                 </tr>
             </tbody>
          </table>
-         <button v-if="items && supplier && supplier_date && supplier_invoice_num" class="btn btn-primary pull-right" @click="finalSubmit">Final Save</button>
+         <button v-if="items.length && supplier && supplier_date && supplier_invoice_num" class="btn btn-primary pull-right" @click="finalSubmit">Final Save</button>
     </div>
 </template>
 
@@ -272,13 +272,12 @@
                     location.reload();
 
                 }).catch(err => {
-                    console.log(err)
+                    alert(err)
                 })
             },
 
             checkSelect2Val : function () {
                 this.supplier = $('select[name="mySelect2"] option:selected').val()
-                console.log(this.supplier)
             }
         }
     }
