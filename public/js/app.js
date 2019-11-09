@@ -49716,6 +49716,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -49752,6 +49770,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     computed: {
 
+        total_all: function total_all() {
+
+            var sum = 0;
+
+            this.items.forEach(function (item) {
+
+                sum += getTotalPerRow_public(item.request - item.received, item.price, item.discount);
+            });
+
+            return sum;
+        },
+
         requestError: function requestError() {
 
             return parseInt(this.request) <= parseInt(this.received);
@@ -49766,12 +49796,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     methods: {
 
         addToList: function addToList() {
+
+            this.price = this.roundTwoDecimal(this.price);
+            this.discount = this.roundTwoDecimal(this.discount);
+
             var newItem = {
                 partno: this.partno,
                 request: this.request,
-                received: this.received,
-                price: this.price,
-                discount: this.discount
+                received: this.received ? this.received : 0,
+                price: this.price ? this.price : 0,
+                discount: this.discount ? this.discount : 0
             };
 
             this.clearAll();
@@ -49825,6 +49859,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
         itemUpdate: function itemUpdate() {
 
+            this.price = this.roundTwoDecimal(this.price);
+            this.discount = this.roundTwoDecimal(this.discount);
+
             this.items[this.itemToBeUpdate].partno = this.partno;
             this.items[this.itemToBeUpdate].request = this.request;
             this.items[this.itemToBeUpdate].received = this.received;
@@ -49867,9 +49904,33 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
         checkSelect2Val: function checkSelect2Val() {
             this.supplier = $('select[name="mySelect2"] option:selected').val();
+        },
+
+        getTotalPerRow: function getTotalPerRow(qty, price, discount) {
+
+            return getTotalPerRow_public(qty, price, discount);
+        },
+
+        roundTwoDecimal: function roundTwoDecimal(money) {
+
+            return roundTwoDecimal_public(money);
         }
     }
 });
+
+function getTotalPerRow_public(qty, price, discount) {
+
+    var regPrice = price * qty;
+
+    var total = discount ? regPrice - regPrice * (discount / 100) : regPrice;
+
+    return roundTwoDecimal_public(total);
+}
+
+function roundTwoDecimal_public(money) {
+
+    return Math.round(money * 100) / 100;
+}
 
 /***/ }),
 /* 50 */
@@ -50212,7 +50273,7 @@ var render = function() {
                       }
                     ],
                     staticClass: "form-control",
-                    attrs: { type: "number", min: "1" },
+                    attrs: { type: "number", min: "0" },
                     domProps: { value: _vm.discount },
                     on: {
                       input: function($event) {
@@ -50300,12 +50361,11 @@ var render = function() {
             _c("td", [
               _vm._v(
                 _vm._s(
-                  item.discount
-                    ? item.price * (item.request - item.received) -
-                        item.price *
-                          (item.request - item.received) *
-                          (item.discount / 100)
-                    : 0
+                  _vm.getTotalPerRow(
+                    item.request - item.received,
+                    item.price,
+                    item.discount
+                  )
                 )
               )
             ]),
@@ -50337,19 +50397,47 @@ var render = function() {
       )
     ]),
     _vm._v(" "),
-    _vm.items.length &&
-    _vm.supplier &&
-    _vm.supplier_date &&
-    _vm.supplier_invoice_num
-      ? _c(
-          "button",
-          {
-            staticClass: "btn btn-primary pull-right",
-            on: { click: _vm.finalSubmit }
-          },
-          [_vm._v("Final Save")]
-        )
-      : _vm._e()
+    _c("div", { staticClass: "row", staticStyle: { "font-size": "15px" } }, [
+      _c("div", { staticClass: "col-sm-6" }),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-sm-6" }, [
+        _vm._m(2),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-sm-3" }, [
+          _c("span", { staticStyle: { "background-color": "yellow" } }, [
+            _vm._v(_vm._s(_vm.total_all))
+          ]),
+          _vm._v(" "),
+          _c("br"),
+          _vm._v(" "),
+          _c("span", { staticStyle: { "background-color": "yellow" } }, [
+            _vm._v(_vm._s(_vm.total_all * 0.05))
+          ]),
+          _vm._v(" "),
+          _c("br"),
+          _vm._v(" "),
+          _c("span", { staticStyle: { "background-color": "yellow" } }, [
+            _vm._v(_vm._s(_vm.total_all))
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-sm-3 pull-right" }, [
+          _vm.items.length &&
+          _vm.supplier &&
+          _vm.supplier_date &&
+          _vm.supplier_invoice_num
+            ? _c(
+                "button",
+                {
+                  staticClass: "btn btn-primary pull-right",
+                  on: { click: _vm.finalSubmit }
+                },
+                [_vm._v("Final Save")]
+              )
+            : _vm._e()
+        ])
+      ])
+    ])
   ])
 }
 var staticRenderFns = [
@@ -50384,6 +50472,28 @@ var staticRenderFns = [
         _c("th", [_vm._v("Total")]),
         _vm._v(" "),
         _c("th", [_vm._v("Action")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-sm-3", attrs: { align: "right" } }, [
+      _c("span", { staticStyle: { "background-color": "yellow" } }, [
+        _vm._v("Total no vat :")
+      ]),
+      _vm._v(" "),
+      _c("br"),
+      _vm._v(" "),
+      _c("span", { staticStyle: { "background-color": "yellow" } }, [
+        _vm._v("Vat 5% :")
+      ]),
+      _vm._v(" "),
+      _c("br"),
+      _vm._v(" "),
+      _c("span", { staticStyle: { "background-color": "yellow" } }, [
+        _vm._v("Total w/ Vat :")
       ])
     ])
   }
@@ -50626,6 +50736,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -50669,6 +50797,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     computed: {
 
+        total_all: function total_all() {
+
+            var sum = 0;
+
+            this.items.forEach(function (item) {
+
+                sum += getTotalPerRow_public(item.request - item.received, item.price, item.discount);
+            });
+
+            return sum;
+        },
+
         requestError: function requestError() {
 
             return parseInt(this.request) <= parseInt(this.received);
@@ -50683,8 +50823,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     methods: {
         addToList: function addToList() {
 
-            this.price = Math.round(this.price * 100) / 100;
-            this.discount = Math.round(this.discount * 100) / 100;
+            this.price = this.roundTwoDecimal(this.price);
+            this.discount = this.roundTwoDecimal(this.discount);
 
             var newItem = {
                 partno: this.partno,
@@ -50743,8 +50883,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
         itemUpdate: function itemUpdate() {
 
-            this.price = Math.round(this.price * 100) / 100;
-            this.discount = Math.round(this.discount * 100) / 100;
+            this.price = this.roundTwoDecimal(this.price);
+            this.discount = this.roundTwoDecimal(this.discount);
 
             this.items[this.itemToBeUpdate].partno = this.partno;
             this.items[this.itemToBeUpdate].request = this.request;
@@ -50792,9 +50932,33 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         // this function was made because select2 with autocomplete has error inside vue
         checkSelect2Val: function checkSelect2Val() {
             this.supplier = $('select[name="mySelect2"] option:selected').val();
+        },
+
+        getTotalPerRow: function getTotalPerRow(qty, price, discount) {
+
+            return getTotalPerRow_public(qty, price, discount);
+        },
+
+        roundTwoDecimal: function roundTwoDecimal(money) {
+
+            return roundTwoDecimal_public(money);
         }
     }
 });
+
+function getTotalPerRow_public(qty, price, discount) {
+
+    var regPrice = price * qty;
+
+    var total = discount ? regPrice - regPrice * (discount / 100) : regPrice;
+
+    return roundTwoDecimal_public(total);
+}
+
+function roundTwoDecimal_public(money) {
+
+    return Math.round(money * 100) / 100;
+}
 
 /***/ }),
 /* 55 */
@@ -51225,12 +51389,11 @@ var render = function() {
             _c("td", [
               _vm._v(
                 _vm._s(
-                  item.discount
-                    ? item.price * (item.request - item.received) -
-                        item.price *
-                          (item.request - item.received) *
-                          (item.discount / 100)
-                    : 0
+                  _vm.getTotalPerRow(
+                    item.request - item.received,
+                    item.price,
+                    item.discount
+                  )
                 )
               )
             ]),
@@ -51262,16 +51425,44 @@ var render = function() {
       )
     ]),
     _vm._v(" "),
-    _vm.supplier && _vm.supplier_date && _vm.supplier_invoice_num
-      ? _c(
-          "button",
-          {
-            staticClass: "btn btn-primary pull-right",
-            on: { click: _vm.finalSubmit }
-          },
-          [_vm._v("Final Save")]
-        )
-      : _vm._e()
+    _c("div", { staticClass: "row", staticStyle: { "font-size": "15px" } }, [
+      _c("div", { staticClass: "col-sm-6" }),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-sm-6" }, [
+        _vm._m(2),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-sm-3" }, [
+          _c("span", { staticStyle: { "background-color": "yellow" } }, [
+            _vm._v(_vm._s(_vm.total_all))
+          ]),
+          _vm._v(" "),
+          _c("br"),
+          _vm._v(" "),
+          _c("span", { staticStyle: { "background-color": "yellow" } }, [
+            _vm._v(_vm._s(_vm.total_all * 0.05))
+          ]),
+          _vm._v(" "),
+          _c("br"),
+          _vm._v(" "),
+          _c("span", { staticStyle: { "background-color": "yellow" } }, [
+            _vm._v(_vm._s(_vm.total_all))
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-sm-3 pull-right" }, [
+          _vm.supplier && _vm.supplier_date && _vm.supplier_invoice_num
+            ? _c(
+                "button",
+                {
+                  staticClass: "btn btn-primary pull-right",
+                  on: { click: _vm.finalSubmit }
+                },
+                [_vm._v("Final Save")]
+              )
+            : _vm._e()
+        ])
+      ])
+    ])
   ])
 }
 var staticRenderFns = [
@@ -51306,6 +51497,28 @@ var staticRenderFns = [
         _c("th", [_vm._v("Total")]),
         _vm._v(" "),
         _c("th", [_vm._v("Action")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-sm-3", attrs: { align: "right" } }, [
+      _c("span", { staticStyle: { "background-color": "yellow" } }, [
+        _vm._v("Total no vat :")
+      ]),
+      _vm._v(" "),
+      _c("br"),
+      _vm._v(" "),
+      _c("span", { staticStyle: { "background-color": "yellow" } }, [
+        _vm._v("Vat 5% :")
+      ]),
+      _vm._v(" "),
+      _c("br"),
+      _vm._v(" "),
+      _c("span", { staticStyle: { "background-color": "yellow" } }, [
+        _vm._v("Total w/ Vat :")
       ])
     ])
   }

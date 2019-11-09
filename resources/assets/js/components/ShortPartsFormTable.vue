@@ -81,7 +81,7 @@
                         <div class="form-group">
                             <label for="discount" class="col-sm-4 control-label">Discount</label>
                             <div class="col-sm-8">
-                              <input  class="form-control" v-model="discount" type="number" min="1">
+                              <input  class="form-control" v-model="discount" type="number" min="0">
                             </div>
                         </div>
 
@@ -118,7 +118,7 @@
                     <td style="color:red">{{ item.request - item.received}}</td>
                     <td>{{ item.price}}</td>
                     <td>{{ item.discount + ' %'}}</td>
-                    <td>{{ item.discount ? (item.price * (item.request - item.received)) - ((item.price * (item.request - item.received)) * (item.discount / 100) ) : 0 }}</td>
+                    <td>{{ getTotalPerRow(item.request - item.received, item.price, item.discount) }}</td>
                     <td>
                         <i class="fa fa-fw fa-pencil" data-toggle="tooltip" title="Edit" @click="itemEdit(key-1)"></i>
                         <i class="fa fa-fw fa-trash" data-toggle="tooltip" title="Delete" @click="itemRemove(key-1)"></i>
@@ -126,7 +126,25 @@
                 </tr>
             </tbody>
          </table>
-         <button v-if="items.length && supplier && supplier_date && supplier_invoice_num" class="btn btn-primary pull-right" @click="finalSubmit">Final Save</button>
+         <div class="row" style="font-size: 15px">
+            <div class="col-sm-6">                
+            </div>
+            <div class="col-sm-6">
+                <div class="col-sm-3" align="right">
+                    <span style="background-color:yellow">Total no vat :</span> <br/>  
+                    <span style="background-color:yellow">Vat 5% :</span> <br/>  
+                    <span style="background-color:yellow">Total w/ Vat :</span>  
+                </div>
+                <div class="col-sm-3">
+                    <span style="background-color:yellow">{{ total_all }}</span> <br/>  
+                    <span style="background-color:yellow">{{ total_all * .05 }}</span> <br/>  
+                    <span style="background-color:yellow">{{ total_all }}</span>   
+                </div>
+                <div class="col-sm-3 pull-right">                                    
+                    <button v-if="items.length && supplier && supplier_date && supplier_invoice_num" class="btn btn-primary pull-right" @click="finalSubmit">Final Save</button>
+                </div>
+            </div>
+         </div>          
     </div>
 </template>
 
@@ -169,6 +187,19 @@
 
         computed : {
 
+            total_all: function(){
+
+              let sum = 0;
+
+              this.items.forEach(function(item) {
+                    
+                sum += getTotalPerRow_public(item.request-item.received , item.price, item.discount); 
+
+              });
+
+             return sum;
+           },
+            
             requestError : function () {
 
                 return parseInt(this.request) <= parseInt(this.received);
@@ -183,12 +214,16 @@
         methods : {
 
             addToList : function () {
+                
+                this.price = this.roundTwoDecimal(this.price)
+                this.discount = this.roundTwoDecimal(this.discount)
+
                 var newItem = {
                     partno: this.partno, 
                     request: this.request, 
-                    received: this.received, 
-                    price: this.price, 
-                    discount: this.discount, 
+                    received: this.received ? this.received : 0, 
+                    price: this.price ? this.price : 0, 
+                    discount: this.discount ? this.discount : 0, 
                 }
 
                 this.clearAll()
@@ -242,6 +277,9 @@
 
             itemUpdate : function () {
 
+                this.price = this.roundTwoDecimal(this.price)
+                this.discount = this.roundTwoDecimal(this.discount)
+
                 this.items[this.itemToBeUpdate].partno = this.partno
                 this.items[this.itemToBeUpdate].request = this.request
                 this.items[this.itemToBeUpdate].received = this.received
@@ -285,10 +323,33 @@
 
             checkSelect2Val : function () {
                 this.supplier = $('select[name="mySelect2"] option:selected').val()
+            },
+
+            getTotalPerRow : function (qty , price, discount) {
+                
+                return getTotalPerRow_public(qty , price, discount)                
+            },
+
+            roundTwoDecimal : function (money) {
+
+                return roundTwoDecimal_public(money)
             }
         }
     }
 
+    function getTotalPerRow_public(qty , price, discount) {
+
+        var regPrice = price * qty
+
+        var total =  discount ? regPrice - (regPrice * (discount / 100) ) : regPrice
+
+        return roundTwoDecimal_public(total)
+    }
+
+    function roundTwoDecimal_public(money) {
+
+        return Math.round(money * 100) / 100
+    }
     
 </script>
 
