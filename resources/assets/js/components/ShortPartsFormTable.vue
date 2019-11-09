@@ -88,8 +88,8 @@
                     </div>
                     <div class="col-md-4">
                         <button class="btn btn-default" @click="itemUpdateCancel" v-if="isUpdate">Cancel</button>
-                        <button class="btn btn-default" @click="itemUpdate" v-if="isUpdate && partno && request && !requestError">Update</button>
-                        <button class="btn btn-default" @click="addToList" v-if="!isUpdate && partno && request && !requestError" >Add to List</button>
+                        <button class="btn btn-default" @click="itemUpdate" v-if="isUpdate && partno && request && !requestError && !discountError">Update</button>
+                        <button class="btn btn-default" @click="addToList" v-if="!isUpdate && partno && request && !requestError && !discountError">Add to List</button>
                     </div>
                 </div>
             </div>
@@ -105,6 +105,7 @@
                     <th>Balance</th>
                     <th>Price</th>
                     <th>Discount</th>
+                    <th>Total</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -116,7 +117,8 @@
                     <td>{{ item.received}}</td>
                     <td style="color:red">{{ item.request - item.received}}</td>
                     <td>{{ item.price}}</td>
-                    <td>{{ item.discount}}</td>
+                    <td>{{ item.discount + ' %'}}</td>
+                    <td>{{ item.discount ? (item.price * (item.request - item.received)) - ((item.price * (item.request - item.received)) * (item.discount / 100) ) : 0 }}</td>
                     <td>
                         <i class="fa fa-fw fa-pencil" data-toggle="tooltip" title="Edit" @click="itemEdit(key-1)"></i>
                         <i class="fa fa-fw fa-trash" data-toggle="tooltip" title="Delete" @click="itemRemove(key-1)"></i>
@@ -170,7 +172,12 @@
             requestError : function () {
 
                 return parseInt(this.request) <= parseInt(this.received);
-            }
+            },
+
+            discountError : function () {
+
+                return parseInt(this.discount) > 100;
+            },
         },
 
         methods : {

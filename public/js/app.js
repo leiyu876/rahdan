@@ -14603,9 +14603,8 @@ module.exports = __webpack_require__(56);
 
 /***/ }),
 /* 15 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -49715,6 +49714,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -49754,6 +49755,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         requestError: function requestError() {
 
             return parseInt(this.request) <= parseInt(this.received);
+        },
+
+        discountError: function discountError() {
+
+            return parseInt(this.discount) > 100;
         }
     },
 
@@ -50233,7 +50239,11 @@ var render = function() {
                   )
                 : _vm._e(),
               _vm._v(" "),
-              _vm.isUpdate && _vm.partno && _vm.request && !_vm.requestError
+              _vm.isUpdate &&
+              _vm.partno &&
+              _vm.request &&
+              !_vm.requestError &&
+              !_vm.discountError
                 ? _c(
                     "button",
                     {
@@ -50244,7 +50254,11 @@ var render = function() {
                   )
                 : _vm._e(),
               _vm._v(" "),
-              !_vm.isUpdate && _vm.partno && _vm.request && !_vm.requestError
+              !_vm.isUpdate &&
+              _vm.partno &&
+              _vm.request &&
+              !_vm.requestError &&
+              !_vm.discountError
                 ? _c(
                     "button",
                     {
@@ -50281,7 +50295,20 @@ var render = function() {
             _vm._v(" "),
             _c("td", [_vm._v(_vm._s(item.price))]),
             _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(item.discount))]),
+            _c("td", [_vm._v(_vm._s(item.discount + " %"))]),
+            _vm._v(" "),
+            _c("td", [
+              _vm._v(
+                _vm._s(
+                  item.discount
+                    ? item.price * (item.request - item.received) -
+                        item.price *
+                          (item.request - item.received) *
+                          (item.discount / 100)
+                    : 0
+                )
+              )
+            ]),
             _vm._v(" "),
             _c("td", [
               _c("i", {
@@ -50353,6 +50380,8 @@ var staticRenderFns = [
         _c("th", [_vm._v("Price")]),
         _vm._v(" "),
         _c("th", [_vm._v("Discount")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Total")]),
         _vm._v(" "),
         _c("th", [_vm._v("Action")])
       ])
@@ -50595,6 +50624,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -50631,7 +50662,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             request: null,
             received: null,
             price: null,
-            discount: null
+            discount: null,
+            total: null
         };
     },
 
@@ -50639,12 +50671,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
         requestError: function requestError() {
 
-            return parseInt(this.request) < parseInt(this.received);
+            return parseInt(this.request) <= parseInt(this.received);
+        },
+
+        discountError: function discountError() {
+
+            return parseInt(this.discount) > 100;
         }
     },
 
     methods: {
         addToList: function addToList() {
+
+            this.price = Math.round(this.price * 100) / 100;
+            this.discount = Math.round(this.discount * 100) / 100;
 
             var newItem = {
                 partno: this.partno,
@@ -50702,6 +50742,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
 
         itemUpdate: function itemUpdate() {
+
+            this.price = Math.round(this.price * 100) / 100;
+            this.discount = Math.round(this.discount * 100) / 100;
 
             this.items[this.itemToBeUpdate].partno = this.partno;
             this.items[this.itemToBeUpdate].request = this.request;
@@ -51080,7 +51123,7 @@ var render = function() {
                     staticClass: "col-sm-4 control-label",
                     attrs: { for: "discount" }
                   },
-                  [_vm._v("Discount")]
+                  [_vm._v("Discount %")]
                 ),
                 _vm._v(" "),
                 _c("div", { staticClass: "col-sm-8" }, [
@@ -51094,7 +51137,7 @@ var render = function() {
                       }
                     ],
                     staticClass: "form-control",
-                    attrs: { type: "number", min: "1" },
+                    attrs: { type: "number", min: "1", max: "100" },
                     domProps: { value: _vm.discount },
                     on: {
                       input: function($event) {
@@ -51121,7 +51164,11 @@ var render = function() {
                   )
                 : _vm._e(),
               _vm._v(" "),
-              _vm.isUpdate && _vm.partno && _vm.request && !_vm.requestError
+              _vm.isUpdate &&
+              _vm.partno &&
+              _vm.request &&
+              !_vm.requestError &&
+              !_vm.discountError
                 ? _c(
                     "button",
                     {
@@ -51132,7 +51179,11 @@ var render = function() {
                   )
                 : _vm._e(),
               _vm._v(" "),
-              !_vm.isUpdate && _vm.partno && _vm.request && !_vm.requestError
+              !_vm.isUpdate &&
+              _vm.partno &&
+              _vm.request &&
+              !_vm.requestError &&
+              !_vm.discountError
                 ? _c(
                     "button",
                     {
@@ -51169,7 +51220,20 @@ var render = function() {
             _vm._v(" "),
             _c("td", [_vm._v(_vm._s(item.price))]),
             _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(item.discount))]),
+            _c("td", [_vm._v(_vm._s(item.discount + " %"))]),
+            _vm._v(" "),
+            _c("td", [
+              _vm._v(
+                _vm._s(
+                  item.discount
+                    ? item.price * (item.request - item.received) -
+                        item.price *
+                          (item.request - item.received) *
+                          (item.discount / 100)
+                    : 0
+                )
+              )
+            ]),
             _vm._v(" "),
             _c("td", [
               _c("i", {
@@ -51237,7 +51301,9 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Price")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Discount")]),
+        _c("th", [_vm._v("Discount %")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Total")]),
         _vm._v(" "),
         _c("th", [_vm._v("Action")])
       ])

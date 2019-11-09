@@ -79,17 +79,17 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="discount" class="col-sm-4 control-label">Discount</label>
+                            <label for="discount" class="col-sm-4 control-label">Discount %</label>
                             <div class="col-sm-8">
-                              <input  class="form-control" v-model="discount" type="number" min="1">
+                              <input  class="form-control" v-model="discount" type="number" min="1" max="100">
                             </div>
                         </div>
 
                     </div>
                     <div class="col-md-4">
                         <button class="btn btn-default" @click="itemUpdateCancel" v-if="isUpdate">Cancel</button>
-                        <button class="btn btn-default" @click="itemUpdate" v-if="isUpdate && partno && request && !requestError">Update</button>
-                        <button class="btn btn-default" @click="addToList" v-if="!isUpdate && partno && request && !requestError">Add to List</button>
+                        <button class="btn btn-default" @click="itemUpdate" v-if="isUpdate && partno && request && !requestError && !discountError">Update</button>
+                        <button class="btn btn-default" @click="addToList" v-if="!isUpdate && partno && request && !requestError && !discountError">Add to List</button>
                     </div>
                 </div>
             </div>
@@ -104,7 +104,8 @@
                     <th>Received</th>
                     <th>Balance</th>
                     <th>Price</th>
-                    <th>Discount</th>
+                    <th>Discount %</th>
+                    <th>Total</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -116,7 +117,8 @@
                     <td>{{ item.received}}</td>
                     <td style="color:red">{{ item.request - item.received}}</td>
                     <td>{{ item.price}}</td>
-                    <td>{{ item.discount}}</td>
+                    <td>{{ item.discount + ' %'}}</td>
+                    <td>{{ item.discount ? (item.price * (item.request - item.received)) - ((item.price * (item.request - item.received)) * (item.discount / 100) ) : 0 }}</td>
                     <td>
                         <i class="fa fa-fw fa-pencil" data-toggle="tooltip" title="Edit" @click="itemEdit(key-1)"></i>
                         <i class="fa fa-fw fa-trash" data-toggle="tooltip" title="Delete" @click="itemRemove(key-1)"></i>
@@ -137,7 +139,6 @@
             this.supplier_invoice_num=this.short_part.invoicenum_supplier
             this.rahdan_invoice_num=this.short_part.invoicenum_rahdan
             this.items = this.details
-
         },
 
         created() {
@@ -166,7 +167,8 @@
                 request: null,
                 received: null,
                 price: null,
-                discount: null
+                discount: null,
+                total: null
             }
         },
 
@@ -174,13 +176,21 @@
 
             requestError : function () {
 
-                return parseInt(this.request) < parseInt(this.received);
-            }
+                return parseInt(this.request) <= parseInt(this.received);
+            },
+
+            discountError : function () {
+
+                return parseInt(this.discount) > 100;
+            },
         },
 
         methods : {
             addToList : function () {
                 
+                this.price = Math.round(this.price * 100) / 100
+                this.discount = Math.round(this.discount * 100) / 100
+
                 var newItem = {
                     partno: this.partno, 
                     request: this.request, 
@@ -237,6 +247,9 @@
             },
 
             itemUpdate : function () {
+
+                this.price = Math.round(this.price * 100) / 100
+                this.discount = Math.round(this.discount * 100) / 100
 
                 this.items[this.itemToBeUpdate].partno = this.partno
                 this.items[this.itemToBeUpdate].request = this.request
