@@ -56,6 +56,10 @@ Route::group(['middleware' => ['auth']], function () {
 	    'shortparts' => 'ShortpartsController',
 	]);
 
+	Route::prefix('shortparts')->group(function() {
+		Route::get('by/partnumbers', 'ShortpartsController@byPartnumbers');
+	});
+
 	Route::prefix('invoices')->group(function() {
 		Route::get('create', 'InvoicesController@create')->name('invoices.create');
 		Route::post('invoices', 'InvoicesController@store')->name('invoices.store');

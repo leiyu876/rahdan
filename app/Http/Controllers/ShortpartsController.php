@@ -31,6 +31,15 @@ class ShortpartsController extends Controller
         return view('shortparts.index', $data);
     }
 
+    public function byPartnumbers()
+    {
+        $data['page_title'] = 'Short Parts Lists via Part Numbers';
+
+        $data['shortparts'] = Short_part::all();
+
+        return view('shortparts.bypartnumbers', $data);   
+    }
+
     /**
      * Show the form for creating a new resource.
      *

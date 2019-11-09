@@ -42,8 +42,22 @@
           <li class="{{ Request::is('argas/invoiced') ? 'active' : '' }}"><a href="{{ route('argas.invoiced') }}"><i class="fa fa-circle-o"></i> Invoiced</a></li>
         </ul>
       </li>
-      <li class="{{ Request::is('suppliers') ? 'active' : '' }}"><a href="{{ route('suppliers.index') }}"><i class="fa fa-exchange"></i> <span>Suppliers الموردين</span></a></li>
-      <li class="{{ Request::is('shortparts') ? 'active' : '' }}"><a href="{{ route('shortparts.index') }}"><i class="fa fa-exchange"></i> <span>Short Parts</span></a></li>
+      
+        <li class="{{ Request::is('suppliers') ? 'active' : '' }}"><a href="{{ route('suppliers.index') }}"><i class="fa fa-exchange"></i> <span>Suppliers الموردين</span></a></li>
+        
+        <li class="treeview {{ Request::is('shortparts*') ? 'menu-open' : '' }}">
+          <a href="#">
+            <i class="fa fa-exchange"></i> <span>Short Parts</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu" style="{{ Request::is('shortparts*') ? 'display:block' : '' }}">
+            <li class="{{ Request::is('shortparts') ? 'active' : '' }}"><a href="{{ route('shortparts.index') }}"><i class="fa fa-circle-o"></i> By Company</a></li>
+            <li class="{{ Request::is('shortparts/by/partnumbers') ? 'active' : '' }}"><a href="{{ url('shortparts/by/partnumbers') }}"><i class="fa fa-circle-o"></i> By Part Numbers</a></li>
+          </ul>
+        </li>
+     
       <li class="{{ Request::is('discount_compute') ? 'active' : '' }}"><a href="{{ url('discount_compute') }}"><i class="fa fa-exchange"></i> <span>Discount Compute حساب الخصم</span></a></li>
       @if(Auth::user()->hasRole('Super Administrator'))
         <li class="treeview {{ Request::is('invoices/warehouse*') ? 'menu-open' : '' }}">
