@@ -207,7 +207,7 @@
 
             requestError : function () {
 
-                return parseInt(this.request) <= parseInt(this.received);
+                return parseInt(this.request) < parseInt(this.received);
             },
 
             discountError : function () {

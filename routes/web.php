@@ -58,6 +58,8 @@ Route::group(['middleware' => ['auth']], function () {
 
 	Route::prefix('shortparts')->group(function() {
 		Route::get('by/partnumbers', 'ShortpartsController@byPartnumbers');
+		Route::get('{shortpart}/finish', 'ShortpartsController@finish')->name('shortparts.finish');
+		Route::get('status/finish_lists', 'ShortpartsController@finish_lists');
 	});
 
 	Route::prefix('invoices')->group(function() {

@@ -50811,7 +50811,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
         requestError: function requestError() {
 
-            return parseInt(this.request) <= parseInt(this.received);
+            return parseInt(this.request) < parseInt(this.received);
         },
 
         discountError: function discountError() {

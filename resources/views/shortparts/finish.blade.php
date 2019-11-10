@@ -47,11 +47,6 @@
                                     <td>{{ $shortpart->invoicedate_supplier }}</td>
                                     <td>
                                         @if(Auth::user()->hasRole('Super Administrator'))
-                                            @if($shortpart->totalShortQuantities() == 0)
-                                                <a href="{{ route('shortparts.finish', $shortpart)}}">
-                                                    <i class="fa fa-fw fa-calendar-check-o" data-toggle="tooltip" title="Finish"></i>
-                                                </a>
-                                            @endif
                                             <a href="{{ route('shortparts.edit', $shortpart)}}">
                                                 <i class="fa fa-fw fa-pencil" data-toggle="tooltip" title="Edit"></i>
                                             </a>

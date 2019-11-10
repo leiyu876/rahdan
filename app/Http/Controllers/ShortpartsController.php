@@ -26,7 +26,7 @@ class ShortpartsController extends Controller
     {
         $data['page_title'] = 'Short Parts Lists';
 
-        $data['shortparts'] = Short_part::all();
+        $data['shortparts'] = Short_part::where('status', '!=', 'DONE')->orWhereNull('status')->get();
 
         return view('shortparts.index', $data);
     }
@@ -35,9 +35,27 @@ class ShortpartsController extends Controller
     {
         $data['page_title'] = 'Short Parts Lists via Part Numbers';
 
-        $data['shortparts'] = Short_part::all();
+        $data['shortparts'] = Short_part::where('status', '!=', 'DONE')->orWhereNull('status')->get();
 
         return view('shortparts.bypartnumbers', $data);   
+    }
+
+    public function finish(Short_part $shortpart)
+    {
+        $shortpart->status = 'DONE';
+
+        $shortpart->update();
+
+        return redirect()->back();   
+    }
+
+    public function finish_lists()
+    {
+        $data['page_title'] = 'Short Parts Lists that are Finish already';
+
+        $data['shortparts'] = Short_part::where('status', '=', 'DONE')->get();
+
+        return view('shortparts.finish', $data);
     }
 
     /**

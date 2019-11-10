@@ -55,6 +55,7 @@
           <ul class="treeview-menu" style="{{ Request::is('shortparts*') ? 'display:block' : '' }}">
             <li class="{{ Request::is('shortparts') ? 'active' : '' }}"><a href="{{ route('shortparts.index') }}"><i class="fa fa-circle-o"></i> By Company</a></li>
             <li class="{{ Request::is('shortparts/by/partnumbers') ? 'active' : '' }}"><a href="{{ url('shortparts/by/partnumbers') }}"><i class="fa fa-circle-o"></i> By Part Numbers</a></li>
+            <li class="{{ Request::is('shortparts/status/finish') ? 'active' : '' }}"><a href="{{ url('shortparts/status/finish_lists') }}"><i class="fa fa-circle-o"></i> Finished</a></li>
           </ul>
         </li>
      
