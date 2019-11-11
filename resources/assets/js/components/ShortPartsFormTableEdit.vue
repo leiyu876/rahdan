@@ -137,8 +137,8 @@
                 </div>
                 <div class="col-sm-3">
                     <span style="background-color:yellow">{{ total_all }}</span> <br/>  
-                    <span style="background-color:yellow">{{ total_all * .05 }}</span> <br/>  
-                    <span style="background-color:yellow">{{ total_all }}</span>   
+                    <span style="background-color:yellow">{{ computeVat(total_all) }}</span> <br/>  
+                    <span style="background-color:yellow">{{ total_all + computeVat(total_all) }}</span>   
                 </div>
                 <div class="col-sm-3 pull-right">
                     <button v-if="supplier && supplier_date && supplier_invoice_num" class="btn btn-primary pull-right" @click="finalSubmit">Final Save</button>       
@@ -339,6 +339,11 @@
             roundTwoDecimal : function (money) {
 
                 return roundTwoDecimal_public(money)
+            },
+
+            computeVat : function(num) {
+
+                return Math.round((num * .05) * 100) / 100
             }
         }
     }

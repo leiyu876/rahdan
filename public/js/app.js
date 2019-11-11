@@ -49914,6 +49914,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         roundTwoDecimal: function roundTwoDecimal(money) {
 
             return roundTwoDecimal_public(money);
+        },
+
+        computeVat: function computeVat(num) {
+
+            return Math.round(num * .05 * 100) / 100;
         }
     }
 });
@@ -50411,13 +50416,13 @@ var render = function() {
           _c("br"),
           _vm._v(" "),
           _c("span", { staticStyle: { "background-color": "yellow" } }, [
-            _vm._v(_vm._s(_vm.total_all * 0.05))
+            _vm._v(_vm._s(_vm.computeVat(_vm.total_all)))
           ]),
           _vm._v(" "),
           _c("br"),
           _vm._v(" "),
           _c("span", { staticStyle: { "background-color": "yellow" } }, [
-            _vm._v(_vm._s(_vm.total_all))
+            _vm._v(_vm._s(_vm.total_all + _vm.computeVat(_vm.total_all)))
           ])
         ]),
         _vm._v(" "),
@@ -50942,6 +50947,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         roundTwoDecimal: function roundTwoDecimal(money) {
 
             return roundTwoDecimal_public(money);
+        },
+
+        computeVat: function computeVat(num) {
+
+            return Math.round(num * .05 * 100) / 100;
         }
     }
 });
@@ -51439,13 +51449,13 @@ var render = function() {
           _c("br"),
           _vm._v(" "),
           _c("span", { staticStyle: { "background-color": "yellow" } }, [
-            _vm._v(_vm._s(_vm.total_all * 0.05))
+            _vm._v(_vm._s(_vm.computeVat(_vm.total_all)))
           ]),
           _vm._v(" "),
           _c("br"),
           _vm._v(" "),
           _c("span", { staticStyle: { "background-color": "yellow" } }, [
-            _vm._v(_vm._s(_vm.total_all))
+            _vm._v(_vm._s(_vm.total_all + _vm.computeVat(_vm.total_all)))
           ])
         ]),
         _vm._v(" "),
