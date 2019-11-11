@@ -167,7 +167,8 @@
             'apisubmiturl',
             'suppliers',  
             'short_part',
-            'details'          
+            'details',
+            'is_admin',
         ],
 
         data : function () {

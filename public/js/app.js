@@ -50778,7 +50778,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
 
-    props: ['apisubmiturl', 'suppliers', 'short_part', 'details'],
+    props: ['apisubmiturl', 'suppliers', 'short_part', 'details', 'is_admin'],
 
     data: function data() {
         return {
