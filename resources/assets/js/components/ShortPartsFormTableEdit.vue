@@ -47,14 +47,14 @@
                 </div>
                 <hr/>
 
-                <div class="form-group">
+                <div class="form-group"  v-if="is_admin">
                     <label for="total_price" class="col-sm-2 control-label">Part Number</label>
                     <div class="col-sm-3">
                       <input type="text" class="form-control" v-model="partno">
                     </div>
                 </div>
                 <hr/>
-                <div class="row">
+                <div class="row"  v-if="is_admin">
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="total_price" class="col-sm-4 control-label">Qty Request</label>
@@ -106,7 +106,7 @@
                     <th>Price</th>
                     <th>Discount %</th>
                     <th>Total</th>
-                    <th>Action</th>
+                    <th v-if="is_admin">Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -119,7 +119,7 @@
                     <td>{{ item.price}}</td>
                     <td>{{ item.discount + ' %'}}</td>
                     <td>{{ getTotalPerRow(item.request - item.received, item.price, item.discount) }}</td>
-                    <td>
+                    <td v-if="is_admin">
                         <i class="fa fa-fw fa-pencil" data-toggle="tooltip" title="Edit" @click="itemEdit(key-1)"></i>
                         <i class="fa fa-fw fa-trash" data-toggle="tooltip" title="Delete" @click="itemRemove(key-1)"></i>
                     </td>
@@ -140,7 +140,7 @@
                     <span style="background-color:yellow">{{ computeVat(total_all) }}</span> <br/>  
                     <span style="background-color:yellow">{{ total_all + computeVat(total_all) }}</span>   
                 </div>
-                <div class="col-sm-3 pull-right">
+                <div class="col-sm-3 pull-right"  v-if="is_admin">
                     <button v-if="supplier && supplier_date && supplier_invoice_num" class="btn btn-primary pull-right" @click="finalSubmit">Final Save</button>       
                 </div>
             </div>

@@ -21,7 +21,7 @@
                             :suppliers="{{ $suppliers }}"
                             :short_part="{{ $short_part }}"
                             :details="{{ $short_part->items }}"
-                            :is_admin="{{ Auth::user()->hasRole('Super Administrator') ? 'admin' : 'not_admin' }}"
+                            is_admin="{{ Auth::user()->hasRole('Super Administrator') }}"
                         ></shortparts-formtable-edit>
                     </div>
                  </div>
