@@ -89,7 +89,7 @@
                     <div class="col-md-4">
                         <button class="btn btn-default" @click="itemUpdateCancel" v-if="isUpdate">Cancel</button>
                         <button class="btn btn-default" @click="itemUpdate" v-if="isUpdate && partno && request && !requestError && !discountError">Update</button>
-                        <button class="btn btn-default" @click="addToList" v-if="!isUpdate && partno && request && !requestError && !discountError">Add to List</button>
+                        <button class="btn btn-default" @click="addToList" v-if="!isUpdate && partno && request && !requestError && !discountError && !partnoError">Add to List</button>
                     </div>
                 </div>
             </div>
@@ -188,6 +188,24 @@
                 price: null,
                 discount: null,
                 total: null,
+                partnoError : false
+            }
+        },
+
+        watch : {
+
+            partno : function () {
+
+                var current_partno = this.partno
+                var current_partno_error = false
+
+                this.items.forEach(function(item) {
+                    if(item.partno == current_partno) {
+                        current_partno_error = true
+                    }
+                });
+
+                 this.partnoError = current_partno_error
             }
         },
 
