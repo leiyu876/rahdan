@@ -49740,6 +49740,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -49781,9 +49786,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             var current_partno = this.partno;
             var current_partno_error = false;
+            var current_itemToBeUpdate = this.itemToBeUpdate;
 
-            this.items.forEach(function (item) {
-                if (item.partno == current_partno) {
+            this.items.forEach(function (item, index) {
+                if (item.partno == current_partno && index != current_itemToBeUpdate) {
                     current_partno_error = true;
                 }
             });
@@ -50338,7 +50344,8 @@ var render = function() {
               _vm.partno &&
               _vm.request &&
               !_vm.requestError &&
-              !_vm.discountError
+              !_vm.discountError &&
+              !_vm.partnoError
                 ? _c(
                     "button",
                     {
@@ -50795,6 +50802,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -50843,9 +50854,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             var current_partno = this.partno;
             var current_partno_error = false;
+            var current_itemToBeUpdate = this.itemToBeUpdate;
 
-            this.items.forEach(function (item) {
-                if (item.partno == current_partno) {
+            this.items.forEach(function (item, index) {
+                if (item.partno == current_partno && index != current_itemToBeUpdate) {
                     current_partno_error = true;
                 }
             });
@@ -51404,7 +51416,8 @@ var render = function() {
                   _vm.partno &&
                   _vm.request &&
                   !_vm.requestError &&
-                  !_vm.discountError
+                  !_vm.discountError &&
+                  !_vm.partnoError
                     ? _c(
                         "button",
                         {

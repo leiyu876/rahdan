@@ -88,7 +88,11 @@
                     </div>
                     <div class="col-md-4">
                         <button class="btn btn-default" @click="itemUpdateCancel" v-if="isUpdate">Cancel</button>
-                        <button class="btn btn-default" @click="itemUpdate" v-if="isUpdate && partno && request && !requestError && !discountError">Update</button>
+                        <button class="btn btn-default" @click="itemUpdate" v-if="isUpdate && partno 
+                                                                                           && request 
+                                                                                           && !requestError 
+                                                                                           && !discountError
+                                                                                           && !partnoError">Update</button>
                         <button class="btn btn-default" @click="addToList" v-if="!isUpdate && partno && request && !requestError && !discountError && !partnoError">Add to List</button>
                     </div>
                 </div>
@@ -198,14 +202,15 @@
 
                 var current_partno = this.partno
                 var current_partno_error = false
+                var current_itemToBeUpdate = this.itemToBeUpdate
 
-                this.items.forEach(function(item) {
-                    if(item.partno == current_partno) {
-                        current_partno_error = true
+                this.items.forEach(function(item, index) {                    
+                    if(item.partno == current_partno && index != current_itemToBeUpdate) {
+                        current_partno_error = true;
                     }
                 });
 
-                 this.partnoError = current_partno_error
+                this.partnoError = current_partno_error
             }
         },
 
