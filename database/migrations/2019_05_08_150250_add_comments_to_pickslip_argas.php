@@ -14,7 +14,7 @@ class AddCommentsToPickslipArgas extends Migration
     public function up()
     {
         Schema::table('pickslip__argas', function (Blueprint $table) {
-            $table->string('comments')->after('qty_send');
+            $table->string('comments')->after('qty_send')->nullable();
         });
     }
 

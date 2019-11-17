@@ -14,7 +14,7 @@ class AddTotalToOrderargas extends Migration
     public function up()
     {
         Schema::table('order__argas', function (Blueprint $table) {
-            $table->decimal('total', 9, 3)->after('pickslip_id');
+            $table->decimal('total', 9, 3)->after('pickslip_id')->default(0);
         });
     }
 
