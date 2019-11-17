@@ -18,7 +18,8 @@ trait CreatesApplication
 
         $app->make(Kernel::class)->bootstrap();
 
-        Hash::driver('bcrypt')->setRounds(4);
+        // Hash::driver('bcrypt')->setRounds(4); // this is from new laravel installation
+        Hash::setRounds(4);  // modify be leo due to error 
 
         return $app;
     }
