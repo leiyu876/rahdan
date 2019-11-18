@@ -21,9 +21,7 @@ class SupplierTest extends TestCase
     {
     	$this->withoutExceptionHandling();
 
-    	$user = factory(User::class)->create();
-
-        $response = $this->actingAs($user)
+    	$response = $this->actingAs($this->dummyUser())
 			->post('/suppliers', [
 	    		'code' => '2000',
 	    		'name' => 'Abulatif Jameel',
@@ -36,4 +34,73 @@ class SupplierTest extends TestCase
         $this->assertEquals('Abulatif Jameel', Supplier::first()->name);
         $this->assertEquals('credit', Supplier::first()->type);    	
 	}
+
+    public function test_cannot_add_new_if_duplicate_code()
+    {
+        $supplier = factory(Supplier::class)->create();
+
+        $this->assertCount(1, Supplier::all());        
+
+        $response = $this->actingAs($this->dummyUser())
+            ->post('/suppliers', [
+                'code' => $supplier->code,
+                'name' => 'Sample name',
+                'type' => 'credit'
+            ]);
+
+        $response->assertSessionHas('error', 'Code already exist.');
+
+        $this->assertCount(1, Supplier::all());
+    }
+
+    public function test_can_add_new_if_code_is_2000()
+    {
+        $supplier = factory(Supplier::class)->create();
+        $supplier->code = 2000;
+        $supplier->update();
+
+        $this->assertCount(1, Supplier::all());        
+
+        $response = $this->actingAs($this->dummyUser())
+            ->post('/suppliers', [
+                'code' => 2000,
+                'name' => 'Sample name',
+                'type' => 'credit'
+            ]);
+
+        $this->assertCount(2, Supplier::all());
+    }
+
+    public function test_code_is_required()
+    {
+        $response = $this->actingAs($this->dummyUser())
+            ->post('/suppliers', [
+                'code' => '',
+                'name' => 'Michael Jordan',
+                'type' => 'credit'
+            ]);
+
+        $response->assertSessionHasErrors(['code']);
+
+        $this->assertCount(0, Supplier::all());
+    }
+
+    public function test_name_is_required()
+    {
+        $response = $this->actingAs($this->dummyUser())
+            ->post('/suppliers', [
+                'code' => '2004',
+                'name' => '',
+                'type' => 'credit'
+            ]);
+
+        $response->assertSessionHasErrors(['name']);
+
+        $this->assertCount(0, Supplier::all());
+    }
+
+    private function dummyUser()
+    {
+        return factory(User::class)->create();
+    }
 }
