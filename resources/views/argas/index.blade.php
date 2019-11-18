@@ -34,6 +34,7 @@
                           <? $color = array('lightcyan', 'antiquewhite') ?>
                           <? $indicator = ''; ?> 
                           <? $color_index = 0; ?>
+                          <? $numbering = 0; ?>
                           @foreach($pickslips as $index => $pickslip)
                             @if($pickslip->balance())
                               <? 
@@ -42,7 +43,7 @@
                                 $indicator = $pickslip->pickslip_number();
                               ?>
                               <tr class="for_ajax_update" style="background-color:{{ $color[$color_index]  }}">
-                                <td>{{ $index+1 }}</td>
+                                <td>{{ ++$numbering }}</td>
                                 <td>{{ $pickslip->partno }}</td>
                                 <td>{{ $pickslip->description }}</td>
                                 <td>
