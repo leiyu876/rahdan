@@ -44,15 +44,16 @@
       <div class="form-group has-feedback">
         <input type="email" class="form-control" placeholder="Email" name="email">
         @if ($errors->has('email'))
-            <span class="invalid-feedback">
-                <strong>{{ $errors->first('email') }}</strong>
-            </span>
+            <span class="text-danger"> {{ $errors->first('email') }} </span>
         @endif
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
         <input type="password" class="form-control" placeholder="Password" name="password">
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+        @if ($errors->has('password'))
+          <span class="text-danger"> {{ $errors->first('password') }} </span>
+        @endif 
       </div>
       <div class="row">
         <div class="col-xs-8">          
