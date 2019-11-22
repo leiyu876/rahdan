@@ -40,7 +40,13 @@
     <p class="login-box-msg">Sign in to start your session</p>
 
     <form action="{{ route('login') }}" method="post">
+      
       {{ csrf_field() }}
+      
+      @if($errors->has('error'))
+        <span class="text-danger"> {{ $errors->first('error') }} </span>
+      @endif
+
       <div class="form-group has-feedback">
         <input type="email" class="form-control" placeholder="Email" name="email">
         @if ($errors->has('email'))
@@ -64,6 +70,7 @@
         </div>
         <!-- /.col -->
       </div>
+
     </form>
     <!-- /.social-auth-links -->
   </div>

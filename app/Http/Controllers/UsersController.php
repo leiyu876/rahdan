@@ -10,6 +10,7 @@ use Spatie\Permission\Models\Role;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\UsersExport;
 use App\Imports\UsersImport;
+use Carbon\Carbon;
 
 class UsersController extends Controller
 {
@@ -66,6 +67,7 @@ class UsersController extends Controller
 
         $user->iqama = $request->iqama;
         $user->name = $request->name;
+        $user->password_expires_at = Carbon::now()->addDay(30);
         $user->email = $request->email;
         $user->password = Hash::make($request->input('password'));
 

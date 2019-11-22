@@ -22,6 +22,7 @@
                                 <th>Iqama</th>
                                 <th>Name</th>
                                 <th>Email</th>
+                                <th>Password Expiry</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -31,6 +32,11 @@
                                     <td>{{ $user->iqama }}</td>
                                     <td>{{ $user->name }}</td>
                                     <td>{{ $user->email }}</td>
+                                    <td>
+                                        @if(!is_null($user->password_expires_at))
+                                            {{ \Carbon\Carbon::parse($user->password_expires_at)->diffForHumans() }}
+                                        @endif                                        
+                                    </td>
                                     <td>
                                         <a href="{{ route('users.edit', ['id' => $user->id])}}">
                                             <i class="fa fa-fw fa-pencil" data-toggle="tooltip" title="Edit"></i>
