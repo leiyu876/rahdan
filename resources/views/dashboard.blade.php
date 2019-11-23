@@ -1,31 +1,39 @@
 @extends('layouts.app_admin')
 
 @section('content')
-<section class="content">
+    <section class="content">
+        <div class="row">
+            <div class="col-md-3 col-sm-6 col-xs-12">
+              <div class="info-box">
+                <span class="info-box-icon bg-aqua"><i class="fa fa-users"></i></span>
 
-    <!-- Default box -->
-    <div class="box">
-      <div class="box-header with-border">
-        <h3 class="box-title">Title</h3>
-
-        <div class="box-tools pull-right">
-          <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
-                  title="Collapse">
-            <i class="fa fa-minus"></i></button>
-          <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
-            <i class="fa fa-times"></i></button>
+                <div class="info-box-content">
+                  <span class="info-box-text">Users</span>
+                  <span class="info-box-number">{{ $users_count }}</span>
+                </div>
+                <!-- /.info-box-content -->
+              </div>
+              <!-- /.info-box -->
+            </div>
         </div>
-      </div>
-      <div class="box-body">
-        Start creating your amazing application!
-      </div>
-      <!-- /.box-body -->
-      <div class="box-footer">
-        Footer
-      </div>
-      <!-- /.box-footer-->
-    </div>
-    <!-- /.box -->
-
-  </section>
+        <div class="row">
+            <div class="col-md-4">
+              <!-- Widget: user widget style 1 -->
+              <div class="box box-widget widget-user-2">
+                <!-- Add the bg color to the header using any of the bg-* classes -->
+                <div class="widget-user-header bg-aqua-active">
+                  <h3 class="widget-user-username">Top 10 Selling Parts</h3> 
+                </div>
+                <div class="box-footer no-padding">
+                  <ul class="nav nav-stacked">
+                    @foreach($top_qty as $item)
+                        <li><a href="#" class="disabled">{{ $item->partno }}<span class="pull-right badge bg-blue">{{ $item->qty }}</span></a></li>
+                    @endforeach
+                  </ul>
+                </div>
+              </div>
+              <!-- /.widget-user -->
+            </div>
+        </div>
+    </section>
 @endsection()

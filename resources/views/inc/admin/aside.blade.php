@@ -28,7 +28,7 @@
       <li class="{{ Request::is('dashboard') ? 'active' : '' }}"><a href="{{ url('dashboard') }}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
       <li class="treeview {{ Request::is('invoices/warehouse*') ? 'menu-open' : '' }}">
         <a href="#">
-          <i class="fa fa-users"></i> <span>Argas</span>
+          <i class="fa fa-share"></i> <span>Argas</span>
           <span class="pull-right-container">
             <i class="fa fa-angle-left pull-right"></i>
           </span>
@@ -43,11 +43,11 @@
         </ul>
       </li>
       
-        <li class="{{ Request::is('suppliers') ? 'active' : '' }}"><a href="{{ route('suppliers.index') }}"><i class="fa fa-exchange"></i> <span>Suppliers الموردين</span></a></li>
+        <li class="{{ Request::is('suppliers') ? 'active' : '' }}"><a href="{{ route('suppliers.index') }}"><i class="fa fa-share"></i> <span>Suppliers الموردين</span></a></li>
         
         <li class="treeview {{ Request::is('shortparts*') ? 'menu-open' : '' }}">
           <a href="#">
-            <i class="fa fa-exchange"></i> <span>Short Parts</span>
+            <i class="fa fa-share"></i> <span>Short Parts</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
@@ -59,11 +59,11 @@
           </ul>
         </li>
      
-      <li class="{{ Request::is('discount_compute') ? 'active' : '' }}"><a href="{{ url('discount_compute') }}"><i class="fa fa-exchange"></i> <span>Discount Compute حساب الخصم</span></a></li>
+      <li class="{{ Request::is('discount_compute') ? 'active' : '' }}"><a href="{{ url('discount_compute') }}"><i class="fa fa-share"></i> <span>Discount Compute حساب الخصم</span></a></li>
       @if(Auth::user()->hasRole('Super Administrator'))
         <li class="treeview {{ Request::is('invoices/warehouse*') ? 'menu-open' : '' }}">
           <a href="#">
-            <i class="fa fa-users"></i> <span>Fatora Mastoda</span>
+            <i class="fa fa-share"></i> <span>Fatora Mastoda</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
@@ -79,7 +79,7 @@
       @if(Auth::user()->hasRole('Super Administrator'))
         <li class="treeview {{ Request::is('invoices/shop*') ? 'menu-open' : '' }}">
           <a href="#">
-            <i class="fa fa-users"></i> <span>Fatora Mahal</span>
+            <i class="fa fa-share"></i> <span>Fatora Mahal</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
@@ -93,7 +93,7 @@
       @endif
       <!--<li class="treeview">
         <a href="#">
-          <i class="fa fa-users"></i> <span>Fatora</span>
+          <i class="fa fa-share"></i> <span>Fatora</span>
           <span class="pull-right-container">
             <i class="fa fa-angle-left pull-right"></i>
           </span>
@@ -108,7 +108,7 @@
       @if(Auth::user()->hasRole('Super Administrator'))
         <li class="treeview {{ Request::is('users*') ? 'menu-open' : '' }}">
           <a href="#">
-            <i class="fa fa-users"></i> <span>Users</span>
+            <i class="fa fa-share"></i> <span>Users</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
@@ -121,7 +121,7 @@
         </li>
         <li class="treeview {{ Request::is('actions*') ? 'menu-open' : '' }}">
           <a href="#">
-            <i class="fa fa-users"></i> <span>Fatora Actions</span>
+            <i class="fa fa-share"></i> <span>Fatora Actions</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
@@ -133,11 +133,11 @@
         </li>
       @endif
       @if(Auth::user()->hasRole('Super Administrator') || Auth::user()->hasRole('salesman') || Auth::user()->hasRole('Order Picker'))
-        <li class="{{ Request::is('partnumbers') ? 'active' : '' }}"><a href="{{ url('partnumbers') }}"><i class="fa fa-exchange"></i> <span>Parts Number</span></a></li>
+        <li class="{{ Request::is('partnumbers') ? 'active' : '' }}"><a href="{{ url('partnumbers') }}"><i class="fa fa-share"></i> <span>Parts Number</span></a></li>
       @endif
       @if(Auth::user()->hasRole('Super Administrator'))
-        <li class="{{ Request::is('role') ? 'active' : '' }}"><a href="{{ url('role') }}"><i class="fa fa-exchange"></i> <span>Role</span></a></li>
-        <li class="{{ Request::is('permission') ? 'active' : '' }}"><a href="{{ url('permission') }}"><i class="fa fa-exchange"></i> <span>Permission</span></a></li>
+        <li class="{{ Request::is('role') ? 'active' : '' }}"><a href="{{ url('role') }}"><i class="fa fa-share"></i> <span>Role</span></a></li>
+        <li class="{{ Request::is('permission') ? 'active' : '' }}"><a href="{{ url('permission') }}"><i class="fa fa-share"></i> <span>Permission</span></a></li>
       @endif
     </ul>
   </section>
