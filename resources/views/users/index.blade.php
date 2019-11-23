@@ -33,9 +33,13 @@
                                     <td>{{ $user->name }}</td>
                                     <td>{{ $user->email }}</td>
                                     <td>
-                                        @if(!is_null($user->password_expires_at))
-                                            {{ \Carbon\Carbon::parse($user->password_expires_at)->diffForHumans() }}
-                                        @endif                                        
+                                        <a href="{{ url('users/change_expiry/'.$user->id) }}" data-toggle="tooltip" title="Change expiry date">
+                                            @if(!is_null($user->password_expires_at))
+                                                {{ \Carbon\Carbon::parse($user->password_expires_at)->diffForHumans() }}
+                                            @else
+                                                Unlimited
+                                            @endif 
+                                        </a>                                       
                                     </td>
                                     <td>
                                         <a href="{{ route('users.edit', ['id' => $user->id])}}">

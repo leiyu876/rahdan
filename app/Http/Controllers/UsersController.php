@@ -147,6 +147,28 @@ class UsersController extends Controller
         return redirect('/users')->with('success', 'User Removed');
     }
 
+    public function change_expiry(User $user)
+    {
+        $data['page_title'] = 'Change Expiry Date';
+
+        $data['user'] = $user;
+
+        return view('users.change_expiry')->with($data);
+    }
+
+    public function change_expiry_save(Request $request, User $user)
+    {
+        $request->validate([
+            'expiry_date' => 'date'
+        ]);
+
+        $user->password_expires_at = \Carbon\Carbon::parse($request->expiry_date);
+
+        $user->update();
+
+        return redirect('/users')->with('success', 'User password expiry change.');
+    }
+
     public function change_pass($id)
     {
         $data['page_title'] = 'Change Password';
