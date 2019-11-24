@@ -1,6 +1,6 @@
 <header class="main-header">
     <!-- Logo -->
-    <a href="{{ asset('custom_adminlte/index2.html') }}" class="logo">
+    <a href="{{ url('dashboard') }}" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini">
         <img src="{{ asset('custom/images/logo_rahdan_mini2.png') }}" title="logo"/>

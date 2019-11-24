@@ -40,7 +40,16 @@
 		</div>
 		<div class="sub-header-right">
 			<ul>
-				<li><a href="{{ route('login') }}">log in</a></li>				
+				<li>
+					<a href="{{ route('login') }}">
+						@guest
+							log in
+						@endguest
+						@auth
+							Admin
+						@endauth
+					</a>
+				</li>				
 				<li><a href="#">Your account</a></li>
 				<li><a href="#">CART: (EMPTY) <img src="{{ asset('custom/images/cart.png') }}" title="cart" /></a></li>
 			</ul>
