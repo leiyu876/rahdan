@@ -24,7 +24,11 @@
                 <div class="info-box-content">
                   <span class="info-box-text">Short Parts</span>
                   <div style="text-align: center;">
-                    <span class="info-box-number" style="font-size: 40px">{{ $short_parts_count }}</span>
+                    <span class="info-box-number" style="font-size: 40px">
+                      <a href="{{ url('shortparts/by/partnumbers') }}" style="color: black">
+                        {{ $short_parts_count }}
+                      </a>
+                    </span>
                   </div>
                 </div>
                 <!-- /.info-box-content -->
@@ -38,7 +42,11 @@
                 <div class="info-box-content">
                   <span class="info-box-text">Argas Balance</span>
                   <div style="text-align: center;">
-                    <span class="info-box-number" style="font-size: 40px">{{ $argas_balance }}</span>
+                    <span class="info-box-number" style="font-size: 40px">
+                      <a href="{{ url('argas') }}" style="color: black">
+                        {{ $argas_balance }}
+                      </a>
+                    </span>
                   </div>
                 </div>
                 <!-- /.info-box-content -->
@@ -52,7 +60,11 @@
                 <div class="info-box-content">
                   <span class="info-box-text">Suppliers</span>
                   <div style="text-align: center;">
-                    <span class="info-box-number" style="font-size: 40px">{{ $suppliers_count }}</span>
+                    <span class="info-box-number" style="font-size: 40px">
+                      <a href="{{ route('suppliers.index') }}" style="color: black">
+                        {{ $suppliers_count }}
+                      </a>
+                    </span>
                   </div>
                 </div>
                 <!-- /.info-box-content -->
