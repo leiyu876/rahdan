@@ -71,7 +71,11 @@ class MissingpartsController extends Controller
      */
     public function edit(Missing_part $missingpart)
     {
-        //
+        $data['missingpart'] = $missingpart;   
+        
+        $data['page_title'] = 'Updating Missing Part';
+
+        return view('missingparts.edit', $data);
     }
 
     /**
@@ -83,7 +87,15 @@ class MissingpartsController extends Controller
      */
     public function update(Request $request, Missing_part $missingpart)
     {
-        //
+        $data = $request->validate([
+            'partno' => 'required',
+            'qty' => 'required|numeric',
+            'comment' => ''
+        ]);
+
+        $missingpart->update($data);
+
+        return redirect()->route('missingparts.index')->with('success', 'Successfully Updated');
     }
 
     /**
