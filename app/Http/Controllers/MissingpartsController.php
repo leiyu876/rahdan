@@ -58,7 +58,7 @@ class MissingpartsController extends Controller
      * @param  \App\Models\Missing_part  $missing_part
      * @return \Illuminate\Http\Response
      */
-    public function show(Missing_part $missing_part)
+    public function show(Missing_part $missingpart)
     {
         //
     }
@@ -69,7 +69,7 @@ class MissingpartsController extends Controller
      * @param  \App\Models\Missing_part  $missing_part
      * @return \Illuminate\Http\Response
      */
-    public function edit(Missing_part $missing_part)
+    public function edit(Missing_part $missingpart)
     {
         //
     }
@@ -81,7 +81,7 @@ class MissingpartsController extends Controller
      * @param  \App\Models\Missing_part  $missing_part
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Missing_part $missing_part)
+    public function update(Request $request, Missing_part $missingpart)
     {
         //
     }
@@ -92,8 +92,10 @@ class MissingpartsController extends Controller
      * @param  \App\Models\Missing_part  $missing_part
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Missing_part $missing_part)
+    public function destroy(Missing_part $missingpart)
     {
-        //
+        $missingpart->delete();
+        
+        return back()->with('success', 'Successfully Removed');
     }
 }

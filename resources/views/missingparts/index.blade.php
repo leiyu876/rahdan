@@ -46,7 +46,7 @@
                                                 <i class="fa fa-fw fa-trash" data-toggle="tooltip" title="Delete"></i>
                                             </a>
 
-                                            {!! Form::open(['action'=> ['SuppliersController@destroy', $item->id], 'method'=>'POST']) !!}
+                                            {!! Form::open(['action'=> ['MissingpartsController@destroy', $item->id], 'method'=>'POST']) !!}
                                                 {{ Form::hidden('_method', 'DELETE') }}
                                                 {{ Form::submit('Delete', ['class'=>'btn btn-danger', 'id'=>'name'.$item->id, 'style'=>'display:none']) }}
                                             {!! Form::close() !!} 
