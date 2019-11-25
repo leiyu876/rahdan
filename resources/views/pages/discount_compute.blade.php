@@ -84,11 +84,19 @@
     sumada();
   });
   
-  $( "#total_price" ).keyup(function() {
+  $( "#total_price" ).keyup(function(event) {
     sumada_discount();
+    if(event.keyCode == 13) {
+        $('#total_price_invoice').focus();
+        $('#total_price_invoice').select();
+    }
   });
 
-  $( "#total_price_invoice" ).keyup(function() {
+  $( "#total_price_invoice" ).keyup(function(event) {
+    if(event.keyCode == 13) {
+        $('#total_price').focus();
+        $('#total_price').select();
+    }
     sumada_discount();
   });
 </script>
