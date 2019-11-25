@@ -14,9 +14,9 @@ class MissingpartsController extends Controller
      */
     public function index()
     {
-        $data['page_title'] = 'Missing Spare Parts';
+        $data['page_title'] = '';
 
-        $data['missing_parts'] = Missing_part::all();
+        $data['missing_parts'] = Missing_part::orderBy('created_at', 'desc')->get();
 
         return view('missingparts.index', $data);
     }
@@ -28,7 +28,9 @@ class MissingpartsController extends Controller
      */
     public function create()
     {
-        //
+        $data['page_title'] = 'Adding new Missing Part';
+
+        return view('missingparts.create', $data);
     }
 
     /**
@@ -39,7 +41,15 @@ class MissingpartsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'partno' => 'required',
+            'qty' => 'required|numeric',
+            'comment' => ''
+        ]);
+
+        Missing_part::create($data);
+
+        return redirect()->route('missingparts.index')->with('success', 'Successfully Saved');
     }
 
     /**
