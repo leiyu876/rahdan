@@ -56,6 +56,7 @@ Route::group(['middleware' => ['auth']], function () {
 	    'suppliers' => 'SuppliersController',
 	    //'invoices' => 'InvoicesController',
 	    'shortparts' => 'ShortpartsController',
+	    'missingparts' => 'MissingpartsController',
 	]);
 
 	Route::prefix('shortparts')->group(function() {

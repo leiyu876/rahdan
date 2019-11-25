@@ -44,7 +44,8 @@
       </li>
       
         <li class="{{ Request::is('suppliers') ? 'active' : '' }}"><a href="{{ route('suppliers.index') }}"><i class="fa fa-share"></i> <span>Suppliers الموردين</span></a></li>
-        
+        <li class="{{ Request::is('discount_compute') ? 'active' : '' }}"><a href="{{ url('discount_compute') }}"><i class="fa fa-share"></i> <span>Discount Compute حساب الخصم</span></a></li>
+      
         <li class="treeview {{ Request::is('shortparts*') ? 'menu-open' : '' }}">
           <a href="#">
             <i class="fa fa-share"></i> <span>Short Parts</span>
@@ -58,8 +59,9 @@
             <li class="{{ Request::is('shortparts/status/finish') ? 'active' : '' }}"><a href="{{ url('shortparts/status/finish_lists') }}"><i class="fa fa-circle-o"></i> Finished</a></li>
           </ul>
         </li>
-     
-      <li class="{{ Request::is('discount_compute') ? 'active' : '' }}"><a href="{{ url('discount_compute') }}"><i class="fa fa-share"></i> <span>Discount Compute حساب الخصم</span></a></li>
+
+        <li class="{{ Request::is('missingparts') ? 'active' : '' }}"><a href="{{ route('missingparts.index') }}"><i class="fa fa-share"></i> <span>Missing Parts</span></a></li>   
+
       @if(Auth::user()->hasRole('Super Administrator'))
         <li class="treeview {{ Request::is('invoices/warehouse*') ? 'menu-open' : '' }}">
           <a href="#">
@@ -76,6 +78,7 @@
           </ul>
         </li>
       @endif
+      
       @if(Auth::user()->hasRole('Super Administrator'))
         <li class="treeview {{ Request::is('invoices/shop*') ? 'menu-open' : '' }}">
           <a href="#">
