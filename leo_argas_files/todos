@@ -1,7 +1,0 @@
-To Do's
-
-- if 'new' then complete then 'ready'
-- if 'new' then not complete then 'new'
-
--if 'ready' then send then 'done'
--if 'new' then send then 'old'
