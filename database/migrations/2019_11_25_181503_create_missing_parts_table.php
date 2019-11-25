@@ -18,7 +18,7 @@ class CreateMissingPartsTable extends Migration
             $table->string('partno');
             $table->integer('qty');
             $table->text('comment')->nullable();
-            $table->boolean('is_found')->default(false);
+            $table->boolean('is_tracked')->default(false);
             $table->timestamps();
         });
     }
