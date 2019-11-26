@@ -58,6 +58,10 @@ class DashboardController extends Controller
            ->take(10)
            ->get();
 
+        $data['latest_missing'] = Missing_part::take(10)
+        ->orderBy('created_at', 'desc')
+        ->get();
+
       return view('dashboard', $data);
     }
 }

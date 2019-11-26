@@ -164,6 +164,31 @@
               </div>
               <!-- /.widget-user -->
             </div>
+
+            <div class="col-md-4">
+              <!-- Widget: user widget style 1 -->
+              <div class="box box-widget widget-user-2">
+                <!-- Add the bg color to the header using any of the bg-* classes -->
+                <div class="widget-user-header bg-aqua-active text-center">
+                  <h3 class="widget-user-username" style="margin-left:0px">Latest 10 Missing Parts</h3> 
+                </div>
+                <div class="box-footer no-padding">
+                  <ul class="nav nav-stacked">
+                    @foreach($latest_missing as $item)
+                        <li>
+                          <a class="disabled">
+                            {{ $item->partno }}
+                            <span class="pull-right badge bg-blue">
+                              {{ $item->qty }}
+                            </span>
+                          </a>
+                        </li>
+                    @endforeach
+                  </ul>
+                </div>
+              </div>
+              <!-- /.widget-user -->
+            </div>
         </div>
     </section>
 @endsection()

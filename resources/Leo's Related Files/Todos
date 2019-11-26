@@ -1,6 +1,5 @@
 Todo's 
 
-- Put Missing parts latest 10 in Dashboard and only admin can view
 - Missing parts cannot add duplicate partno
 - Missing parts cannot change partno if already exists.
 - In dashboard add human readable date for each spare parts
