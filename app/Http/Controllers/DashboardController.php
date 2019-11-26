@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Pickslip_Argas;
 use App\User;
 use App\Models\Supplier;
+use App\Models\Missing_part;
 use App\Models\Short_part_detail;
 
 class DashboardController extends Controller
@@ -30,6 +31,8 @@ class DashboardController extends Controller
         $data['page_title'] = 'Dashboard';
 
         $data['users_count'] = User::all()->count();
+
+        $data['missingparts_count'] = Missing_part::all()->count();
 
         $data['short_parts_count'] =  Short_part_detail::whereRaw('request != received')
            ->count();

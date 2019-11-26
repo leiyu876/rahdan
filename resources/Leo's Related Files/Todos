@@ -1,0 +1,9 @@
+Todo's 
+
+- Put Missing parts latest 10 in Dashboard and only admin can view
+- Missing parts cannot add duplicate partno
+- Missing parts cannot change partno if already exists.
+- In dashboard add human readable date for each spare parts
+- Can download missing parts in excel format
+- Add new tab named "Master Search" input spare part number then give status(argas, shortparts, missing parts)
+

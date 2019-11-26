@@ -71,6 +71,25 @@
               </div>
               <!-- /.info-box -->
             </div>
+
+            <div class="col-md-3 col-sm-6 col-xs-12">
+              <div class="info-box">
+                <span class="info-box-icon bg-aqua"><i class="fa fa-users"></i></span>
+
+                <div class="info-box-content">
+                  <span class="info-box-text">Missing Parts</span>
+                  <div style="text-align: center;">
+                    <span class="info-box-number" style="font-size: 40px">
+                      <a href="{{ route('missingparts.index') }}" style="color: black">
+                        {{ $missingparts_count }}
+                      </a>
+                    </span>
+                  </div>
+                </div>
+                <!-- /.info-box-content -->
+              </div>
+              <!-- /.info-box -->
+            </div>
         </div>
         <div class="row">
             <div class="col-md-4">
