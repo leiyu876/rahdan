@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-md-3 col-sm-6 col-xs-12">
               <div class="info-box">
-                <span class="info-box-icon bg-aqua"><i class="fa fa-users"></i></span>
+                <span class="info-box-icon bg-aqua"><i class="{{ icon_random_adminlte() }}"></i></span>
 
                 <div class="info-box-content">
                   <span class="info-box-text">Users</span>
@@ -19,7 +19,7 @@
             </div>
             <div class="col-md-3 col-sm-6 col-xs-12">
               <div class="info-box">
-                <span class="info-box-icon bg-aqua"><i class="fa fa-users"></i></span>
+                <span class="info-box-icon bg-aqua"><i class="{{ icon_random_adminlte() }}"></i></span>
 
                 <div class="info-box-content">
                   <span class="info-box-text">Short Parts</span>
@@ -37,7 +37,7 @@
             </div>
             <div class="col-md-3 col-sm-6 col-xs-12">
               <div class="info-box">
-                <span class="info-box-icon bg-aqua"><i class="fa fa-users"></i></span>
+                <span class="info-box-icon bg-aqua"><i class="{{ icon_random_adminlte() }}"></i></span>
 
                 <div class="info-box-content">
                   <span class="info-box-text">Argas Balance</span>
@@ -55,7 +55,7 @@
             </div>
             <div class="col-md-3 col-sm-6 col-xs-12">
               <div class="info-box">
-                <span class="info-box-icon bg-aqua"><i class="fa fa-users"></i></span>
+                <span class="info-box-icon bg-aqua"><i class="{{ icon_random_adminlte() }}"></i></span>
 
                 <div class="info-box-content">
                   <span class="info-box-text">Suppliers</span>
@@ -74,7 +74,7 @@
 
             <div class="col-md-3 col-sm-6 col-xs-12">
               <div class="info-box">
-                <span class="info-box-icon bg-aqua"><i class="fa fa-users"></i></span>
+                <span class="info-box-icon bg-aqua"><i class="{{ icon_random_adminlte() }}"></i></span>
 
                 <div class="info-box-content">
                   <span class="info-box-text">Missing Parts</span>
@@ -129,6 +129,7 @@
                         <li>
                           <a class="disabled">
                             {{ $item->partno }}
+                            <span style="color:#999; font-size:10px; margin-left: 10px">{{ \Carbon\Carbon::parse($item->created_at)->diffForHumans() }}</span> 
                             <span class="pull-right badge bg-blue">
                               {{ $item->request - $item->received }}
                             </span>
@@ -153,6 +154,7 @@
                         <li>
                           <a class="disabled">
                             {{ $item->partno }}
+                            <span style="color:#999; font-size:10px; margin-left: 10px">{{ \Carbon\Carbon::parse($item->created_at)->diffForHumans() }}</span> 
                             <span class="pull-right badge bg-blue">
                               {{ $item->balance() }}
                             </span>
@@ -178,6 +180,7 @@
                         <li>
                           <a class="disabled">
                             {{ $item->partno }}
+                            <span style="color:#999; font-size:10px; margin-left: 10px">{{ \Carbon\Carbon::parse($item->created_at)->diffForHumans() }}</span> 
                             <span class="pull-right badge bg-blue">
                               {{ $item->qty }}
                             </span>
