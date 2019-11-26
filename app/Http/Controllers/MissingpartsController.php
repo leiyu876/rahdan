@@ -42,7 +42,7 @@ class MissingpartsController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'partno' => 'required',
+            'partno' => 'required|unique:missing_parts',
             'qty' => 'required|numeric',
             'comment' => ''
         ]);
@@ -88,7 +88,7 @@ class MissingpartsController extends Controller
     public function update(Request $request, Missing_part $missingpart)
     {
         $data = $request->validate([
-            'partno' => 'required',
+            'partno' => 'required|unique:missing_parts,partno,' . $missingpart->id,
             'qty' => 'required|numeric',
             'comment' => ''
         ]);
