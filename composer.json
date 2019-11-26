@@ -24,7 +24,8 @@
     },
     "autoload": {
         "files": [
-            "app/Helpers/date.php"
+            "app/Helpers/date.php",
+            "app/Helpers/helpers_leo.php"
         ],
         "classmap": [
             "database/seeds",
