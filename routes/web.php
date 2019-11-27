@@ -28,6 +28,7 @@ Route::get('phpinfo', function() {
 Auth::routes();
 
 Route::get('/dashboard', 'DashboardController@index');
+Route::post('search', 'DashboardController@search');
 
 Route::get('users/change_pass/{id}', 'UsersController@change_pass');
 Route::put('users/change_pass_save/{id}', 'UsersController@change_pass_save')->name('users.change_pass_save');

@@ -8,6 +8,7 @@ use App\User;
 use App\Models\Supplier;
 use App\Models\Missing_part;
 use App\Models\Short_part_detail;
+use App\Models\Order_Argas;
 
 class DashboardController extends Controller
 {
@@ -63,5 +64,32 @@ class DashboardController extends Controller
         ->get();
 
       return view('dashboard', $data);
+    }
+
+    public function search(Request $request)
+    {
+        $data['page_title'] = 'Dashboard';
+
+        $data['partno_search'] = $p = $request->input('partno_search');
+
+        $data['missing'] = Missing_part::where('partno', '=', $p)->first();
+
+        $data['shortpart'] =  Short_part_detail::selectRaw('(sum(request) - sum(received)) as balance')
+            ->where('partno', $p)
+            ->whereRaw('request != received')->first()->balance;
+
+        $balances      =  Pickslip_Argas::where('partno', $p)->get();
+        $data['argas'] = 0;
+        foreach ($balances as $k => $v) {
+
+            $order = Order_Argas::where('id', $v->order_id)->where('status', '!=', 'INVOICED')->first();
+
+            if(!is_null($order)) {
+
+                $data['argas'] += $v->qty_ready + $v->qty_send; 
+            }
+        }
+
+        return view('mix.search', $data);
     }
 }

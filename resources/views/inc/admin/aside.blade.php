@@ -12,14 +12,15 @@
       </div>
     </div>
     <!-- search form -->
-    <form action="#" method="get" class="sidebar-form">
-      <div class="input-group">
-        <input type="text" name="q" class="form-control" placeholder="Search...">
-        <span class="input-group-btn">
-              <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
-              </button>
+    <form action="{{ url('search') }}" method="post" class="sidebar-form">
+        {{ csrf_field() }}
+        <div class="input-group">
+            <input type="text" name="partno_search" value="{{ isset($partno_search) ? $partno_search : '' }}" class="form-control" placeholder="Search..." required>
+            <span class="input-group-btn">
+                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+                </button>
             </span>
-      </div>
+        </div>
     </form>
     <!-- /.search form -->
     <!-- sidebar menu: : style can be found in sidebar.less -->
