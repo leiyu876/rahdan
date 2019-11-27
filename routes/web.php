@@ -59,6 +59,10 @@ Route::group(['middleware' => ['auth']], function () {
 	    'missingparts' => 'MissingpartsController',
 	]);
 
+	Route::prefix('missingparts')->group(function() {
+		Route::get('print/excel', 'MissingpartsController@print_excel');
+	});
+
 	Route::prefix('shortparts')->group(function() {
 		Route::get('by/partnumbers', 'ShortpartsController@byPartnumbers');
 		Route::get('{shortpart}/finish', 'ShortpartsController@finish')->name('shortparts.finish');

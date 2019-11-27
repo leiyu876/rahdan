@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Missing_part;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\MissingPartsExport;
 
 class MissingpartsController extends Controller
 {
@@ -109,5 +111,10 @@ class MissingpartsController extends Controller
         $missingpart->delete();
         
         return back()->with('success', 'Successfully Removed');
+    }
+
+    public function print_excel() 
+    {
+        return Excel::download(new MissingPartsExport(), 'MissingParts.xlsx');
     }
 }

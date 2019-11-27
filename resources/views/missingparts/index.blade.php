@@ -11,9 +11,10 @@
         <div class="col-xs-12">
             <div class="box">
                 <div class="box-header">
+                    <a href="{{ url('missingparts/print/excel') }}" class="btn btn-default"><i class="fa fa-print"></i> Print</a>                                
                     @if(Auth::user()->hasRole('Super Administrator'))
-                        <div class="pull-right">
-                            <a href="{{ url('missingparts/create') }}" class="btn btn-block btn-primary"><i class="fa fa-plus"></i> Add Missing</a>
+                        <div class="pull-right d-flex">                            
+                            <a href="{{ url('missingparts/create') }}" class="btn btn-block btn-primary"><i class="fa fa-plus"></i> Add Missing</a>                                
                         </div>
                     @endif
                 </div>
