@@ -6,7 +6,7 @@
             <div class="row"> 
                 <div class="col-md-6 col-md-offset-3">
                     <div class="callout callout-warning">
-                    	<a href="javascript:void(0);" class="btn btn-info pull-right" id="href-save">Save to missing</a>                    
+                    	<a href="{{ url('missingparts/create?search='.$partno_search) }}" class="btn btn-info btn-lg pull-right" id="href-save">Save to missing</a>                    
                         <h4>{{ $partno_search }}</h4>
 
                         <p>We dont know.</p>  
@@ -14,13 +14,7 @@
                     </div>                    
                 </div>                
 	        </div>
-	        <form method="post" action="{{ route('missingparts.store') }}">
-                {{ @csrf_field() }}
-                <input type="text" name="partno" value="{{ $partno_search }}" >
-                <input type="text" name="from_search" value="nothing" >
-                <button type="submit" class="btn btn-info pull-right" id="btn-save">Save</button>
-            </form>
-        @else
+	    @else
             <div class="row"> 
                 <div class="col-md-6 col-md-offset-3">
                     <div class="callout callout-success">

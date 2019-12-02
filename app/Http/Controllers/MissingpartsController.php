@@ -30,9 +30,16 @@ class MissingpartsController extends Controller
      */
     public function create()
     {
-        $data['page_title'] = 'Adding new Missing Part';
+        $d['partno'] = null;
 
-        return view('missingparts.create', $data);
+        if(request()->has('search')) {
+
+            $d['partno'] = request()->query('search');
+        }
+        
+        $d['page_title'] = 'Adding new Missing Part';
+
+        return view('missingparts.create', $d);
     }
 
     /**
@@ -43,11 +50,7 @@ class MissingpartsController extends Controller
      */
     public function store(Request $request)
     {
-    	if($request->from_search) {
-    		
-    	}
-
-        $data = $request->validate([
+    	$data = $request->validate([
             'partno' => 'required|unique:missing_parts',
             'qty' => 'required|numeric',
             'comment' => ''

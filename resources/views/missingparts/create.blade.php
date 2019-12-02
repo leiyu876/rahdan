@@ -21,7 +21,7 @@
                     @endif
                   <label for="partno" class="col-sm-3 control-label">Part Number</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="partno" name="partno" value="{{ old('partno') }}">
+                    <input type="text" class="form-control" id="partno" name="partno" value="{{ old('partno', $partno) }}">
                   </div>
                 </div>
               
