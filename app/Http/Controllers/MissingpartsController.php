@@ -43,6 +43,10 @@ class MissingpartsController extends Controller
      */
     public function store(Request $request)
     {
+    	if($request->from_search) {
+    		
+    	}
+
         $data = $request->validate([
             'partno' => 'required|unique:missing_parts',
             'qty' => 'required|numeric',
