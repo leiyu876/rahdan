@@ -8,7 +8,7 @@
                     <div class="callout callout-warning">
                         <h4>{{ $partno_search }}</h4>
 
-                        <p>Ops ! I did not know where is this spare part !</p>
+                        <p>We dont know.</p>
                     </div>
                 </div>
             </div>
@@ -18,7 +18,7 @@
                     <div class="callout callout-success">
                         <h4>{{ $partno_search }}</h4>
 
-                        <p>Yehey ! I found it !</p>
+                        <p>We find it.</p>
                     </div>
                 </div>
             </div>
