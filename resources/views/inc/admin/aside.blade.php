@@ -37,8 +37,9 @@
 				<li class="{{ Request::is('partnumbers') ? 'active' : '' }}"><a href="{{ url('partnumbers') }}"><i class="fa fa-share"></i> <span>Parts Number</span></a></li>
 			@endif
 
-			<li class="{{ Request::is('missingparts') ? 'active' : '' }}"><a href="{{ route('missingparts.index') }}"><i class="fa fa-share"></i> <span>Missing Parts</span></a></li>
-		
+            @if(auth()->user()->hasRole('Super Administrator'))
+                <li class="{{ Request::is('missingparts') ? 'active' : '' }}"><a href="{{ route('missingparts.index') }}"><i class="fa fa-share"></i> <span>Missing Parts</span></a></li>
+		      @endif
 			<li class="treeview {{ Request::is('invoices/warehouse*') ? 'menu-open' : '' }}">
 				<a href="#">
 					<i class="fa fa-share"></i> <span>Argas</span>
