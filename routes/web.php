@@ -97,6 +97,7 @@ Route::group(['middleware' => ['auth']], function () {
 		Route::get('import', 'ArgasController@import')->name('argas.import');
 		Route::post('importrun', 'ArgasController@importrun')->name('argas.importrun');
 		Route::get('balance_print/{order_id}', 'ArgasController@balance_print')->name('argas.balance_print');
+        Route::get('delivery_note/{order_id}', 'ArgasController@delivery_note')->name('argas.delivery_note');
 		Route::get('ready_print/{order_id}', 'ArgasController@ready_print')->name('argas.ready_print');
 		Route::get('ready_balance_print/{order_id}', 'ArgasController@ready_balance_print')->name('argas.ready_balance_print');
 		Route::get('balance_print_all', 'ArgasController@balance_print_all')->name('argas.balance_print_all');
