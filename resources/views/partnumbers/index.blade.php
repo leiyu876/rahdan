@@ -12,11 +12,16 @@
             <div class="box">
                 <div class="box-header">
                     <h3 class="box-title">List of partnumbers</h3>
-                    @if(Auth::user()->hasRole('Super Administrator'))
-                        <div class="pull-right">
-                            <a href="{{ url('partnumbers/create') }}" class="btn btn-block btn-primary"><i class="fa fa-plus"></i> Add New</a>
-                        </div>
-                    @endif
+                    <!-- comment for now cause i am in vacation and they want to have access for this
+                        @if(Auth::user()->hasRole('Super Administrator'))
+                            <div class="pull-right">
+                                <a href="{{ url('partnumbers/create') }}" class="btn btn-block btn-primary"><i class="fa fa-plus"></i> Add New</a>
+                            </div>
+                        @endif
+                    -->
+                    <div class="pull-right">
+                        <a href="{{ url('partnumbers/create') }}" class="btn btn-block btn-primary"><i class="fa fa-plus"></i> Add New</a>
+                    </div>
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
